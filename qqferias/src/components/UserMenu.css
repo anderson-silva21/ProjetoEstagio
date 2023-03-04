@@ -1,0 +1,19 @@
+p{
+    padding-left: 15px;
+    font-size: 12px;
+    display: block;
+    margin: 5px;
+}
+
+#name{
+    color: #192A3E;
+}
+
+#email{
+    color: #90A0B7;;
+}
+
+#teste{
+    position: absolute;
+    top: 100px;
+}
