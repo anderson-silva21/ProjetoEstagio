@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './Login.css';
 import { Navigate } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -21,35 +21,35 @@ function Login() {
     }
 
     return (
-        <div class="main-div" id="teste">
-          <h1 class="title-app">QQFÉRIAS</h1>
-          <div class="modal-login">
-            <h1 class="title-login">LOGIN</h1>
+        <div className="main-div" id="teste">
+          <h1 className="title-app">QQFÉRIAS</h1>
+          <div className="modal-login">
+            <h1 className="title-login">LOGIN</h1>
             <form onSubmit={handleSubmit}>
-                <div class="input-container">
+                <div className="input-container">
                     <input 
                         required
-                        class="input-login"
+                        className="input-login"
                         type="text"
                         id="username"
                         value={username}
                         onChange={(event) => setUsername(event.target.value)}
                     />
-                    <label class="nome-login">Nome</label>
+                    <label className="nome-login">Nome</label>
                 </div>
-                <div class="input-container">    
+                <div className="input-container">    
                     <input
                         required
-                        class="input-login"
+                        className="input-login"
                         id="username"
                         type="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    <label class="nome-login">Senha</label>
+                    <label className="nome-login">Senha</label>
                 </div>
                 
-                <button class="login-button" type="submit">ACESSAR</button>
+                <button className="login-button" type="submit">ACESSAR</button>
             </form>
         </div>
         </div>
