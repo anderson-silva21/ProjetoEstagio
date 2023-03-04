@@ -24,10 +24,10 @@ body{
     box-shadow: 10px 10px 10px rgb(86, 94, 86);
 }
 
-.input-login{  
+.input-login{
     margin-left: 20px;
-    margin: 8px;
-    width: 80%; 
+    
+    width: 80%;
     border: none;
     padding: 8px;
 }
@@ -37,7 +37,6 @@ body{
     color: #2CA764;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
 
 .nome-login{
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
@@ -53,7 +52,6 @@ body{
     position: relative;
 }
 
-
 .login-button{
     color: #FFFF;
     background-color: #2CA764;
@@ -61,21 +59,54 @@ body{
     width: 60%;
     padding: 5px;
     margin-top: 10%;
-    left: 50%;
     font-size: 18px;
+    margin-left: 20%;
+    margin-bottom: 5%;
     font-weight: bold;
     border-radius: 15px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.login-button:hover{
-    cursor: pointer; 
+
+.nome-login-radio{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: left;
+    margin-right: 64%;
 }
 
+.radio-btn{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    font-weight: bold;
+    font-size: 11px;
+    left: 10px;
+    margin-left: 5%;
+    margin-top: 5%;
+    position: relative;
+}
 
-.title-app{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
-    color: white;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
+.input-login-selector{
+    margin-left: 30px;
+    margin-top: 10px;
+    border: none;
+    font-style: bold;
+    padding: 8px;
+    width: 80%;
+    position: relative;
+}
+
+.nome-login-radio{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    font-weight: bold;
+    font-size: 11px;
+    position: absolute;
+    top: -5px;
+    left: 17px;
+    transform: translate(10px, -50%);
+    margin-bottom: 8%;
+}
+
+.input-container-radio{
+    position: relative;
 }
