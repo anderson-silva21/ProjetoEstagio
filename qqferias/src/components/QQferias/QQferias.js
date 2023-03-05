@@ -17,8 +17,8 @@ function QQferias(){
           <SearchBar onSearch={handleSearch} />
           <Sidebar />
           <main>
-            <h1>Meu aplicativo React</h1>
-            <p>DASHBOARD!!!!    </p>
+            
+            
           </main>
         </div>
       );

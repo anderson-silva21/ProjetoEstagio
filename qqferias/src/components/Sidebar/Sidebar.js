@@ -15,7 +15,6 @@ const Sidebar = () => {
 
   return (
     <div class = "main-div-sbar">
-        <h2 class="title-menu">QQF</h2>
         <UserMenu name="admin" email="admin@example.com" />
         <ul class ="menu-ul">
             {menuItems.map((item, index) => (

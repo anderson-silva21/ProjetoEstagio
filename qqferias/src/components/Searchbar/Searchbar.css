@@ -1,26 +1,51 @@
 #main{
-    position: relative;
-    width: 70%;
-    left: 21%;
+    top: 0;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 #search-button{
-    position: absolute;    
+    position: absolute; 
+    left: 250px;   
+    top: 20px;
+}
+
+#notification-button{
+    position: absolute; 
+    right: 20px;
+    color: #334D6E;
+    top: 20px;
+    
 }
 
 #main-div{
-    box-shadow: 2px 2px 15px rgb(86, 94, 86);
+    box-shadow: 1px 0px 1px rgb(86, 94, 86);
+    width: 100vw;
+    height: 50px;
+    position: absolute;
+    top: 0;
 }
 
 input:focus {
     outline: none;
   }
  
-input{
-    color: '#C2CFE0';
+#input-search{
+    color: #334D6E;
+    margin-left: 230px;
+    border: none;
+    position: absolute;
+    top: 10px;
 }  
-  
+ 
+.title-menu{
+    color: #2ED47A;
+    font-style: normal;
+    font-weight: 600;
+    position: absolute;
+    left: 20px;
+    
+}
+
 
 button:hover{
     cursor: pointer;

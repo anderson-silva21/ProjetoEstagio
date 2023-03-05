@@ -3,6 +3,8 @@ p{
     font-size: 12px;
     display: block;
     margin: 5px;
+    position: relative;
+    left: 10%;
 }
 
 #name{
@@ -15,5 +17,6 @@ p{
 
 #teste{
     position: absolute;
-    top: 100px;
+    top: 30px;
+    height: 30px;
 }
