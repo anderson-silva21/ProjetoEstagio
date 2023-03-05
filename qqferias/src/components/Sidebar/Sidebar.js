@@ -1,8 +1,9 @@
+import './Sidebar.css';
 import React from 'react';
 import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faSliders} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserMenu from './UserMenu';
-import './Sidebar.css';
+import UserMenu from '../UserMenu/UserMenu';
+
 
 const Sidebar = () => {
     const menuItems = [

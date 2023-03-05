@@ -1,0 +1,27 @@
+#main{
+    position: relative;
+    width: 70%;
+    left: 21%;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#search-button{
+    position: absolute;    
+}
+
+#main-div{
+    box-shadow: 2px 2px 15px rgb(86, 94, 86);
+}
+
+input:focus {
+    outline: none;
+  }
+ 
+input{
+    color: '#C2CFE0';
+}  
+  
+
+button:hover{
+    cursor: pointer;
+}

@@ -1,8 +1,7 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login'
-import Cadastro from './components/Cadastro';
-import QQferias from './components/QQferias';
+import Login from './components/Login/Login'
+import Cadastro from './components/Cadastro/Cadastro';
+import QQferias from './components/QQferias/QQferias';
 
 function App() {
   return (

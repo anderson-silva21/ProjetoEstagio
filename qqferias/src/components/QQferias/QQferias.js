@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import SearchBar from './Searchbar';
 import './QQferias.css';
+import React, { useState } from "react";
+import Sidebar from '../Sidebar/Sidebar'
+import SearchBar from '../Searchbar/Searchbar';
 
 function QQferias(){
   const [searchResults, setSearchResults] = useState([]);
@@ -13,7 +13,7 @@ function QQferias(){
   };
 
     return (
-        <div>
+        <div className='main'>
           <SearchBar onSearch={handleSearch} />
           <Sidebar />
           <main>

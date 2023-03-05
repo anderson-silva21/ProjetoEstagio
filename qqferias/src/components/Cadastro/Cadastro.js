@@ -1,9 +1,10 @@
-import React, { useState } from "react";
 import './Cadastro.css';
+import React from "react";
+
 
 function Cadastro() {
     return(
-        <div className="main-div" id="teste">
+        <div className="main-div">
             <h1 className="title-app">QQFÉRIAS</h1>
             <div className="modal-login">
                 <h1 className="title-login">CADASTRO</h1>

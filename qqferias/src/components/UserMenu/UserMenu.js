@@ -1,7 +1,8 @@
+import './UserMenu.css';
 import React from 'react';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './UserMenu.css';
+
 
 const UserMenu = ({ name, email }) => {
   return (

@@ -1,6 +1,7 @@
+import './Searchbar.css';
 import { faSearch, faBell   } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './Searchbar.css';
+
 
 import React, { useState } from 'react';
 
@@ -20,7 +21,7 @@ const Searchbar = ({ onSearch }) => {
     <form onSubmit={handleSubmit} id="main">
         <div style={{ display: 'flex', alignItems: 'center'}} id="main-div">
             <button type="submit" style={{ background: 'transparent', border: 'none', marginLeft: '-40px' }} id="search-button">
-                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon={faSearch} style={{color: '#C2CFE0'}} />
             </button>
             <input
                 type="text"
@@ -30,7 +31,7 @@ const Searchbar = ({ onSearch }) => {
                 style={{ width: '100%', padding: '10px', border: 'none'}}
             />
             <button type="submit" style={{ background: 'transparent', border: 'none', marginLeft: '-40px' }}>
-                <FontAwesomeIcon icon={faBell} />
+                <FontAwesomeIcon icon={faBell} style={{color: '#C2CFE0'}} />
             </button>
         </div>
     </form>
