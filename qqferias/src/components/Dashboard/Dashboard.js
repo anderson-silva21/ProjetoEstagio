@@ -4,18 +4,6 @@ import { faUser, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ProgressBar } from 'react-bootstrap';
 
-const Progress = ({ vacationRequests }) => {
-  const completedRequests = vacationRequests.filter(request => request.status !== 'em análise').length;
-  const totalRequests = vacationRequests.length;
-  const progress = Math.floor((completedRequests / totalRequests) * 100);
-
-  return (
-    <ProgressBar style={{ height: '10px', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999, background: 'transparent' }}>
-      <ProgressBar now={progress} label={`${progress}%`} variant="success" />
-      <ProgressBar now={100 - progress} variant="light" />
-    </ProgressBar>
-  );
-};
 
 const Dashboard = () => {
   const [vacationRequests, setVacationRequests] = useState([
@@ -36,12 +24,22 @@ const Dashboard = () => {
     setVisibleRequests(visibleRequests + 2);
   };
 
-
+  const completedRequests = vacationRequests.filter(request => request.status !== 'em análise').length;
+  const totalRequests = vacationRequests.length;
+  const progress = Math.floor((completedRequests / totalRequests) * 100);
+/*      <div id='div-progress'>
+        <div id='progressbar'>
+          <h4 id='title-progress'>Progresso:</h4>
+          <ProgressBar now={progress} label={`${progress.toFixed(0)}%`} />
+          
+        </div>
+      </div> */
   return (
     
-    <div id='main-div-dashboard'>
-      
-      {vacationRequests.slice(0, visibleRequests).map((request) => (
+    <div id='header'>
+
+      <div id='main-div-dashboard'>
+        {vacationRequests.slice(0, visibleRequests).map((request) => (
             <tr key={request.id} id='main-solicit'>
               <h4 id='titleRequest'>{request.type}</h4>
               <h5 id='period'>Período: {request.startDate} à {request.endDate}</h5>
@@ -90,6 +88,7 @@ const Dashboard = () => {
           {visibleRequests < vacationRequests.length && (
             <button id='showmore' onClick={handleShowMore}>Mostrar mais</button>
           )}
+      </div>
     </div>
   );
 };

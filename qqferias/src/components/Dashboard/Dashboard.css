@@ -6,11 +6,12 @@ body {
     position: relative;
     display: inline-block;
     left: 250px;
-    top: 150px;
+    top: 90px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     width: 50%;
     height: 500px;
     overflow: auto;
+    margin-bottom: 100px;
 }
 
 ::-webkit-scrollbar {
@@ -37,7 +38,7 @@ body {
     display: inline-block;
     color: #334D6E;
     position: relative;
-    left: 45px;
+    left: 55px;
     margin-left: 10px;
     width: 12px;
 }
@@ -106,18 +107,43 @@ body {
 #main-solicit{
     display: block;
     position: relative;
-    margin-bottom: 10px;
-    background-color: #edf8f2;
+    margin: 10px;
+
+    background-color: white;
     padding: 10px;
     height: 150px;
     border-radius: 7px;
-    border-color: #bfe4cf;
+    border-color: white;
     border-width: 10px;
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
 }
 
 .div-stat{
     display: flex;
     position: relative;
     top: -60px;
-    left: 450px;
+    left: 400px;
+}
+
+#div-progress{
+
+    
+}
+
+#progressbar{
+    display: flex;
+    position: absolute;
+    top: 10%;
+    background-color: white;
+    width: 60px;
+    border-radius: 7px;
+    border-color: white;
+    border-width: 10px;
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
+    padding: 0;
+}
+
+#title-progress{
+    margin-left: 5px;
+    position: relative;
 }

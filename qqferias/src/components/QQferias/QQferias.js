@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Sidebar from '../Sidebar/Sidebar'
 import SearchBar from '../Searchbar/Searchbar';
 import Dashboard from '../Dashboard/Dashboard';
+import VacationCalendar from '../VacationCalendar/VacationCalendar'
 
 
 function QQferias(){
@@ -20,6 +21,10 @@ function QQferias(){
           <Sidebar />
           <main>
           <Dashboard />
+          <div id='calendar'>
+            <h3 id='tilte-calendar'>Calendário</h3>
+            <VacationCalendar />
+          </div>
             
           </main>
         </div>
