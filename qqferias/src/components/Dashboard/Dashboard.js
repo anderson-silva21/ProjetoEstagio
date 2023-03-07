@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Dashboard.css'
 import { faUser, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ProgressBar } from 'react-bootstrap';
+import ProgressBar from '../ProgressBar/ProgressBar';
+
 
 
 const Dashboard = () => {
@@ -27,17 +28,13 @@ const Dashboard = () => {
   const completedRequests = vacationRequests.filter(request => request.status !== 'em análise').length;
   const totalRequests = vacationRequests.length;
   const progress = Math.floor((completedRequests / totalRequests) * 100);
-/*      <div id='div-progress'>
-        <div id='progressbar'>
-          <h4 id='title-progress'>Progresso:</h4>
-          <ProgressBar now={progress} label={`${progress.toFixed(0)}%`} />
-          
-        </div>
-      </div> */
+      
   return (
-    
     <div id='header'>
-
+      <div id='progressbar' style={{ width: '50%' }}>
+        <h5 style={{color: '#323C47'}}>{completedRequests} solicitações completadas de {totalRequests}</h5>
+        <ProgressBar progress={progress} />
+      </div>     
       <div id='main-div-dashboard'>
         {vacationRequests.slice(0, visibleRequests).map((request) => (
             <tr key={request.id} id='main-solicit'>
@@ -55,7 +52,6 @@ const Dashboard = () => {
                       <button type="submit" style={{ background: 'transparent', border: 'none'}} className="iconEdit">
                         <FontAwesomeIcon icon={faTrash}  />
                       </button>
-
                       <button className='botao-fim'>Aprovado</button>
                     </div>
                   </>
@@ -85,9 +81,12 @@ const Dashboard = () => {
               </td>
             </tr>
           ))}
-          {visibleRequests < vacationRequests.length && (
-            <button id='showmore' onClick={handleShowMore}>Mostrar mais</button>
-          )}
+
+      </div>
+      <div id='showmais'>
+        {visibleRequests < vacationRequests.length && (
+              <button id='showmore' onClick={handleShowMore}>Mostrar mais</button>
+        )}
       </div>
     </div>
   );
