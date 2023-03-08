@@ -23,7 +23,7 @@ body {
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #98dab6; /* cor da alça da barra de rolagem */
+    background-color: #2ED47A; /* cor da alça da barra de rolagem */
     border-radius: 5px; /* borda arredondada da alça da barra de rolagem */
   }
 

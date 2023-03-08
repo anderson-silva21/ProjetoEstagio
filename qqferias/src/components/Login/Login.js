@@ -27,6 +27,7 @@ function Login() {
                 <h1 className="title-login-login">LOGIN</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-container-login">
+                        <label className="nome-login-login">Matricula</label>
                         <input 
                             required
                             className="input-login-login"
@@ -35,9 +36,9 @@ function Login() {
                             value={username}
                             onChange={(event) => setUsername(event.target.value)}
                         />
-                        <label className="nome-login-login">Nome</label>
                     </div>
-                    <div className="input-container-login">    
+                    <div className="input-container-login"> 
+                        <label className="nome-login-login">Senha</label>   
                         <input
                             required
                             className="input-login-login"
@@ -45,8 +46,7 @@ function Login() {
                             type="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
-                        />
-                        <label className="nome-login-login">Senha</label>
+                        />               
                     </div>
                     <button className="login-button-login" type="submit">ACESSAR</button>
                 </form>

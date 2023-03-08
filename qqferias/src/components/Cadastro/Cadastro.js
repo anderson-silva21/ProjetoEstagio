@@ -10,41 +10,41 @@ function Cadastro() {
                 <h1 className="title-login">CADASTRO</h1>
                 <div className="login-content">
                     <div className="input-container">
-                        <input className="input-login" type="text" id="username" required></input>
                         <label className="nome-login">Nome</label>
+                        <input className="input-login" type="text" id="username" required></input>
                     </div>
                     <div className="input-container">
-                        <input className="input-login" type="password" id="username" required></input>
                         <label className="nome-login">Senha</label>
+                        <input className="input-login" type="password" id="username" required></input>
                     </div>
                     <div className="input-container">
-                        <input className="input-login" type="email" id="username" required></input>
-                        <label className="nome-login">Email</label>
+                        <label className="nome-login">Matricula</label>
+                        <input className="input-login" type="text" id="username" required></input>
                     </div>
                     <div className="input-container">
+                        <label className="nome-login">Gestor</label>
                         <select className="input-login-selector">
                             <option value="João Gestor">João Gestor</option>
                             <option value="Maria Gestora">Maria Gestora</option>
-                        </select>
-                        <label className="nome-login">Gestor</label>
+                        </select>                       
                     </div>
                     <div className="input-container-radio">
+                    <label className="nome-login">Tipo de contrato</label>
                         <div className="radio-btn">
                             <input type="radio" name="opcoes1" value="CLT"></input>
                             <label>CLT</label>
                             <input type="radio" name="opcoes1" value="PJ"></input>
                             <label>PJ</label>
-                        </div>
-                        <label className="nome-login-radio">Tipo de contrato</label>
+                        </div>                  
                     </div>
                     <div className="input-container-radio">
+                        <label className="nome-login">Nível</label>
                         <div className="radio-btn">
                             <input  type="radio" name="opcoes" value="Gestor"></input>
                             <label>Gestor</label>
                             <input type="radio" name="opcoes" value="Colaborador"></input>
                             <label>Colaborador</label>
                         </div>
-                        <label className="nome-login-radio">Nível</label>
                     </div>
                 <button className="login-button" type="submit">CADASTRAR</button>
             </div>
