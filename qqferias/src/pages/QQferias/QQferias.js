@@ -10,7 +10,7 @@ function QQferias(){
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (query) => {
-    // fazer a busca no banco de dados ou API aqui
+    // fazer a busca no banco de dados aqui
     // atualizar o estado com os resultados da pesquisa
     setSearchResults([]);
   };

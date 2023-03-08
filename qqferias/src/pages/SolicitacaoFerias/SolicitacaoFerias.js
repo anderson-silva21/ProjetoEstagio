@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './SolicitacaoFerias.css'
 
 
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -13,23 +14,73 @@ const localizer = momentLocalizer(moment);
 function MyCalendar(){
     const [searchResults, setSearchResults] = useState([]);
 
+    const [events, setEvents] = useState();
+
     const handleSearch = (query) => {
       // fazer a busca no banco de dados ou API aqui
       // atualizar o estado com os resultados da pesquisa
       setSearchResults([]);
     };
     return (
-        <div className='main'>
+        <div>
             <SearchBar onSearch={handleSearch} />
             <Sidebar />
-            <main>
+            <main className='main'>
                 <div id='calendario'>
                     <Calendar
-                    localizer={localizer}
-                    startAccessor="start"
-                    endAccessor="end"
+                        localizer={localizer}
+                        events={events}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: '70vh' }}
                     />
                 </div>
+
+                <div id='sidemenu'>
+                    <div className="login-content">
+                        
+                        <div className="input-container">
+                            <label className="nome-login">Mês</label>
+                            <select className="input-login-selector">
+                                <option value="Janeiro">Janeiro</option>
+                                <option value="Fevereiro">Fevereiro</option>
+                                <option value="Marco">Março</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Maio">Maio</option>
+                                <option value="Junho">Junho</option>
+                                <option value="Julho">Julho</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Setembro">Setembro</option>
+                                <option value="Outubro">Outubro</option>
+                                <option value="Novembro">Novembro</option>
+                                <option value="Dezembro">Dezembro</option>
+                            </select>                       
+                        </div>
+                        <div className="input-container-radio">
+                            <label className="nome-login">Quantidade de dias</label>
+                            <div className="radio-btn">
+                                <input type="radio" name="opcoes1" value="05"></input>
+                                <label>05</label>
+                                <input type="radio" name="opcoes1" value="10"></input>
+                                <label>10</label>
+                                <input type="radio" name="opcoes1" value="15"></input>
+                                <label>15</label>
+                                <input type="radio" name="opcoes1" value="20"></input>
+                                <label>20</label>
+                                <input type="radio" name="opcoes1" value="30"></input>
+                                <label>30</label>
+                            </div>                  
+                        </div>
+                        <div className="input-container-radio">
+                            <div className="radio-btn">
+                                <input  type="radio" name="opcoes" value="decimo-terceiro"></input>
+                                <label>Adiantamento do 13º</label>
+                                
+                            </div>
+                        </div>
+                    <button className="solicit-button" type="submit">Enviar solicitacao para o gestor</button>
+                </div>
+            </div>
                 
             </main>
         </div>
