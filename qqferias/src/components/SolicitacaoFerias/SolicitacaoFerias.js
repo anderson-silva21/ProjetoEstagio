@@ -3,6 +3,8 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+
 import Sidebar from '../Sidebar/Sidebar'
 import SearchBar from '../Searchbar/Searchbar';
 
