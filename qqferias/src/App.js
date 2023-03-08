@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login/Login'
-import Cadastro from './components/Cadastro/Cadastro';
-import QQferias from './components/QQferias/QQferias';
-import SolicitacaoFerias from './components/SolicitacaoFerias/SolicitacaoFerias';
+import Login from './pages/Login/Login'
+import Cadastro from './pages/Cadastro/Cadastro';
+import QQferias from './pages/QQferias/QQferias';
+import SolicitacaoFerias from './pages/SolicitacaoFerias/SolicitacaoFerias';
 
 function App() {
   

@@ -5,8 +5,8 @@ import 'moment/locale/pt-br';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 
-import Sidebar from '../Sidebar/Sidebar'
-import SearchBar from '../Searchbar/Searchbar';
+import Sidebar from '../../components/Sidebar/Sidebar'
+import SearchBar from '../../components/Searchbar/Searchbar'
 
 const localizer = momentLocalizer(moment);
 

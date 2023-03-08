@@ -1,9 +1,9 @@
 import './QQferias.css';
 import React, { useState } from "react";
-import Sidebar from '../Sidebar/Sidebar'
-import SearchBar from '../Searchbar/Searchbar';
-import Dashboard from '../Dashboard/Dashboard';
-import VacationCalendar from '../VacationCalendar/VacationCalendar'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import SearchBar from '../../components/Searchbar/Searchbar';
+import Dashboard from '../../components/Dashboard/Dashboard';
+import VacationCalendar from '../../components/VacationCalendar/VacationCalendar'
 
 
 function QQferias(){

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-import 'moment/locale/pt-br';
+import 'moment/locale/pt';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './VacationCalendar.css'
 
