@@ -10,7 +10,7 @@ const Sidebar = () => {
         { label: ' DashBoard', path: '/qqferias', icon: faChartLine },
         { label: ' Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
         { label: ' Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
-        { label: ' Configurações', path: '/configuracoes', icon: faSliders}
+        //{ label: ' Configurações', path: '/configuracoes', icon: faSliders}
   ];
 
   return (
