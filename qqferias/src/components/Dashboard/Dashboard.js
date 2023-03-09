@@ -8,15 +8,15 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 
 const Dashboard = () => {
   const [vacationRequests, setVacationRequests] = useState([
-    { id: 1, name: 'Marcos Silva', startDate: '01/03/2023', endDate: '07/03/2023', status: 'em análise', type: 'Solicitação de férias' },
-    { id: 2, name: 'Joice Souza', startDate: '01/04/2023', endDate: '10/04/2023', status: 'rejeitada', type: 'Solicitação de férias' },
-    { id: 3, name: 'Maria Santos', startDate: '15/05/2023', endDate: '22/05/2023', status: 'aprovada', type: 'Solicitação de férias com adiantamento do 13º' },
-    { id: 4, name: 'Juliana Fernandes', startDate: '10/06/2023', endDate: '17/06/2023', status: 'em análise', type: 'Solicitação de férias com adiantamento do 13º' },
-    { id: 5, name: 'José Carlos', startDate: '01/07/2023', endDate: '07/07/2023', status: 'em análise', type: 'Solicitação de férias' },
-    { id: 6, name: 'Ana Paula', startDate: '15/08/2023', endDate: '22/08/2023', status: 'aprovada', type: 'Solicitação de férias' },
-    { id: 7, name: 'Roberto Santos', startDate: '10/09/2023', endDate: '17/09/2023', status: 'em análise', type: 'Solicitação de férias com adiantamento do 13º' },
-    { id: 8, name: 'Fernanda Souza', startDate: '01/10/2023', endDate: '07/10/2023', status: 'aprovada', type: 'Solicitação de férias' },
-    { id: 9, name: 'Mariana Silva', startDate: '15/11/2023', endDate: '22/11/2023', status: 'em análise', type: 'Solicitação de férias' },
+    { id: 1, name: 'Marcos Silva', startDate: '01/03/2023', endDate: '07/03/2023', status: 'em análise', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
+    { id: 2, name: 'Joice Souza', startDate: '01/04/2023', endDate: '10/04/2023', status: 'rejeitada', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
+    { id: 3, name: 'Maria Santos', startDate: '15/05/2023', endDate: '22/05/2023', status: 'aprovada', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },
+    { id: 4, name: 'Juliana Fernandes', startDate: '10/06/2023', endDate: '17/06/2023', status: 'em análise', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Período aquisitivo' },
+    { id: 5, name: 'José Carlos', startDate: '01/07/2023', endDate: '07/07/2023', status: 'em análise', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
+    { id: 6, name: 'Ana Paula', startDate: '15/08/2023', endDate: '22/08/2023', status: 'aprovada', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
+    { id: 7, name: 'Roberto Santos', startDate: '10/09/2023', endDate: '17/09/2023', status: 'em análise', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },
+    { id: 8, name: 'Fernanda Souza', startDate: '01/10/2023', endDate: '07/10/2023', status: 'aprovada', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
+    { id: 9, name: 'Mariana Silva', startDate: '15/11/2023', endDate: '22/11/2023', status: 'em análise', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
   ]);
 
   const [visibleRequests, setVisibleRequests] = useState(2);
@@ -42,6 +42,24 @@ const Dashboard = () => {
               <h5 id='period'>Período: {request.startDate} à {request.endDate}</h5>
               <FontAwesomeIcon id='iconUser' icon={faUser} />
               <h5 id='username'>{request.name}</h5>
+              {request.feriasStat === 'Período aquisitivo' && (
+                <>
+                  <h5 id='feriasStat' style={{marginLeft: '50px'}}> Status: </h5>
+                  <h5 id='feriasStat' style={{color: '#2ED47A'}}>{request.feriasStat}</h5>
+                </>
+              )}
+              {request.feriasStat === 'Atrasado' && (
+                <>
+                  <h5 id='feriasStat' style={{marginLeft: '50px'}}> Status: </h5>
+                  <h5 id='feriasStat' style={{color: '#F7685B'}}>{request.feriasStat}</h5>
+                </>
+              )}
+              {request.feriasStat === 'Próximo' && (
+                <>
+                  <h5 id='feriasStat' style={{marginLeft: '50px'}}> Status: </h5>
+                  <h5 id='feriasStat' style={{color: '#FFB946'}}>{request.feriasStat}</h5>
+                </>
+              )}
               <td>
                 {request.status === 'aprovada' && (
                   <>

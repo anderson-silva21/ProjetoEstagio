@@ -147,3 +147,10 @@ body {
   #header{
     height: 100vw;
   }
+
+  #feriasStat{
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    top: -20px;
+}

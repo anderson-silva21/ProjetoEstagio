@@ -89,7 +89,7 @@ function MyCalendar(){
                         <div className="input-container-radio">
                             <label className="nome-login">Quantidade de dias</label>
                             <div className="radio-btn">
-                                <input type="radio" name="opcoes1" value="05" checked={selectedDays === '5'} onChange={handleDayChange}></input>
+                                <input type="radio" name="opcoes1" value="05" checked={selectedDays === '05'} onChange={handleDayChange}></input>
                                 <label>05</label>
                                 <input type="radio" name="opcoes1" value="10" checked={selectedDays === '10'} onChange={handleDayChange}></input>
                                 <label>10</label>
