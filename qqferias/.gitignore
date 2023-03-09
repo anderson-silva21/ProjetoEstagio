@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+#ignore all logs
+.env
+node_modules
+.gitignore
+package-lock.json
+.directory
 # testing
 /coverage
 
