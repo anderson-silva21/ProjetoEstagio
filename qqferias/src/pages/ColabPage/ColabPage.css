@@ -11,15 +11,15 @@ body, html {
 }
 
 #Poster{
+    padding: 30px;
     position: absolute;
-    width: 45vw;
+    width: 30vw;
     height: auto;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-#imagem{
-    padding: 10px;
+    border-radius: 7px;
+    padding-top: 0px;
     background-color: white;
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
 }

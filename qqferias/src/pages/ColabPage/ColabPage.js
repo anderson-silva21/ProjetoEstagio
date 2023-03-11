@@ -21,9 +21,9 @@ function ColabPage(){
           <SearchBar onSearch={handleSearch} />
           <SidebarColab />
           <main>
-            <div id='imagem'>
-                <img src={require('../../img/VacationPoster.png')} alt='Poster' id='Poster'/>
-            </div>
+            
+            <img src={require('../../img/VacationPoster.png')} alt='Poster' id='Poster'/>
+            
             
           </main>
         </div>

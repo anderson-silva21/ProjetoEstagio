@@ -15,11 +15,11 @@ const Sidebar = () => {
     
   return (
     <div class = "main-div-sbar">
-        <UserMenu name="admin" email="admin@example.com" />
+        <UserMenu name="colab" email="colab@example.com" />
         <ul class ="menu-ul">
             {menuItems.map((item, index) => (
             <li key={index}>
-                <a href={item.path}>
+                <a href={item.path} id="itemSideBar">
                     <FontAwesomeIcon icon={item.icon} style={{color: '#C2CFE0'}}/>
                     {item.label} 
                 </a>   
