@@ -1,14 +1,14 @@
-import './QQferias.css';
+import './ColabPage.css';
 import React, { useState } from "react";
-import Sidebar from '../../components/Sidebar/Sidebar'
+import SidebarColab from '../../components/SidebarColab/SidebarColab'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import Dashboard from '../../components/Dashboard/Dashboard';
+import VacationCalendar from '../../components/VacationCalendar/VacationCalendar'
 
-function QQferias(){
+
+function ColabPage(){
   const [searchResults, setSearchResults] = useState([]);
   const [events, setEvents] = useState([]);
-
-
 
   const handleSearch = (query) => {
     // fazer a busca no banco de dados aqui
@@ -19,12 +19,15 @@ function QQferias(){
     return (
         <div className='main'>
           <SearchBar onSearch={handleSearch} />
-          <Sidebar />
+          <SidebarColab />
           <main>
-          <Dashboard />
+            <div id='imagem'>
+                <img src={require('../../img/VacationPoster.png')} alt='Poster' id='Poster'/>
+            </div>
+            
           </main>
         </div>
       );
 };
 
-export default QQferias;
+export default ColabPage;

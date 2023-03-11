@@ -1,13 +1,13 @@
-import './Sidebar.css';
+import './SidebarColab.css';
 import React from 'react';
-import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faSliders} from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faCartFlatbedSuitcase, faPeopleGroup, faSliders} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserMenu from '../UserMenu/UserMenu';
 
 
 const Sidebar = () => {
     const menuItems = [
-        { label: ' DashBoard', path: '/qqferias', icon: faChartLine },
+        { label: ' Home', path: '/home', icon: faHouse },
         { label: ' Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
         { label: ' Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
         //{ label: ' Configurações', path: '/configuracoes', icon: faSliders}

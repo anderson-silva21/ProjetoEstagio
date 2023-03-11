@@ -7,17 +7,19 @@ import './VacationCalendar.css'
 
 const localizer = momentLocalizer(moment);
 
-const vacationEvents = [
-  {
-    title: 'Férias do Funcionário',
-    start: moment().add(7, 'days').toDate(),
-    end: moment().add(14, 'days').toDate(),
-    allDay: true
-  }
-];
+const VacationCalendar = ({ events, setEvents }) => {
 
-const VacationCalendar = () => {
-  const [events, setEvents] = useState(vacationEvents);
+  const handleSelect = ({ start, end }, title) => {
+    if (title) {
+      const newEvent = {
+        title,
+        start,
+        end,
+        allDay: true
+      };
+      setEvents([...events, newEvent]);
+    }
+  };
 
   return (
     <Calendar
@@ -25,6 +27,8 @@ const VacationCalendar = () => {
       events={events}
       startAccessor="start"
       endAccessor="end"
+      selectable
+      onSelectSlot={handleSelect}
       style={{ height: '70vh' }}
     />
   );

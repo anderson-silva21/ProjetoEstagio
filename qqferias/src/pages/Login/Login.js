@@ -5,19 +5,25 @@ import { Navigate } from 'react-router-dom';
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedInGestor, setLoggedInGestor] = useState(false);
+    const [loggedInColab, setLoggedInColab] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (username === 'admin' && password === 'admin') {
-            setLoggedIn(true);
-        } else { 
+        if (username === 'gestor' && password === 'gestor') {
+            setLoggedInGestor(true);
+        } else if(username === 'colab' && password === 'colab'){
+            setLoggedInColab(true);
+        }else { 
             alert('Nome de usuário ou senha inválidos.');
         }
     };
 
-    if (loggedIn) {
+    if (loggedInGestor) {
         return <Navigate to= "/qqferias" />;
+    }
+    if (loggedInColab) {
+        return <Navigate to= "/home" />;
     }
 
     return (

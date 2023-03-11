@@ -1,0 +1,25 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #F5F6F8;
+}
+
+#Poster{
+    position: absolute;
+    width: 45vw;
+    height: auto;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#imagem{
+    padding: 10px;
+    background-color: white;
+}

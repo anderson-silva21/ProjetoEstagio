@@ -37,7 +37,6 @@ function Colaboradores(){
         setSelectedCollaborator(collaborator);
     }
 
-  
     return (
         <div>
             <SearchBar onSearch={handleSearch} />

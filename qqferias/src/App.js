@@ -4,6 +4,7 @@ import Cadastro from './pages/Cadastro/Cadastro';
 import QQferias from './pages/QQferias/QQferias';
 import SolicitacaoFerias from './pages/SolicitacaoFerias/SolicitacaoFerias';
 import Colaboradores from './pages/Colaboradores/Colaboradores';
+import ColabPage from './pages/ColabPage/ColabPage';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Route path="/qqferias" element={<QQferias/>} /> 
         <Route path="/solicitacao-ferias" element={<SolicitacaoFerias/>} />
         <Route path="/colaboradores" element ={<Colaboradores/>} />
+        <Route path="/home" element ={<ColabPage/>} />
       </Routes>
     </Router>
   );
