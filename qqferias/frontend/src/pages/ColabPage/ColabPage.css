@@ -1,0 +1,25 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #F5F6F8;
+}
+
+#Poster{
+    padding: 30px;
+    position: absolute;
+    width: 30vw;
+    height: auto;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
+    padding-top: 0px;
+    background-color: white;
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
+}

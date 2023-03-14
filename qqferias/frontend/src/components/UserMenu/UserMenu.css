@@ -1,0 +1,22 @@
+p{
+    padding-left: 15px;
+    font-size: 12px;
+    display: block;
+    margin: 5px;
+    position: relative;
+    left: 10%;
+}
+
+#name{
+    color: #192A3E;
+}
+
+#email{
+    color: #90A0B7;;
+}
+
+#teste{
+    position: absolute;
+    top: 30px;
+    height: 30px;
+}

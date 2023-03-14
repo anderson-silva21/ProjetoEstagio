@@ -1,0 +1,156 @@
+body {
+    overflow: hidden;
+}
+
+#main-div-dashboard{
+    position: relative;
+    display: inline-block;
+    left: 250px;
+    top: 4vw;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 50%;
+    height: 30vw;
+    overflow: auto;
+    margin-bottom: 100px;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* largura da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* cor de fundo da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2ED47A; /* cor da alça da barra de rolagem */
+    border-radius: 5px; /* borda arredondada da alça da barra de rolagem */
+  }
+
+#username{
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    top: -20px;
+}
+
+.iconEdit{
+    display: inline-block;
+    color: #334D6E;
+    position: relative;
+    left: 55px;
+    margin-left: 10px;
+    width: 12px;
+}
+
+#iconUser{
+    display: inline-block;
+    position: relative;
+    top: -20px; 
+}
+
+#titleRequest{
+    color: #323C47;
+    position: relative;
+}
+
+#period{
+    color: #707683;
+    position: relative;
+}
+
+#botao-ap{
+    display: inline-block;
+    position: relative;
+    background-color: #2ED47A;
+    border-radius: 5px;
+    color: white;
+    border-color: #2ED47A;
+    width: 100px;
+    
+}
+
+#botao-rej{
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    background-color: #F7685B;
+    border-radius: 5px;
+    color: white;
+    border-color: #F7685B;
+    width: 100px;
+}
+
+.botao-fim{
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    background-color: #109CF1;
+    border-radius: 5px;
+    color: white;
+    border-color: #109CF1;
+    width: 100px;
+    left: 60px;
+    cursor: none;
+
+}
+
+#showmore{
+    border: none;
+    background-color: transparent;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #2ED47A;
+}
+
+#main-solicit{
+    display: block;
+    position: relative;
+    margin: 10px;
+
+    background-color: white;
+    padding: 10px;
+    height: 150px;
+    border-radius: 7px;
+    border-color: white;
+    border-width: 10px;
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
+}
+
+.div-stat{
+    display: flex;
+    position: relative;
+    top: -60px;
+    left: 400px;
+}
+
+#progressbar{
+    position: absolute;
+    margin-bottom: 10px;
+    position: relative;
+    width: 0.2vw;
+    left: 250px;
+    top: 4vw;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+
+#showmais{
+    position: fixed;
+    bottom: 1vw;
+    left: 35vw;
+  }
+
+  #header{
+    height: 100vw;
+  }
+
+  #feriasStat{
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    top: -20px;
+}
