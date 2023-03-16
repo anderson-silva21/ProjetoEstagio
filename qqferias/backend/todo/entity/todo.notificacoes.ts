@@ -10,5 +10,5 @@ export class NotificacoesEntity {
     agendamento_id: number;
 
     @Column({type: 'enum' })
-    tipo: Enumerator;  
+    tipo: String;  
 }

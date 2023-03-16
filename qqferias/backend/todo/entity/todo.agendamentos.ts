@@ -16,7 +16,7 @@ export class AgendamentosEntity {
     data_fim: Date;
 
     @Column({type:'enum'})
-    status: Enumerator;  
+    status: String;  
 
     @Column({type:'bool'})
     antecipacao_13_salario: boolean;

@@ -19,7 +19,7 @@ CREATE TABLE agendamentos (
   dias INTEGER NOT NULL CHECK (dias IN (5, 10, 15, 20, 30)),
   antecipacao_13_salario BOOLEAN DEFAULT false,
   FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
-);
+);  
 
 -- Cria tabela de notificações por e-mail (python)
 CREATE TABLE notificacoes (

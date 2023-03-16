@@ -19,7 +19,7 @@ function QQferias(){
     return (
         <div className='main'>
           <SearchBar onSearch={handleSearch} />
-          <Sidebar />
+          <Sidebar userProfile={'gestor'} />
           <main>
           <Dashboard />
           </main>

@@ -10,10 +10,10 @@ export class FuncionarioEntity {
     nome: string;
 
     @Column({type: 'enum' })
-    tipo_contrato: Enumerator;
+    tipo_contrato: String;
 
     @Column({type: 'enum' })
-    tipo_funcionario: Enumerator;
+    tipo_funcionario: String;
 
     @Column({type:'int'})
     gestor_id: number;  

@@ -1,3 +1,5 @@
+/* Estilos padrão para desktop */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -86,3 +88,35 @@ body, html {
 .login-button-login:hover{
     cursor: pointer; 
 }
+
+/* Estilos para tablet */
+@media (max-width: 768px) {
+  .title-app-login {
+    writing-mode: horizontal-tb;
+    text-orientation: sideways;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 8px;
+  }
+  
+  .modal-login-login {
+    max-width: 400px;
+    width: 300px;
+    height: auto;
+  }
+  
+  .input-login-login {
+    margin-left: 10px;
+  }
+  
+  .nome-login-login {
+    font-size: 10px;
+  }
+  
+  .login-button-login {
+    width: 80%;
+    left: 10%;
+  }
+}
+

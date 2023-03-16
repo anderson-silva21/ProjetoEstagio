@@ -5,8 +5,6 @@ import moment, { months } from 'moment';
 import 'moment/locale/pt-br';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './SolicitacaoFerias.css'
-
-
 import Sidebar from '../../components/Sidebar/Sidebar'
 import SearchBar from '../../components/Searchbar/Searchbar'
 
@@ -65,7 +63,6 @@ function MyCalendar(){
                         style={{ height: '70vh' }}
                     />
                 </div>
-
                 <div id='sidemenu'>
                     <div className="login-content">
                         
@@ -117,7 +114,6 @@ function MyCalendar(){
                                     </option>
                                 ))}
                             </select>
-                            
                             <div className='end-selector'>
                                 <label className= 'nome-login'>Fim</label>
                                 <label className='end-date-selector'>{endDate}</label>

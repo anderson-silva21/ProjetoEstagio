@@ -1,28 +1,61 @@
 import './Sidebar.css';
 import React from 'react';
-import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faSliders} from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from 'react';
+import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faCube, faBars, faUser, faHouse} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserMenu from '../UserMenu/UserMenu';
 
+const Sidebar = ({ userProfile }) => {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
 
-const Sidebar = () => {
-    const menuItems = [
-        { label: ' DashBoard', path: '/qqferias', icon: faChartLine },
-        { label: ' Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
-        { label: ' Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
-        //{ label: ' Configurações', path: '/configuracoes', icon: faSliders}
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsSidebarExpanded(false);
+      } else {
+        setIsSidebarExpanded(true);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const menuItems = userProfile === "colaborador" ? [
+    { label: 'Home', path: '/home', icon: faHouse },
+    { label: 'Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
+    { label: 'Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
+    { label: 'Solicitações', path: '/own-application', icon: faCube}
+  ] : [
+    { label: 'DashBoard', path: '/qqferias', icon: faChartLine },
+    { label: 'Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
+    { label: 'Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
+    { label: 'Solicitações', path: '/own-application', icon: faCube}
   ];
-    
+
+  const toggleSidebar = () => {
+    setIsSidebarExpanded(!isSidebarExpanded);
+  };
+
   return (
-    <div class = "main-div-sbar">
-        <UserMenu name="admin" email="admin@example.com" />
-        <ul class ="menu-ul">
-            {menuItems.map((item, index) => (
-            <li key={index}>
-                <a href={item.path}>
-                    <FontAwesomeIcon icon={item.icon} style={{color: '#C2CFE0'}}/>
-                    {item.label} 
-                </a>   
+    <div className={`main-div-sbar ${isSidebarExpanded ? "" : "collapsed"}`}> 
+      <button className={`sidebar-toggle-button ${isSidebarExpanded ? "" : "collapsed"}`} onClick={toggleSidebar}>
+        <FontAwesomeIcon icon={faBars} style={{color: '#C2CFE0', border:'none'}}/>
+      </button>
+      <div class={`icon ${isSidebarExpanded ? "" : "collapsed"}`}>
+        <FontAwesomeIcon id='iconUserMenu' icon={faUser} />
+        <p id='name' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "colaborador" ? "colab" : "admin"}</p>
+        <p id='email' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "colaborador" ? "colab@example.com" : "admin@example.com"}</p>
+      </div>
+      
+      <ul className="menu-ul">
+        {menuItems.map((item, index) => (
+          <li key={index} className={isSidebarExpanded ? "" : "collapsed"}>
+            <a href={item.path} id="a-icon">
+              <FontAwesomeIcon icon={item.icon} style={{color: '#C2CFE0'}}/>
+              <span className="menu-item-label">{item.label}</span>
+            </a>
           </li>
         ))}
       </ul>

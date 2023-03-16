@@ -10,5 +10,5 @@ export class CompromissosEntity {
     agendamento_id: number;
 
     @Column({type: 'enum' })
-    tipo: Enumerator;
+    tipo: String;
 }
