@@ -1,7 +1,7 @@
 import './Sidebar.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faCube, faBars, faUser, faHouse} from "@fortawesome/free-solid-svg-icons";
+import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faCube, faBars, faUser, faHouse, faFileExcel} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = ({ userProfile }) => {
@@ -31,7 +31,8 @@ const Sidebar = ({ userProfile }) => {
     { label: 'DashBoard', path: '/qqferias', icon: faChartLine },
     { label: 'Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
     { label: 'Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
-    { label: 'Solicitações', path: '/own-application', icon: faCube}
+    { label: 'Solicitações', path: '/own-application', icon: faCube},
+    { label: 'Gerar relatório', path: '/relatorio', icon: faFileExcel}
   ];
 
   const toggleSidebar = () => {

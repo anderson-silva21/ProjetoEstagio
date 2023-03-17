@@ -1,0 +1,33 @@
+import { createAgendamentos } from './dto/create-agendamentos.dto';
+import { createCompromissos } from './dto/create-compromissos.dto';
+import { createFuncionarios } from './dto/create-funcionarios.dto';
+import { createNotificacoes } from './dto/create-notificacoes.dto';
+import { updateAgendamentos } from './dto/update-agendamentos.dto';
+import { updateCompromissos } from './dto/update-compromissos.dto';
+import { updateFuncionarios } from './dto/update-funcionarios.dto';
+import { updateNotificacoes } from './dto/update-notificacoes.dto';
+import { QqferiasService } from './qqferias.service';
+export declare class QqferiasController {
+    private readonly QqferiasService;
+    constructor(QqferiasService: QqferiasService);
+    indexAgendamentos(): Promise<import("./entity/qqferias.agendamentos").QQferiasAgendamentos[]>;
+    indexFuncionarios(): Promise<import("./entity/qqferias.funcionarios").QQferiasFuncionarios[]>;
+    indexCompromissos(): Promise<import("./entity/qqferias.compromissos").QQferiasCompromissos[]>;
+    indexNotificacoes(): Promise<import("./entity/qqferias.notificacoes").QQferiasNotificacoes[]>;
+    createAgendamentos(body: createAgendamentos): Promise<import("./entity/qqferias.agendamentos").QQferiasAgendamentos>;
+    createFuncionarios(body: createFuncionarios): Promise<import("./entity/qqferias.funcionarios").QQferiasFuncionarios>;
+    createCompromissos(body: createCompromissos): Promise<import("./entity/qqferias.compromissos").QQferiasCompromissos>;
+    createNotificacoes(body: createNotificacoes): Promise<import("./entity/qqferias.notificacoes").QQferiasNotificacoes>;
+    agendamentoShow(id: any): Promise<import("./entity/qqferias.agendamentos").QQferiasAgendamentos>;
+    funcionarioShow(id: any): Promise<import("./entity/qqferias.funcionarios").QQferiasFuncionarios>;
+    compromissosShow(id: any): Promise<import("./entity/qqferias.compromissos").QQferiasCompromissos>;
+    notificacoesShow(id: any): Promise<import("./entity/qqferias.notificacoes").QQferiasNotificacoes>;
+    agendamentosUpdate(id: any, body: updateAgendamentos): Promise<import("./entity/qqferias.agendamentos").QQferiasAgendamentos>;
+    funcionariosUpdate(id: any, body: updateFuncionarios): Promise<import("./entity/qqferias.funcionarios").QQferiasFuncionarios>;
+    compromissosUpdate(id: any, body: updateCompromissos): Promise<import("./entity/qqferias.compromissos").QQferiasCompromissos>;
+    notificacoesUpdate(id: any, body: updateNotificacoes): Promise<import("./entity/qqferias.notificacoes").QQferiasNotificacoes>;
+    agendamentosDestroy(id: any): Promise<void>;
+    funcionariosDestroy(id: any): Promise<void>;
+    compromissosDestroy(id: any): Promise<void>;
+    notificacoesDestroy(id: any): Promise<void>;
+}
