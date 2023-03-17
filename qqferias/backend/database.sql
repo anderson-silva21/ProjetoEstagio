@@ -19,7 +19,7 @@ CREATE TABLE agendamentos (
   dias INTEGER NOT NULL CHECK (dias IN (5, 10, 15, 20, 30)),
   antecipacao_13_salario BOOLEAN DEFAULT false,
   FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
-);  
+);
 
 -- Cria tabela de notificações por e-mail (python)
 CREATE TABLE notificacoes (
@@ -37,15 +37,21 @@ CREATE TABLE compromissos (
   FOREIGN KEY (agendamento_id) REFERENCES agendamentos(id)
 );
 
--- Insere na tabela "funcionarios"
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('João Silva', 'CLT', 'Gestor',  '2024-03-10', 1);
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Flavio', 'CLT', 'Gestor',  '2024-03-10', 1);
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Maria Santos', 'CLT', 'Colaborador', '2024-03-10', 1);
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Pedro Oliveira', 'PJ', 'Colaborador', '2024-03-10', 1);
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Ana Pereira', 'CLT', 'Colaborador', '2024-03-10', 2);
-INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Lucas Martins', 'PJ', 'Colaborador', '2024-03-10', 2);
+ALTER TABLE funcionarios
+ALTER COLUMN tipo_funcionario TYPE VARCHAR(15);
 
--- Insere na tabela "agendamentos"
+ALTER TABLE notificacoes
+ALTER COLUMN tipo TYPE VARCHAR(15);
+
+-- Insere na tabela "funcionarios"
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('João Silva', 'CLT', 'Gestor',  '2021-03-10', 1);
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Flavio', 'CLT', 'Gestor',  '2021-03-10', 1);
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Maria Santos', 'CLT', 'Colaborador', '2021-03-10', 1);
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Pedro Oliveira', 'PJ', 'Colaborador', '2021-03-10', 1);
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Ana Pereira', 'CLT', 'Colaborador', '2021-03-10', 2);
+INSERT INTO funcionarios (nome, tipo_contrato, tipo_funcionario, data_ingresso, gestor_id) VALUES ('Lucas Martins', 'PJ', 'Colaborador', '2021-03-10', 2);
+
+-- Insere na tabela "agendamentos" 
 INSERT INTO agendamentos (funcionario_id, data_inicio, data_fim, status, dias, antecipacao_13_salario)
 VALUES (2, '2023-03-01', '2023-03-10', 'Pendente', 10, false);
 
@@ -71,3 +77,5 @@ VALUES (1, 'Partida');
 
 INSERT INTO compromissos (agendamento_id, tipo)
 VALUES (1, 'Retorno');
+
+select * from funcionarios;
