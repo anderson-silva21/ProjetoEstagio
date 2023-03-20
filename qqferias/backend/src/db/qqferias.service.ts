@@ -15,7 +15,7 @@ import { Funcionarios } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
 
 @Injectable()
-export class QqferiasService {
+export class QQFeriasService {
     
     constructor(
         @InjectRepository(Agendamentos)
