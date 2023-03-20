@@ -1,25 +1,37 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum Contrato {
+    CLT = 'CLT',
+    PJ = 'PJ',
+    GHOST = 'Ghost'
+}
+
+export enum Func {
+    GESTOR = 'Gestor',
+    COLABORADOR = 'Colaborador',
+    GHOST = 'Ghost'
+}
+
 @Entity({ name: 'funcionarios'})
 export class Funcionarios {
     @PrimaryGeneratedColumn({name:'id', type:'int'})
     id: number;
 
-    @Column({width: 100})
+    @Column({nullable: false, length: 100})
     nome: string;
 
-    @Column({name:'tipo_contrato', type: 'enum' })
-    tipoContrato: String;
+    @Column({nullable: false, name:'tipo_contrato', type: 'enum', enum: Contrato, default: Contrato.GHOST})
+    tipoContrato: Contrato;
 
-    @Column({name:'tipo_funcionario', type: 'enum' })
-    tipoFuncionario: String;
+    @Column({nullable: false, name:'tipo_funcionario', type: 'enum', enum: Func, default: Func.GHOST})
+    tipoFuncionario: Func;
 
-    @Column({type: 'enum' })
+    @Column({nullable: false, length: 100})
     matricula: String;
 
-    @Column({name:'data_ingresso', type:'date'})
+    @Column({nullable: false, name:'data_ingresso', type:'date'})
     dataIngresso: Date;
 
-    @Column({name:'gestor_id', type:'int'})
+    @Column({nullable: false, name:'gestor_id', type:'int'})
     gestorId: number;  
 }

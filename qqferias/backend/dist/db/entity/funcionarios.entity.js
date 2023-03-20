@@ -9,8 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Funcionarios = void 0;
+exports.Funcionarios = exports.Func = exports.Contrato = void 0;
 const typeorm_1 = require("typeorm");
+var Contrato;
+(function (Contrato) {
+    Contrato["CLT"] = "CLT";
+    Contrato["PJ"] = "PJ";
+    Contrato["GHOST"] = "Ghost";
+})(Contrato = exports.Contrato || (exports.Contrato = {}));
+var Func;
+(function (Func) {
+    Func["GESTOR"] = "Gestor";
+    Func["COLABORADOR"] = "Colaborador";
+    Func["GHOST"] = "Ghost";
+})(Func = exports.Func || (exports.Func = {}));
 let Funcionarios = class Funcionarios {
 };
 __decorate([
@@ -18,27 +30,27 @@ __decorate([
     __metadata("design:type", Number)
 ], Funcionarios.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ width: 100 }),
+    (0, typeorm_1.Column)({ nullable: false, length: 100 }),
     __metadata("design:type", String)
 ], Funcionarios.prototype, "nome", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'tipo_contrato', type: 'enum' }),
+    (0, typeorm_1.Column)({ nullable: false, name: 'tipo_contrato', type: 'enum', enum: Contrato, default: Contrato.GHOST }),
     __metadata("design:type", String)
 ], Funcionarios.prototype, "tipoContrato", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'tipo_funcionario', type: 'enum' }),
+    (0, typeorm_1.Column)({ nullable: false, name: 'tipo_funcionario', type: 'enum', enum: Func, default: Func.GHOST }),
     __metadata("design:type", String)
 ], Funcionarios.prototype, "tipoFuncionario", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum' }),
+    (0, typeorm_1.Column)({ nullable: false, length: 100 }),
     __metadata("design:type", String)
 ], Funcionarios.prototype, "matricula", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'data_ingresso', type: 'date' }),
+    (0, typeorm_1.Column)({ nullable: false, name: 'data_ingresso', type: 'date' }),
     __metadata("design:type", Date)
 ], Funcionarios.prototype, "dataIngresso", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'gestor_id', type: 'int' }),
+    (0, typeorm_1.Column)({ nullable: false, name: 'gestor_id', type: 'int' }),
     __metadata("design:type", Number)
 ], Funcionarios.prototype, "gestorId", void 0);
 Funcionarios = __decorate([

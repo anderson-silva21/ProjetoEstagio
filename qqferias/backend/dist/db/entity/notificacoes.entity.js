@@ -9,20 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Notificacoes = void 0;
+exports.Notificacoes = exports.Tipo = void 0;
 const typeorm_1 = require("typeorm");
+var Tipo;
+(function (Tipo) {
+    Tipo["SOLICITACAO"] = "Solicitacao";
+    Tipo["APROVACAO"] = "Aprovacao";
+    Tipo["GHOST"] = "Ghost";
+})(Tipo = exports.Tipo || (exports.Tipo = {}));
 let Notificacoes = class Notificacoes {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'uuid', type: 'int' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id', type: 'int' }),
     __metadata("design:type", Number)
 ], Notificacoes.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Notificacoes.prototype, "agendamento_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Tipo, default: Tipo.GHOST }),
     __metadata("design:type", String)
 ], Notificacoes.prototype, "tipo", void 0);
 Notificacoes = __decorate([

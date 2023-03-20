@@ -9,32 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Agendamentos = void 0;
+exports.Agendamentos = exports.Stat = void 0;
 const typeorm_1 = require("typeorm");
+var Stat;
+(function (Stat) {
+    Stat["PENDENTE"] = "Pendente";
+    Stat["APROVADO"] = "Aprovado";
+    Stat["REPROVADO"] = "Reprovado";
+    Stat["GHOST"] = "Ghost";
+})(Stat = exports.Stat || (exports.Stat = {}));
 let Agendamentos = class Agendamentos {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'uuid', type: 'int' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id', type: 'int' }),
     __metadata("design:type", Number)
 ], Agendamentos.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
     __metadata("design:type", Number)
 ], Agendamentos.prototype, "funcionario_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'date' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'date' }),
     __metadata("design:type", Date)
 ], Agendamentos.prototype, "data_inicio", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'date' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'date' }),
     __metadata("design:type", Date)
 ], Agendamentos.prototype, "data_fim", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Stat, default: Stat.GHOST }),
     __metadata("design:type", String)
 ], Agendamentos.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'bool' }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'bool', default: false }),
     __metadata("design:type", Boolean)
 ], Agendamentos.prototype, "antecipacao_13_salario", void 0);
 Agendamentos = __decorate([

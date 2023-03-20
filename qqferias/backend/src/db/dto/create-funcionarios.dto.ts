@@ -1,5 +1,17 @@
 import { IsNotEmpty } from "class-validator";
 
+export enum Contrato {
+    CLT = 'CLT',
+    PJ = 'PJ',
+    GHOST = 'Ghost'
+}
+
+export enum Func {
+    GESTOR = 'Gestor',
+    COLABORADOR = 'Colaborador',
+    GHOST = 'Ghost'
+}
+
 export class createFuncionarios {
     @IsNotEmpty()
     nome: string;
@@ -8,10 +20,10 @@ export class createFuncionarios {
     matricula: string;
 
     @IsNotEmpty()
-    tipoContrato: String;
+    tipoContrato: Contrato;
 
     @IsNotEmpty()
-    tipoFuncionario: String;
+    tipoFuncionario: Func;
 
     @IsNotEmpty()
     dataIngresso: Date;

@@ -1,13 +1,19 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum Tipo {
+    SOLICITACAO = 'Solicitacao',
+    APROVACAO = 'Aprovacao',
+    GHOST = 'Ghost'
+}
+
 @Entity({ name: 'notificacoes'})
 export class Notificacoes {
-    @PrimaryGeneratedColumn({name:'uuid', type:'int'})
+    @PrimaryGeneratedColumn({name:'id', type:'int'})
     id: number;
 
-    @Column({type:'int'})
+    @Column({nullable: false, type:'int'})
     agendamento_id: number;
 
-    @Column({type: 'enum' })
-    tipo: String;  
+    @Column({nullable: false, type: 'enum', enum: Tipo, default: Tipo.GHOST })
+    tipo: Tipo;  
 }

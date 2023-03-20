@@ -9,8 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createNotificacoes = void 0;
+exports.createNotificacoes = exports.Tipo = void 0;
 const class_validator_1 = require("class-validator");
+var Tipo;
+(function (Tipo) {
+    Tipo["SOLICITACAO"] = "Solicitacao";
+    Tipo["APROVACAO"] = "Aprovacao";
+    Tipo["GHOST"] = "Ghost";
+})(Tipo = exports.Tipo || (exports.Tipo = {}));
 class createNotificacoes {
 }
 __decorate([

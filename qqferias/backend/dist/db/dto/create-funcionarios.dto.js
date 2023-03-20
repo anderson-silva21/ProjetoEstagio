@@ -9,8 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createFuncionarios = void 0;
+exports.createFuncionarios = exports.Func = exports.Contrato = void 0;
 const class_validator_1 = require("class-validator");
+var Contrato;
+(function (Contrato) {
+    Contrato["CLT"] = "CLT";
+    Contrato["PJ"] = "PJ";
+    Contrato["GHOST"] = "Ghost";
+})(Contrato = exports.Contrato || (exports.Contrato = {}));
+var Func;
+(function (Func) {
+    Func["GESTOR"] = "Gestor";
+    Func["COLABORADOR"] = "Colaborador";
+    Func["GHOST"] = "Ghost";
+})(Func = exports.Func || (exports.Func = {}));
 class createFuncionarios {
 }
 __decorate([

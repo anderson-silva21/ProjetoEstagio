@@ -29,8 +29,9 @@ AppModule = __decorate([
                     password: configService.get('DB_PASSWORD', '980166'),
                     database: configService.get('DB_NAME', '980166'),
                     schema: configService.get('DB_SCHEMA', 'qqferias'),
-                    entities: [__dirname + '/**/*.entity.{js,ts}'],
-                    synchronize: true,
+                    entities: [__dirname + '../dist/**/*.entity{.js,.ts}'],
+                    autoLoadEntities: true,
+                    synchronize: false,
                 })
             }),
             qqferias_module_1.QQFeriasModule,

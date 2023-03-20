@@ -9,8 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createAgendamentos = void 0;
+exports.createAgendamentos = exports.Stat = void 0;
 const class_validator_1 = require("class-validator");
+var Stat;
+(function (Stat) {
+    Stat["PENDENTE"] = "Pendente";
+    Stat["APROVADO"] = "Aprovado";
+    Stat["REPROVADO"] = "Reprovado";
+    Stat["GHOST"] = "Ghost";
+})(Stat = exports.Stat || (exports.Stat = {}));
 class createAgendamentos {
 }
 __decorate([

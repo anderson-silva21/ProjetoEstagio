@@ -1,5 +1,12 @@
 import { IsNotEmpty } from "class-validator";
 
+export enum Stat {
+    PENDENTE = 'Pendente',
+    APROVADO = 'Aprovado',
+    REPROVADO = 'Reprovado',
+    GHOST = 'Ghost'
+}
+
 export class createAgendamentos {
     @IsNotEmpty()
     funcionario_id: number;
@@ -11,7 +18,7 @@ export class createAgendamentos {
     data_fim: Date;
 
     @IsNotEmpty()
-    status: String;
+    status: Stat;
 
     @IsNotEmpty()
     antecipacao_13_salario: boolean;
