@@ -8,28 +8,27 @@ import { createNotificacoes } from './dto/create-notificacoes.dto';
 import { updateAgendamentos } from './dto/update-agendamentos.dto';
 import { updateCompromissos } from './dto/update-compromissos.dto';
 import { updateFuncionarios } from './dto/update-funcionarios.dto';
-import { updateNotificacoes } from './dto/update-notificacoes.dto';
-import { QQferiasAgendamentos } from './entity/qqferias.agendamentos';
-import { QQferiasCompromissos } from './entity/qqferias.compromissos';
-import { QQferiasFuncionarios } from './entity/qqferias.funcionarios';
-import { QQferiasNotificacoes } from './entity/qqferias.notificacoes';
+import { updateNotificacoes } from './dto/update-notificacoes.dto'
+import { Agendamentos } from './entity/agendamentos.entity';
+import { Compromissos } from './entity/compromissos.entity';
+import { Funcionarios } from './entity/funcionarios.entity';
+import { Notificacoes } from './entity/notificacoes.entity';
 
 @Injectable()
 export class QqferiasService {
     
     constructor(
+        @InjectRepository(Agendamentos)
+        private readonly agendamentosRepository: Repository<Agendamentos>,
 
-        @InjectRepository(QQferiasAgendamentos)
-        private readonly agendamentosRepository: Repository<QQferiasAgendamentos>,
+        @InjectRepository(Compromissos)
+        private readonly compromissosRepository: Repository<Compromissos>,
 
-        @InjectRepository(QQferiasCompromissos)
-        private readonly compromissosRepository: Repository<QQferiasCompromissos>,
+        @InjectRepository(Funcionarios)
+        private readonly funcionariosRepository: Repository<Funcionarios>,
 
-        @InjectRepository(QQferiasFuncionarios)
-        private readonly funcionariosRepository: Repository<QQferiasFuncionarios>,
-
-        @InjectRepository(QQferiasNotificacoes)
-        private readonly notificacoesRepository: Repository<QQferiasNotificacoes>,
+        @InjectRepository(Notificacoes)
+        private readonly notificacoesRepository: Repository<Notificacoes>,
         
         ){}
 

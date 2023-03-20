@@ -9,36 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QQferiasAgendamentos = void 0;
+exports.Agendamentos = void 0;
 const typeorm_1 = require("typeorm");
-let QQferiasAgendamentos = class QQferiasAgendamentos {
+let Agendamentos = class Agendamentos {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'uuid', type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasAgendamentos.prototype, "id", void 0);
+], Agendamentos.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasAgendamentos.prototype, "funcionario_id", void 0);
+], Agendamentos.prototype, "funcionario_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'date' }),
     __metadata("design:type", Date)
-], QQferiasAgendamentos.prototype, "data_inicio", void 0);
+], Agendamentos.prototype, "data_inicio", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'date' }),
     __metadata("design:type", Date)
-], QQferiasAgendamentos.prototype, "data_fim", void 0);
+], Agendamentos.prototype, "data_fim", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'enum' }),
     __metadata("design:type", String)
-], QQferiasAgendamentos.prototype, "status", void 0);
+], Agendamentos.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'bool' }),
     __metadata("design:type", Boolean)
-], QQferiasAgendamentos.prototype, "antecipacao_13_salario", void 0);
-QQferiasAgendamentos = __decorate([
+], Agendamentos.prototype, "antecipacao_13_salario", void 0);
+Agendamentos = __decorate([
     (0, typeorm_1.Entity)({ name: 'agendamentos' })
-], QQferiasAgendamentos);
-exports.QQferiasAgendamentos = QQferiasAgendamentos;
-//# sourceMappingURL=qqferias.agendamentos.js.map
+], Agendamentos);
+exports.Agendamentos = Agendamentos;
+//# sourceMappingURL=agendamentos.entity.js.map

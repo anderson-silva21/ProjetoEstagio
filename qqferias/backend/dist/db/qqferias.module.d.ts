@@ -1,2 +1,2 @@
-export declare class QqferiasModule {
+export declare class QQFeriasModule {
 }

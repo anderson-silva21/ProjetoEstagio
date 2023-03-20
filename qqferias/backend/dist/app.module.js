@@ -29,11 +29,11 @@ AppModule = __decorate([
                     password: configService.get('DB_PASSWORD', '980166'),
                     database: configService.get('DB_NAME', '980166'),
                     schema: configService.get('DB_SCHEMA', 'qqferias'),
-                    entities: ['./db/entity/qqferias.*.{js,ts}'],
+                    entities: [__dirname + '/**/*.entity.{js,ts}'],
                     synchronize: true,
                 })
             }),
-            qqferias_module_1.QqferiasModule,
+            qqferias_module_1.QQFeriasModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

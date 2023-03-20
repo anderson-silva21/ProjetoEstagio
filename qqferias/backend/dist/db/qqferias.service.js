@@ -16,10 +16,10 @@ exports.QqferiasService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const qqferias_agendamentos_1 = require("./entity/qqferias.agendamentos");
-const qqferias_compromissos_1 = require("./entity/qqferias.compromissos");
-const qqferias_funcionarios_1 = require("./entity/qqferias.funcionarios");
-const qqferias_notificacoes_1 = require("./entity/qqferias.notificacoes");
+const agendamentos_entity_1 = require("./entity/agendamentos.entity");
+const compromissos_entity_1 = require("./entity/compromissos.entity");
+const funcionarios_entity_1 = require("./entity/funcionarios.entity");
+const notificacoes_entity_1 = require("./entity/notificacoes.entity");
 let QqferiasService = class QqferiasService {
     constructor(agendamentosRepository, compromissosRepository, funcionariosRepository, notificacoesRepository) {
         this.agendamentosRepository = agendamentosRepository;
@@ -122,10 +122,10 @@ let QqferiasService = class QqferiasService {
 };
 QqferiasService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(qqferias_agendamentos_1.QQferiasAgendamentos)),
-    __param(1, (0, typeorm_1.InjectRepository)(qqferias_compromissos_1.QQferiasCompromissos)),
-    __param(2, (0, typeorm_1.InjectRepository)(qqferias_funcionarios_1.QQferiasFuncionarios)),
-    __param(3, (0, typeorm_1.InjectRepository)(qqferias_notificacoes_1.QQferiasNotificacoes)),
+    __param(0, (0, typeorm_1.InjectRepository)(agendamentos_entity_1.Agendamentos)),
+    __param(1, (0, typeorm_1.InjectRepository)(compromissos_entity_1.Compromissos)),
+    __param(2, (0, typeorm_1.InjectRepository)(funcionarios_entity_1.Funcionarios)),
+    __param(3, (0, typeorm_1.InjectRepository)(notificacoes_entity_1.Notificacoes)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

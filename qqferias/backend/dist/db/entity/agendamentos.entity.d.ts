@@ -1,4 +1,4 @@
-export declare class QQferiasAgendamentos {
+export declare class Agendamentos {
     id: number;
     funcionario_id: number;
     data_inicio: Date;

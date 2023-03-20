@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({name: 'agendamentos'})
-export class QQferiasAgendamentos {
+export class Agendamentos {
     @PrimaryGeneratedColumn({name:'uuid', type:'int'})
     id: number;
 

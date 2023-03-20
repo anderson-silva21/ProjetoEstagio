@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QQferiasNotificacoes = void 0;
+exports.Notificacoes = void 0;
 const typeorm_1 = require("typeorm");
-let QQferiasNotificacoes = class QQferiasNotificacoes {
+let Notificacoes = class Notificacoes {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'uuid', type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasNotificacoes.prototype, "id", void 0);
+], Notificacoes.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasNotificacoes.prototype, "agendamento_id", void 0);
+], Notificacoes.prototype, "agendamento_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'enum' }),
     __metadata("design:type", String)
-], QQferiasNotificacoes.prototype, "tipo", void 0);
-QQferiasNotificacoes = __decorate([
+], Notificacoes.prototype, "tipo", void 0);
+Notificacoes = __decorate([
     (0, typeorm_1.Entity)({ name: 'notificacoes' })
-], QQferiasNotificacoes);
-exports.QQferiasNotificacoes = QQferiasNotificacoes;
-//# sourceMappingURL=qqferias.notificacoes.js.map
+], Notificacoes);
+exports.Notificacoes = Notificacoes;
+//# sourceMappingURL=notificacoes.entity.js.map

@@ -3,7 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { QqferiasModule } from './db/qqferias.module';
+import { QQFeriasModule } from './db/qqferias.module';
+
 
 @Module({
   imports: [
@@ -18,11 +19,11 @@ import { QqferiasModule } from './db/qqferias.module';
         password: configService.get('DB_PASSWORD','980166'),
         database: configService.get('DB_NAME','980166'),
         schema: configService.get('DB_SCHEMA','qqferias'),
-        entities: ['./db/entity/qqferias.*.{js,ts}'],
+        entities: [__dirname + '/**/*.entity.{js,ts}'],
         synchronize: true,                              
       })
     }),
-    QqferiasModule,
+    QQFeriasModule,
     
   ],
   controllers: [AppController],

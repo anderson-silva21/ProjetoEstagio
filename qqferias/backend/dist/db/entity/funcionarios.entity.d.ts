@@ -1,4 +1,4 @@
-export declare class QQferiasFuncionarios {
+export declare class Funcionarios {
     id: number;
     nome: string;
     tipoContrato: String;

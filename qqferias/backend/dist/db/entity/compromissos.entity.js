@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QQferiasCompromissos = void 0;
+exports.Compromissos = void 0;
 const typeorm_1 = require("typeorm");
-let QQferiasCompromissos = class QQferiasCompromissos {
+let Compromissos = class Compromissos {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'uuid', type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasCompromissos.prototype, "id", void 0);
+], Compromissos.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
-], QQferiasCompromissos.prototype, "agendamento_id", void 0);
+], Compromissos.prototype, "agendamento_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'enum' }),
     __metadata("design:type", String)
-], QQferiasCompromissos.prototype, "tipo", void 0);
-QQferiasCompromissos = __decorate([
+], Compromissos.prototype, "tipo", void 0);
+Compromissos = __decorate([
     (0, typeorm_1.Entity)({ name: 'compromissos' })
-], QQferiasCompromissos);
-exports.QQferiasCompromissos = QQferiasCompromissos;
-//# sourceMappingURL=qqferias.compromissos.js.map
+], Compromissos);
+exports.Compromissos = Compromissos;
+//# sourceMappingURL=compromissos.entity.js.map

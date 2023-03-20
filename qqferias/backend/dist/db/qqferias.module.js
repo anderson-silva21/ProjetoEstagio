@@ -6,26 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QqferiasModule = void 0;
+exports.QQFeriasModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const qqferias_agendamentos_1 = require("./entity/qqferias.agendamentos");
-const qqferias_compromissos_1 = require("./entity/qqferias.compromissos");
-const qqferias_funcionarios_1 = require("./entity/qqferias.funcionarios");
-const qqferias_notificacoes_1 = require("./entity/qqferias.notificacoes");
+const agendamentos_entity_1 = require("./entity/agendamentos.entity");
+const compromissos_entity_1 = require("./entity/compromissos.entity");
+const funcionarios_entity_1 = require("./entity/funcionarios.entity");
+const notificacoes_entity_1 = require("./entity/notificacoes.entity");
 const qqferias_controller_1 = require("./qqferias.controller");
 const qqferias_service_1 = require("./qqferias.service");
-let QqferiasModule = class QqferiasModule {
+let QQFeriasModule = class QQFeriasModule {
 };
-QqferiasModule = __decorate([
+QQFeriasModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([
-                qqferias_agendamentos_1.QQferiasAgendamentos, qqferias_compromissos_1.QQferiasCompromissos, qqferias_funcionarios_1.QQferiasFuncionarios, qqferias_notificacoes_1.QQferiasNotificacoes
+                agendamentos_entity_1.Agendamentos, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes
             ])],
         controllers: [qqferias_controller_1.QqferiasController],
         providers: [qqferias_service_1.QqferiasService],
         exports: [qqferias_service_1.QqferiasService],
     })
-], QqferiasModule);
-exports.QqferiasModule = QqferiasModule;
+], QQFeriasModule);
+exports.QQFeriasModule = QQFeriasModule;
 //# sourceMappingURL=qqferias.module.js.map
