@@ -15,5 +15,4 @@ export class createAgendamentos {
 
     @IsNotEmpty()
     antecipacao_13_salario: boolean;
-
 }

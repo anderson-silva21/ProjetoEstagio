@@ -6,5 +6,4 @@ export class createCompromissos {
 
     @IsNotEmpty()
     tipo: String;
-
 }

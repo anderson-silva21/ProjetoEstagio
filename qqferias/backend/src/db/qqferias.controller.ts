@@ -111,5 +111,4 @@ export class QqferiasController {
     async notificacoesDestroy(@Param('id', new ParseUUIDPipe()) id) {
         await this.QqferiasService.notificacoesDeleteById(id);
     }
-
 }

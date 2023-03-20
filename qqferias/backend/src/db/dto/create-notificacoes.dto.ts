@@ -6,5 +6,4 @@ export class createNotificacoes {
 
     @IsNotEmpty()
     tipo: String;
-
 }
