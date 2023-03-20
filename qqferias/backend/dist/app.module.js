@@ -12,7 +12,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
-const qqferias_module_1 = require("./db/qqferias/qqferias.module");
+const qqferias_module_1 = require("./db/qqferias.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -29,7 +29,7 @@ AppModule = __decorate([
                     password: configService.get('DB_PASSWORD', '980166'),
                     database: configService.get('DB_NAME', '980166'),
                     schema: configService.get('DB_SCHEMA', 'qqferias'),
-                    entities: [__dirname + '/**/*.entity{.js,.ts}'],
+                    entities: ['./db/entity/qqferias.*.{js,ts}'],
                     synchronize: true,
                 })
             }),
