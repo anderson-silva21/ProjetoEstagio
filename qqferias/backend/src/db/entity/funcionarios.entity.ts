@@ -20,6 +20,9 @@ export class Funcionarios {
     @Column({nullable: false, length: 100})
     nome: string;
 
+    @Column({nullable: false, length: 100})
+    senha: string;
+
     @Column({nullable: false, name:'tipo_contrato', type: 'enum', enum: Contrato, default: Contrato.GHOST})
     tipoContrato: Contrato;
 

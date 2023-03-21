@@ -14,87 +14,87 @@ export class QQFeriasController {
 
     constructor(private readonly QQFeriasService: QQFeriasService) {}
 
-    @Get()
+    @Get('agendamentos')
     async indexAgendamentos() {
         return await this.QQFeriasService.agendamentosFindAll();
     }
 
-    @Get()
+    @Get('funcionarios')
     async indexFuncionarios() {
         return await this.QQFeriasService.funcionariosFindAll();
     }
 
-    @Get()
+    @Get('compromissos')
     async indexCompromissos() {
         return await this.QQFeriasService.compromissosFindAll();
     }
 
-    @Get()
+    @Get('notificacoes')
     async indexNotificacoes() {
         return await this.QQFeriasService.notificacoesFindAll();
     }
 
-    @Post()
+    @Post('agendamentos/create')
     async createAgendamentos(@Body() body: createAgendamentos) {
         return await this.QQFeriasService.agendamentosCreate(body);
     }
 
-    @Post()
+    @Post('funcionarios/create')
     async createFuncionarios(@Body() body: createFuncionarios) {
         return await this.QQFeriasService.funcionariosCreate(body);
     }
 
-    @Post()
+    @Post('compromissos/create')
     async createCompromissos(@Body() body: createCompromissos) {
         return await this.QQFeriasService.compromissosCreate(body);
     }
 
-    @Post()
+    @Post('notificacoes/create')
     async createNotificacoes(@Body() body: createNotificacoes) {
         return await this.QQFeriasService.noticacoesCreate(body);
     }
 
-    @Get(':id')
+    @Get('agendamentos/:id')
     async agendamentoShow(@Param('id', new ParseUUIDPipe()) id) {
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
 
-    @Get(':id')
+    @Get('funcionarios/:id')
     async funcionarioShow(@Param('id', new ParseUUIDPipe()) id) {
         return await this.QQFeriasService.funcionariosFindOne(id);
     }
 
-    @Get(':id')
+    @Get('compromissos/:id')
     async compromissosShow(@Param('id', new ParseUUIDPipe()) id) {
         return await this.QQFeriasService.compromissosFindOne(id);
     }
 
-    @Get(':id')
+    @Get('notificacoes/:id')
     async notificacoesShow(@Param('id', new ParseUUIDPipe()) id) {
         return await this.QQFeriasService.notificacoesFindOne(id);
     }
 
-    @Put(':id')
+    @Put('agendamentos/:id')
     async agendamentosUpdate(@Param('id', new ParseUUIDPipe()) id, @Body() body: updateAgendamentos) {
         return await this.QQFeriasService.agendamentosUpdate(id, body);
     }
 
-    @Put(':id')
+    @Put('funcionarios/:id')
     async funcionariosUpdate(@Param('id', new ParseUUIDPipe()) id, @Body() body: updateFuncionarios) {
         return await this.QQFeriasService.funcionariosUpdate(id, body);
     }
 
-    @Put(':id')
+    @Put('compromissos/:id')
     async compromissosUpdate(@Param('id', new ParseUUIDPipe()) id, @Body() body: updateCompromissos) {
         return await this.QQFeriasService.compromissosUpdate(id, body);
     }
 
-    @Put(':id')
+    @Put('notificacoes/:id')
     async notificacoesUpdate(@Param('id', new ParseUUIDPipe()) id, @Body() body: updateNotificacoes) {
         return await this.QQFeriasService.notificacoesUpdate(id, body);
     }
 
-    @Delete(':id')
+    @Delete('delete/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     async agendamentosDestroy(@Param('id', new ParseUUIDPipe()) id) {
         await this.QQFeriasService.agendamentosDeleteById(id);

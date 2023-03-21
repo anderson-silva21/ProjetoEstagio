@@ -17,6 +17,9 @@ export class createFuncionarios {
     nome: string;
 
     @IsNotEmpty()
+    senha: string;
+
+    @IsNotEmpty()
     matricula: string;
 
     @IsNotEmpty()
