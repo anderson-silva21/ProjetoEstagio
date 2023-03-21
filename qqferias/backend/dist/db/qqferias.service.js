@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QqferiasService = void 0;
+exports.QQFeriasService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
@@ -20,7 +20,7 @@ const agendamentos_entity_1 = require("./entity/agendamentos.entity");
 const compromissos_entity_1 = require("./entity/compromissos.entity");
 const funcionarios_entity_1 = require("./entity/funcionarios.entity");
 const notificacoes_entity_1 = require("./entity/notificacoes.entity");
-let QqferiasService = class QqferiasService {
+let QQFeriasService = class QQFeriasService {
     constructor(agendamentosRepository, compromissosRepository, funcionariosRepository, notificacoesRepository) {
         this.agendamentosRepository = agendamentosRepository;
         this.compromissosRepository = compromissosRepository;
@@ -120,7 +120,7 @@ let QqferiasService = class QqferiasService {
         await this.notificacoesRepository.softDelete(id);
     }
 };
-QqferiasService = __decorate([
+QQFeriasService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(agendamentos_entity_1.Agendamentos)),
     __param(1, (0, typeorm_1.InjectRepository)(compromissos_entity_1.Compromissos)),
@@ -130,6 +130,6 @@ QqferiasService = __decorate([
         typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository])
-], QqferiasService);
-exports.QqferiasService = QqferiasService;
+], QQFeriasService);
+exports.QQFeriasService = QQFeriasService;
 //# sourceMappingURL=qqferias.service.js.map

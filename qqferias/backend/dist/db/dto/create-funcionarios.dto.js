@@ -32,6 +32,10 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
+], createFuncionarios.prototype, "senha", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
 ], createFuncionarios.prototype, "matricula", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),

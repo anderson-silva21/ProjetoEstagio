@@ -22,9 +22,9 @@ QQFeriasModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([
                 agendamentos_entity_1.Agendamentos, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes
             ])],
-        controllers: [qqferias_controller_1.QqferiasController],
-        providers: [qqferias_service_1.QqferiasService],
-        exports: [qqferias_service_1.QqferiasService],
+        controllers: [qqferias_controller_1.QQFeriasController],
+        providers: [qqferias_service_1.QQFeriasService],
+        exports: [qqferias_service_1.QQFeriasService],
     })
 ], QQFeriasModule);
 exports.QQFeriasModule = QQFeriasModule;

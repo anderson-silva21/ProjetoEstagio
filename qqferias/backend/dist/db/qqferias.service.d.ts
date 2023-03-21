@@ -11,7 +11,7 @@ import { Agendamentos } from './entity/agendamentos.entity';
 import { Compromissos } from './entity/compromissos.entity';
 import { Funcionarios } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
-export declare class QqferiasService {
+export declare class QQFeriasService {
     private readonly agendamentosRepository;
     private readonly compromissosRepository;
     private readonly funcionariosRepository;

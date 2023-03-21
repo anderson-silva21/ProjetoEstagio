@@ -6,10 +6,10 @@ import { updateAgendamentos } from './dto/update-agendamentos.dto';
 import { updateCompromissos } from './dto/update-compromissos.dto';
 import { updateFuncionarios } from './dto/update-funcionarios.dto';
 import { updateNotificacoes } from './dto/update-notificacoes.dto';
-import { QqferiasService } from './qqferias.service';
-export declare class QqferiasController {
-    private readonly QqferiasService;
-    constructor(QqferiasService: QqferiasService);
+import { QQFeriasService } from './qqferias.service';
+export declare class QQFeriasController {
+    private readonly QQFeriasService;
+    constructor(QQFeriasService: QQFeriasService);
     indexAgendamentos(): Promise<import("./entity/agendamentos.entity").Agendamentos[]>;
     indexFuncionarios(): Promise<import("./entity/funcionarios.entity").Funcionarios[]>;
     indexCompromissos(): Promise<import("./entity/compromissos.entity").Compromissos[]>;

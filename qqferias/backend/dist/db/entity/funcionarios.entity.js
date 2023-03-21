@@ -34,6 +34,10 @@ __decorate([
     __metadata("design:type", String)
 ], Funcionarios.prototype, "nome", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false, length: 100 }),
+    __metadata("design:type", String)
+], Funcionarios.prototype, "senha", void 0);
+__decorate([
     (0, typeorm_1.Column)({ nullable: false, name: 'tipo_contrato', type: 'enum', enum: Contrato, default: Contrato.GHOST }),
     __metadata("design:type", String)
 ], Funcionarios.prototype, "tipoContrato", void 0);
