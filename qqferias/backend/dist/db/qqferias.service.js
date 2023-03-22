@@ -47,6 +47,27 @@ let QQFeriasService = class QQFeriasService {
             throw new common_1.NotFoundException(error.message);
         }
     }
+    async login(credentials) {
+        const user = await this.funcionariosRepository.findOne({ where: { matricula: credentials.matricula, senha: credentials.senha } });
+        if (!user) {
+            throw new common_1.NotFoundException('Funcionário não encontrado');
+        }
+        return {
+            user: user,
+        };
+    }
+    async userProfileFindOne(id) {
+        try {
+            const funcionario = await this.funcionariosRepository.findOne(id);
+            if (!funcionario) {
+                throw new common_1.NotFoundException('Funcionário não encontrado');
+            }
+            return funcionario.tipoFuncionario;
+        }
+        catch (error) {
+            throw new common_1.NotFoundException(error.message);
+        }
+    }
     async agendamentosFindOne(id) {
         try {
             return await this.agendamentosRepository.findOneByOrFail(id);

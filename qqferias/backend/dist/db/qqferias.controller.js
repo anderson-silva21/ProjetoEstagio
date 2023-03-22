@@ -33,6 +33,12 @@ let QQFeriasController = class QQFeriasController {
     async indexFuncionarios() {
         return await this.QQFeriasService.funcionariosFindAll();
     }
+    async login(credentials) {
+        return await this.QQFeriasService.login(credentials);
+    }
+    async userProfile(id) {
+        return await this.QQFeriasService.userProfileFindOne(id);
+    }
     async indexCompromissos() {
         return await this.QQFeriasService.compromissosFindAll();
     }
@@ -100,6 +106,20 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "indexFuncionarios", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "login", null);
+__decorate([
+    (0, common_1.Get)('userProfile'),
+    __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "userProfile", null);
 __decorate([
     (0, common_1.Get)('compromissos'),
     __metadata("design:type", Function),

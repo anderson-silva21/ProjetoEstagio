@@ -1,6 +1,7 @@
 import './Login.css';
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -10,20 +11,28 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (username === 'gestor' && password === 'gestor') {
-            setLoggedInGestor(true);
-        } else if(username === 'colab' && password === 'colab'){
-            setLoggedInColab(true);
-        }else { 
-            alert('Nome de usuário ou senha inválidos.');
-        }
+        console.log(username + password);
+        axios.post('http://localhost:3000/qqferias/login' , { matricula: username, senha: password })
+            .then(response => {
+                if (response.data.user.tipoFuncionario == 'Gestor') {
+                    setLoggedInGestor(true);
+                } else if (response.data.user.tipoFuncionario == 'Colaborador') {
+                    setLoggedInColab(true);
+                } else {
+                    alert('Nome de usuário ou senha inválidos.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Ocorreu um erro ao fazer login.');
+            });
     };
 
     if (loggedInGestor) {
-        return <Navigate to= "/qqferias" />;
+        return <Navigate to="/qqferias" />;
     }
     if (loggedInColab) {
-        return <Navigate to= "/home" />;
+        return <Navigate to="/home" />;
     }
 
     return (
@@ -34,31 +43,33 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="input-container-login">
                         <label className="nome-login-login">Matricula</label>
-                        <input 
+                        <input
                             required
                             className="input-login-login"
                             type="text"
                             id="username"
                             value={username}
                             onChange={(event) => setUsername(event.target.value)}
+                            name='matricula'
                         />
                     </div>
-                    <div className="input-container-login"> 
-                        <label className="nome-login-login">Senha</label>   
+                    <div className="input-container-login">
+                        <label className="nome-login-login">Senha</label>
                         <input
                             required
                             className="input-login-login"
-                            id="username"
+                            id="password"
                             type="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
-                        />               
+                            name="senha"
+                        />
                     </div>
                     <button className="login-button-login" type="submit">ACESSAR</button>
                 </form>
             </div>
         </div>
-      );
-    }
+    );
+}
 
 export default Login

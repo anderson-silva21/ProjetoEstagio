@@ -52,7 +52,7 @@ function MyCalendar(){
     return (
         <div>
             <SearchBar onSearch={handleSearch} />
-            <Sidebar />
+            <Sidebar userProfile={'colaborador'}/>
             <main className='main'>
                 <div id='calendario'>
                     <Calendar

@@ -24,6 +24,16 @@ export class QQFeriasController {
         return await this.QQFeriasService.funcionariosFindAll();
     }
 
+    @Post('login')
+    async login(@Body() credentials:any){
+        return await this.QQFeriasService.login(credentials);
+    }
+
+    @Get('userProfile')
+    async userProfile(@Param('id', new ParseUUIDPipe()) id){
+        return await this.QQFeriasService.userProfileFindOne(id);
+    }
+
     @Get('compromissos')
     async indexCompromissos() {
         return await this.QQFeriasService.compromissosFindAll();

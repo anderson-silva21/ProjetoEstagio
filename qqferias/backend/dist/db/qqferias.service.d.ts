@@ -22,6 +22,10 @@ export declare class QQFeriasService {
     compromissosFindAll(): Promise<Compromissos[]>;
     notificacoesFindAll(): Promise<Notificacoes[]>;
     funcionariosFindOne(id: any): Promise<Funcionarios>;
+    login(credentials: any): Promise<{
+        user: Funcionarios;
+    }>;
+    userProfileFindOne(id: any): Promise<import("./entity/funcionarios.entity").Func>;
     agendamentosFindOne(id: any): Promise<Agendamentos>;
     compromissosFindOne(id: any): Promise<Compromissos>;
     notificacoesFindOne(id: any): Promise<Notificacoes>;

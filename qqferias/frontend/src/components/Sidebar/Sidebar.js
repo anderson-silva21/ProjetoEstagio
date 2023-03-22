@@ -46,8 +46,8 @@ const Sidebar = ({ userProfile }) => {
       </button>
       <div class={`icon ${isSidebarExpanded ? "" : "collapsed"}`}>
         <FontAwesomeIcon id='iconUserMenu' icon={faUser} />
-        <p id='name' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "colaborador" ? "colab" : "admin"}</p>
-        <p id='email' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "colaborador" ? "colab@example.com" : "admin@example.com"}</p>
+        <p id='name' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "Colaborador" ? "colab" : "admin"}</p>
+        <p id='email' style={{display: isSidebarExpanded ? "block" : "none"}}>{userProfile === "Colaborador" ? "colab@example.com" : "admin@example.com"}</p>
       </div>
       
       <ul className="menu-ul">

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, FindOneOptions } from 'typeorm';
 import { createAgendamentos } from './dto/create-agendamentos.dto';
 import { createCompromissos } from './dto/create-compromissos.dto';
 import { createFuncionarios } from './dto/create-funcionarios.dto';
@@ -55,6 +55,58 @@ export class QQFeriasService {
                 throw new NotFoundException(error.message);
             } 
         }
+
+        /*
+        async login(matricula: string, senha: string): Promise<Funcionarios> {
+            const funcionario = await this.funcionariosRepository
+                .createQueryBuilder("funcionarios")
+                .where("funcionarios.matricula = :matricula", { matricula })
+                .andWhere("funcionarios.senha = :senha", { senha })
+                .select(['id', 'nome', 'tipo_contrato', 'tipo_funcionario', 'matricula', 'data_ingresso', 'gestor_id'])
+                .getOne();
+            if (!funcionario) {
+                throw new Error('Funcionário não encontrado');
+            }
+            return funcionario;
+        }*/
+
+        async login(credentials:any) {
+            // Verifica as credenciais do usuário no banco de dados ou em outro serviço
+            const user = await this.funcionariosRepository.findOne({ where: { matricula: credentials.matricula, senha: credentials.senha } });
+            if(!user){
+                throw new NotFoundException('Funcionário não encontrado');
+            }
+            // Retorna o usuário se as credenciais estiverem corretas, caso contrário, retorna null
+            
+            return {
+                user:user, 
+                
+            };
+          }
+
+          
+
+        async userProfileFindOne(id){
+            try{
+                const funcionario = await this.funcionariosRepository.findOne(id);
+                if (!funcionario) {
+                    throw new NotFoundException('Funcionário não encontrado');
+                }
+                return funcionario.tipoFuncionario;
+            } catch (error){
+                throw new NotFoundException(error.message);
+            }
+        }     
+
+        /*
+        async funcionariosFindByMatricula(matricula: string) {
+            try {
+                return await this.funcionariosRepository.findOneOrFail({ where: { matricula } });
+            } catch (error) {
+                throw new NotFoundException(error.message);
+            }
+        }
+        */
 
         async agendamentosFindOne(id) {
             try{
