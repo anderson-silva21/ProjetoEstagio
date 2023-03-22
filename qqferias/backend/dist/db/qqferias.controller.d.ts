@@ -23,6 +23,7 @@ export declare class QQFeriasController {
     createCompromissos(body: createCompromissos): Promise<import("./entity/compromissos.entity").Compromissos>;
     createNotificacoes(body: createNotificacoes): Promise<import("./entity/notificacoes.entity").Notificacoes>;
     agendamentoShow(id: any): Promise<import("./entity/agendamentos.entity").Agendamentos>;
+    gestoresShow(): Promise<import("./entity/funcionarios.entity").Funcionarios[]>;
     funcionarioShow(id: any): Promise<import("./entity/funcionarios.entity").Funcionarios>;
     compromissosShow(id: any): Promise<import("./entity/compromissos.entity").Compromissos>;
     notificacoesShow(id: any): Promise<import("./entity/notificacoes.entity").Notificacoes>;

@@ -49,7 +49,7 @@ function MyCalendar(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-          const resposta = await axios.post('http://localhost:3000/qqferias/agendamentos/create', dadosSolicit);
+          const resposta = await axios.post('http://localhost:3001/qqferias/agendamentos/create', dadosSolicit);
           console.log(resposta.data);
           setSolicitSucesso(true);
           alert('Solicitacao realizada com sucesso')

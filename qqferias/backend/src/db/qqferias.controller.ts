@@ -69,6 +69,12 @@ export class QQFeriasController {
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
 
+    @Get('gestores')
+    async gestoresShow(){
+        const gestores = await this.QQFeriasService.findGestores();
+        return gestores;
+    }
+
     @Get('funcionarios/:id')
     async funcionarioShow(@Param('id', new ParseUUIDPipe()) id) {
         return await this.QQFeriasService.funcionariosFindOne(id);

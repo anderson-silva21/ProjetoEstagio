@@ -1,6 +1,5 @@
 import './Cadastro.css';
-import React from "react";
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -8,11 +7,22 @@ function Cadastro() {
 
     const [dadosCadastro, setDadosCadastro] = useState({});
     const [cadastroSucesso, setCadastroSucesso] = useState(false);
+    const [gestores, setGestores] = useState([]);
   
+    useEffect(() => {
+      axios.get('http://localhost:3001/qqferias/gestores')
+        .then(response => {
+          setGestores(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-          const resposta = await axios.post('http://localhost:3000/qqferias/funcionarios/create', dadosCadastro);
+          const resposta = await axios.post('http://localhost:3001/qqferias/funcionarios/create', dadosCadastro);
           console.log(resposta.data);
           setCadastroSucesso(true);
           alert('Cadastro realizado com sucesso!')
@@ -64,9 +74,10 @@ function Cadastro() {
                     <div className="input-container">
                         <label className="nome-login">Gestor</label>
                         <select className="input-login-selector" name='gestorId' onChange={handleChange}>
-                            <option value='1'>João Gestor</option>
-                            <option value='2'>Maria Gestora</option>
-                        </select>                       
+                          {gestores.map(gestor => (
+                            <option key={gestor.id} value={gestor.id}>{gestor.nome}</option>
+                          ))}
+                        </select>                      
                     </div>
                     <div className="input-container-radio">
                     <label className="nome-login">Tipo de contrato</label>

@@ -9,7 +9,7 @@ import { updateFuncionarios } from './dto/update-funcionarios.dto';
 import { updateNotificacoes } from './dto/update-notificacoes.dto';
 import { Agendamentos } from './entity/agendamentos.entity';
 import { Compromissos } from './entity/compromissos.entity';
-import { Funcionarios } from './entity/funcionarios.entity';
+import { Funcionarios, Func } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
 export declare class QQFeriasService {
     private readonly agendamentosRepository;
@@ -25,7 +25,8 @@ export declare class QQFeriasService {
     login(credentials: any): Promise<{
         user: Funcionarios;
     }>;
-    userProfileFindOne(id: any): Promise<import("./entity/funcionarios.entity").Func>;
+    findGestores(): Promise<Funcionarios[]>;
+    userProfileFindOne(id: any): Promise<Func>;
     agendamentosFindOne(id: any): Promise<Agendamentos>;
     compromissosFindOne(id: any): Promise<Compromissos>;
     notificacoesFindOne(id: any): Promise<Notificacoes>;

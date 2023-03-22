@@ -56,6 +56,12 @@ let QQFeriasService = class QQFeriasService {
             user: user,
         };
     }
+    async findGestores() {
+        const gestores = await this.funcionariosRepository.find({
+            where: { tipoFuncionario: funcionarios_entity_1.Func.GESTOR }
+        });
+        return gestores;
+    }
     async userProfileFindOne(id) {
         try {
             const funcionario = await this.funcionariosRepository.findOne(id);

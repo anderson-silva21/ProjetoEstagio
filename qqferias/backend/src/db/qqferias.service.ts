@@ -11,7 +11,7 @@ import { updateFuncionarios } from './dto/update-funcionarios.dto';
 import { updateNotificacoes } from './dto/update-notificacoes.dto'
 import { Agendamentos } from './entity/agendamentos.entity';
 import { Compromissos } from './entity/compromissos.entity';
-import { Funcionarios } from './entity/funcionarios.entity';
+import { Funcionarios, Func } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
 
 @Injectable()
@@ -82,6 +82,14 @@ export class QQFeriasService {
                 user:user, 
                 
             };
+          }
+
+          async findGestores() {
+            
+            const gestores = await this.funcionariosRepository.find({
+              where: { tipoFuncionario: Func.GESTOR }
+            });
+            return gestores;
           }
 
           

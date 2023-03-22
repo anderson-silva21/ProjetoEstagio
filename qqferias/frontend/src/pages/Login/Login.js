@@ -12,7 +12,7 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(username + password);
-        axios.post('http://localhost:3000/qqferias/login' , { matricula: username, senha: password })
+        axios.post('http://localhost:3001/qqferias/login' , { matricula: username, senha: password })
             .then(response => {
                 if (response.data.user.tipoFuncionario == 'Gestor') {
                     setLoggedInGestor(true);
