@@ -7,10 +7,15 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './SolicitacaoFerias.css'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import SearchBar from '../../components/Searchbar/Searchbar'
+import axios from 'axios';
 
 const localizer = momentLocalizer(moment);
 
 function MyCalendar(){
+    const [dadosSolicit, setDadosSolicit] = useState({});
+
+    const [solicitSucesso, setSolicitSucesso] = useState(false);
+
     const [searchResults, setSearchResults] = useState([]);
 
     const [events, setEvents] = useState();
@@ -40,6 +45,27 @@ function MyCalendar(){
         // atualizar o estado com os resultados da pesquisa
         setSearchResults([]);
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          const resposta = await axios.post('http://localhost:3000/qqferias/agendamentos/create', dadosSolicit);
+          console.log(resposta.data);
+          setSolicitSucesso(true);
+          alert('Solicitacao realizada com sucesso')
+        } catch (erro) {
+          console.error(erro);
+          alert('Erro na solicitacao!');
+        }
+      };
+
+      const handleChange = (event) => {
+        setDadosSolicit({
+          ...dadosSolicit,
+          [event.target.name]: event.target.value,
+        });
+      };
+
     useEffect(() => {
         if (selectedDays && selectedOption) {
           const start = moment(`${selectedOption} ${selectedMonth}`, 'D MMMM');
@@ -50,6 +76,7 @@ function MyCalendar(){
         }
       }, [selectedDays, selectedOption, selectedMonth]);
     return (
+        <form onSubmit={handleSubmit}>
         <div>
             <SearchBar onSearch={handleSearch} />
             <Sidebar userProfile={'colaborador'}/>
@@ -125,6 +152,7 @@ function MyCalendar(){
                 
             </main>
         </div>
+        </form>
     )
 };
 
