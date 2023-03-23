@@ -61,7 +61,7 @@ const handleSubmit = async (event) => {
     }
   
     const data = {
-      funcionario_id: 9, 
+      funcionario_id: 9, //ARRUMAR JWT
       data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
       data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
       status: 'Pendente',
