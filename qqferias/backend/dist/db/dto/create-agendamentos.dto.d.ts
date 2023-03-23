@@ -9,5 +9,6 @@ export declare class createAgendamentos {
     data_inicio: Date;
     data_fim: Date;
     status: Stat;
+    dias: number;
     antecipacao_13_salario: boolean;
 }

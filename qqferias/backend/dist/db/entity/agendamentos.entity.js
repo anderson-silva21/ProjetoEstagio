@@ -37,6 +37,10 @@ __decorate([
     __metadata("design:type", Date)
 ], Agendamentos.prototype, "data_fim", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
+    __metadata("design:type", Number)
+], Agendamentos.prototype, "dias", void 0);
+__decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Stat, default: Stat.PENDENTE }),
     __metadata("design:type", String)
 ], Agendamentos.prototype, "status", void 0);

@@ -9,6 +9,7 @@ export declare class Agendamentos {
     funcionario_id: number;
     data_inicio: Date;
     data_fim: Date;
+    dias: number;
     status: Stat;
     antecipacao_13_salario: boolean;
 }

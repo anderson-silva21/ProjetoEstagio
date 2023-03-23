@@ -21,6 +21,9 @@ export class Agendamentos {
     @Column({nullable: false, type: 'date' })
     data_fim: Date;
 
+    @Column({nullable: false, type: 'int'})
+    dias: number;
+
     @Column({nullable: false, type:'enum', enum: Stat, default: Stat.PENDENTE})
     status: Stat;  
 

@@ -61,7 +61,7 @@ const handleSubmit = async (event) => {
     }
   
     const data = {
-      funcionario_id: 9, // Substitua pelo ID do funcionário logado
+      funcionario_id: 9, 
       data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
       data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
       status: 'Pendente',

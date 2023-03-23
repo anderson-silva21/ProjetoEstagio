@@ -38,6 +38,10 @@ __decorate([
 ], createAgendamentos.prototype, "status", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], createAgendamentos.prototype, "dias", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Boolean)
 ], createAgendamentos.prototype, "antecipacao_13_salario", void 0);
 exports.createAgendamentos = createAgendamentos;

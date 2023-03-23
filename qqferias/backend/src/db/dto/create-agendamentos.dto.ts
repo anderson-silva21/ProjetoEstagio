@@ -21,5 +21,8 @@ export class createAgendamentos {
     status: Stat;
 
     @IsNotEmpty()
+    dias: number;
+
+    @IsNotEmpty()
     antecipacao_13_salario: boolean;
 }
