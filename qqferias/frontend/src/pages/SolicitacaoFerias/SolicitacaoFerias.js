@@ -16,13 +16,15 @@ function MyCalendar(){
 
     const [solicitSucesso, setSolicitSucesso] = useState(false);
 
+    const [decimoTerceiro, setdecimoTerceiro] = useState(false);
+
     const [searchResults, setSearchResults] = useState([]);
 
     const [events, setEvents] = useState();
 
     const [selectedMonth, setSelectedMonth] = useState('a definir');
 
-    const [selectedDays, setSelectedDays] = useState('');
+    const [selectedDays, setSelectedDays] = useState(0);
 
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -36,6 +38,10 @@ function MyCalendar(){
         setSelectedMonth(event.target.value);
     };
 
+    const handleDecimoTerceiroChange = (event) => {
+        setdecimoTerceiro(Boolean(event.target.value));
+    }
+
     const handleDayChange = (event) => {
         setSelectedDays(event.target.value);
     }
@@ -45,26 +51,36 @@ function MyCalendar(){
         // atualizar o estado com os resultados da pesquisa
         setSearchResults([]);
     };
+    
+const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    if (selectedDays === 0) {
+      alert('Por favor, selecione a quantidade de dias de férias a serem solicitadas.');
+      return;
+    }
+  
+    const data = {
+      funcionario_id: 9, // Substitua pelo ID do funcionário logado
+      data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
+      data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
+      status: 'Pendente',
+      dias: selectedDays,
+      antecipacao_13_salario: decimoTerceiro
+    };
+  
+    try {
+      await axios.post('http://localhost:3001/qqferias/agendamentos/create', data);
+      setSolicitSucesso(true);
+      alert('Sucesso na solicitacao');
+    } catch (error) {
+      console.log(error);
+      console.log('diasssss' + selectedDays);
+      alert('Erro no envio da solicitacao');
+    }
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-          const resposta = await axios.post('http://localhost:3001/qqferias/agendamentos/create', dadosSolicit);
-          console.log(resposta.data);
-          setSolicitSucesso(true);
-          alert('Solicitacao realizada com sucesso')
-        } catch (erro) {
-          console.error(erro);
-          alert('Erro na solicitacao!');
-        }
-      };
 
-      const handleChange = (event) => {
-        setDadosSolicit({
-          ...dadosSolicit,
-          [event.target.name]: event.target.value,
-        });
-      };
 
     useEffect(() => {
         if (selectedDays && selectedOption) {
@@ -76,7 +92,7 @@ function MyCalendar(){
         }
       }, [selectedDays, selectedOption, selectedMonth]);
     return (
-        <form onSubmit={handleSubmit}>
+        
         <div>
             <SearchBar onSearch={handleSearch} />
             <Sidebar userProfile={'colaborador'}/>
@@ -90,6 +106,7 @@ function MyCalendar(){
                         style={{ height: '70vh' }}
                     />
                 </div>
+                <form onSubmit={handleSubmit}>    
                 <div id='sidemenu'>
                     <div className="login-content">
                         
@@ -127,7 +144,7 @@ function MyCalendar(){
                         </div>
                         <div className="input-container-radio">
                             <div className="radio-btn">
-                                <input  type="radio" name="opcoes" value="decimo-terceiro"></input>
+                                <input  type="radio" name="opcoes" value="decimo-terceiro" onChange={handleDecimoTerceiroChange}></input>
                                 <label>Adiantamento do 13º</label>
                             </div>
                         </div>
@@ -149,10 +166,10 @@ function MyCalendar(){
                     <button className="solicit-button" type="submit">Enviar solicitacao para o gestor</button>
                 </div>
             </div>
-                
+            </form>    
             </main>
         </div>
-        </form>
+        
     )
 };
 

@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Agendamentos.prototype, "data_fim", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Stat, default: Stat.GHOST }),
+    (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Stat, default: Stat.PENDENTE }),
     __metadata("design:type", String)
 ], Agendamentos.prototype, "status", void 0);
 __decorate([
