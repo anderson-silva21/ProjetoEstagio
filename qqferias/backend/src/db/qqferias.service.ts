@@ -16,6 +16,13 @@ import { Notificacoes } from './entity/notificacoes.entity';
 
 @Injectable()
 export class QQFeriasService {
+  [x: string]: any;
+  findById(sub: string) {
+    throw new Error('Method not implemented.');
+  }
+  findByEmail(email: string) {
+    throw new Error('Method not implemented.');
+  }
     
     constructor(
         @InjectRepository(Agendamentos)
