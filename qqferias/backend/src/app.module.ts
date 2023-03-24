@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -7,6 +8,7 @@ import { QQFeriasModule } from './db/qqferias.module';
 
 @Module({
   imports: [
+        
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -24,6 +26,7 @@ import { QQFeriasModule } from './db/qqferias.module';
       })
     }),
     QQFeriasModule,
+    AuthModule, 
   ],
   controllers: [AppController],
   providers: [AppService],

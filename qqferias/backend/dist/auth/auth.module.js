@@ -7,25 +7,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthModule = void 0;
+const auth_controller_1 = require("./auth.controller");
 const common_1 = require("@nestjs/common");
-const jwt_1 = require("@nestjs/jwt");
+const qqferias_module_1 = require("../db/qqferias.module");
+const auth_service_1 = require("./shared/auth.service");
+const local_strategy_1 = require("./shared/local.strategy");
+const jwt_strategy_1 = require("./shared/jwt-strategy");
+const dist_1 = require("@nestjs/jwt/dist");
 const passport_1 = require("@nestjs/passport");
-const jwt_strategy_1 = require("./auth/jwt.strategy");
-const auth_service_1 = require("./auth/auth.service");
-const qqferias_service_1 = require("../db/qqferias.service");
+const constants_1 = require("./shared/constants");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            passport_1.PassportModule,
-            jwt_1.JwtModule.register({
-                secret: 'your-secret-key-here',
+        imports: [qqferias_module_1.QQFeriasModule, passport_1.PassportModule,
+            dist_1.JwtModule.register({
+                secret: constants_1.jwtConstants.secret,
                 signOptions: { expiresIn: '1h' },
             }),
         ],
-        providers: [auth_service_1.AuthService, jwt_1.JwtService, jwt_strategy_1.JwtStrategy, qqferias_service_1.QQFeriasService],
-        exports: [auth_service_1.AuthService],
+        controllers: [auth_controller_1.AuthController],
+        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;

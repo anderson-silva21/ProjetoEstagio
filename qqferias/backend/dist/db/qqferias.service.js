@@ -53,8 +53,8 @@ let QQFeriasService = class QQFeriasService {
             throw new common_1.NotFoundException(error.message);
         }
     }
-    async login(credentials) {
-        const user = await this.funcionariosRepository.findOne({ where: { matricula: credentials.matricula, senha: credentials.senha } });
+    async login(matricula, senha) {
+        const user = await this.funcionariosRepository.findOne({ where: { matricula: matricula, senha: senha } });
         if (!user) {
             throw new common_1.NotFoundException('Funcionário não encontrado');
         }

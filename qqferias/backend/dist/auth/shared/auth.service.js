@@ -8,37 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const qqferias_service_1 = require("../../db/qqferias.service");
 const jwt_1 = require("@nestjs/jwt");
+const qqferias_service_1 = require("../../db/qqferias.service");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService) {
-        this.usersService = usersService;
+    constructor(QQFeriasService, jwtService) {
+        this.QQFeriasService = QQFeriasService;
         this.jwtService = jwtService;
     }
-    async validateUser(username, pass) {
-        const user = await this.usersService.findOne(username);
-        if (user && user.password === pass) {
-            const { password } = user, result = __rest(user, ["password"]);
-            return result;
+    async validadeUser(matricula, senha) {
+        const user = await this.QQFeriasService.login(matricula, senha);
+        if (!user) {
+            throw new common_1.NotFoundException('Funcionário não encontrado');
         }
-        return null;
+        return {
+            user: user,
+        };
     }
     async login(user) {
-        const payload = { username: user.username, sub: user.userId };
+        const payload = { sub: user.id };
         return {
             access_token: this.jwtService.sign(payload),
         };

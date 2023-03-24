@@ -63,8 +63,8 @@ export class QQFeriasService {
             } 
         }
 
-        async login(credentials:any) {
-            const user = await this.funcionariosRepository.findOne({ where: { matricula: credentials.matricula, senha: credentials.senha } });
+        async login(matricula:any, senha: any) {
+            const user = await this.funcionariosRepository.findOne({ where: { matricula: matricula, senha: senha } });
             if(!user){
                 throw new NotFoundException('Funcionário não encontrado');
             }
