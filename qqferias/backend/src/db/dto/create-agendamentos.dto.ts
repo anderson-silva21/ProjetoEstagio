@@ -25,4 +25,7 @@ export class createAgendamentos {
 
     @IsNotEmpty()
     antecipacao_13_salario: boolean;
+
+    @IsNotEmpty()
+    gestor_id: number;
 }

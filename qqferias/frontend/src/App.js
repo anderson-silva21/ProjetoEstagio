@@ -23,7 +23,7 @@ function App() {
         
         <Route
           path="/cadastro"
-          element={isAuthenticated && isGestor() ? <Cadastro/> : <Navigate to="/login" />}
+          element={isAuthenticated && isGestor() ? <Cadastro/> : <Navigate to="/login" /> }
         /> 
         
         <Route

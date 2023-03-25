@@ -11,4 +11,5 @@ export declare class createAgendamentos {
     status: Stat;
     dias: number;
     antecipacao_13_salario: boolean;
+    gestor_id: number;
 }

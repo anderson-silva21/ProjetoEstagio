@@ -48,6 +48,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'bool', default: false }),
     __metadata("design:type", Boolean)
 ], Agendamentos.prototype, "antecipacao_13_salario", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, type: 'int' }),
+    __metadata("design:type", Number)
+], Agendamentos.prototype, "gestor_id", void 0);
 Agendamentos = __decorate([
     (0, typeorm_1.Entity)({ name: 'agendamentos' })
 ], Agendamentos);

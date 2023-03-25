@@ -72,7 +72,8 @@ const handleSubmit = async (event) => {
       data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
       status: 'Pendente',
       dias: selectedDays,
-      antecipacao_13_salario: decimoTerceiro
+      antecipacao_13_salario: decimoTerceiro,
+      gestor_id: decodedToken.user.gestor_id
     };
   
     try {

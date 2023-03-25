@@ -1,7 +1,7 @@
 import './Sidebar.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faCube, faBars, faUser, faHouse, faFileExcel} from "@fortawesome/free-solid-svg-icons";
+import { faChartLine, faCartFlatbedSuitcase, faPeopleGroup, faCube, faBars, faUser, faHouse, faFileExcel, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import jwtDecode from 'jwt-decode';
 
@@ -27,23 +27,31 @@ const Sidebar = ({ userProfile }) => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('jwt');
+    window.location.href = '/login';
+  };
+
   const menuItems = userProfile === "Colaborador" ? [
     { label: 'Home', path: '/home', icon: faHouse },
     { label: 'Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
-    { label: 'Solicitações', path: '/own-application', icon: faCube}
+    { label: 'Solicitações', path: '/own-application', icon: faCube},
+    { label: 'Logout', path: '/login', icon: faRightFromBracket}
+
   ] : [
     { label: 'DashBoard', path: '/qqferias', icon: faChartLine },
     { label: 'Solicitar férias', path: '/solicitacao-ferias', icon: faCartFlatbedSuitcase },
     { label: 'Colaboradores', path: '/colaboradores', icon: faPeopleGroup},
     { label: 'Solicitações', path: '/own-application', icon: faCube},
-    { label: 'Gerar relatório', path: '/relatorio', icon: faFileExcel}
+    { label: 'Gerar relatório', path: '/relatorio', icon: faFileExcel},
+    { label: 'Logout', path: '/login', icon: faRightFromBracket, onClick: handleLogout }
   ];
+
+  
 
   const toggleSidebar = () => {
     setIsSidebarExpanded(!isSidebarExpanded);
   };
-
-  console.log(decodedToken.user);
 
   return (
     <div className={`main-div-sbar ${isSidebarExpanded ? "" : "collapsed"}`}> 

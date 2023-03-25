@@ -6,9 +6,14 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import VacationCalendar from '../VacationCalendar/VacationCalendar'
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import jwtDecode from 'jwt-decode';
+
+const token = localStorage.getItem('jwt');
+const decodedToken = jwtDecode(token);
 
 const Dashboard = () => {
   const [vacationRequests, setVacationRequests] = useState([
+    
     { id: 1, name: 'Marcos Silva', startDate: '01/03/2023', endDate: '07/03/2023', status: 'em análise', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
     { id: 2, name: 'Joice Souza', startDate: '01/04/2023', endDate: '10/04/2023', status: 'rejeitada', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
     { id: 3, name: 'Maria Santos', startDate: '15/05/2023', endDate: '22/05/2023', status: 'aprovada', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },

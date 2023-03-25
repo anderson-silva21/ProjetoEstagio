@@ -15,18 +15,17 @@
 
     useEffect(() => {
       const fetchEvents = async () => {
-        
         try {
-          const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}`);
-          setEvents(response.data);
-          
+          const response = await axios.get('http://localhost:3001/qqferias/agendamentos');
+          const events = response.data.filter(event => event.funcionario_id === decodedToken.user.id);
+          setEvents(events);
         } catch (error) {
           console.log(error);
           alert('Erro ao receber solicitacoes');
         }
       };
       fetchEvents();
-    }, [token, decodedToken]);
+    }, []);
 
     const handleSearch = (query) => {
       // fazer a busca no banco de dados aqui
@@ -44,8 +43,8 @@
             <ul className="solicitacoes-list">
               {events.map(event => (
                 <li key={event.data} className={`solicitacoes-list-item ${event.status === 'Pendente' ? 'pendente' : event.status === 'Rejeitado' ? 'rejeitado' : 'aprovado'}`}>
-                  <span>Data da solicitação: {event.data}</span>
-                  <span>Decimo terceiro: {event.decimoTerceiro ? 'sim' : 'não'}</span>
+                  <span>Periodo: {event.data_inicio} à {event.data_fim} -- Dias {event.dias}</span>
+                  <span>Decimo terceiro: {event.antecipacao_13_salario ? 'sim' : 'não'}</span>
                   <span>Status: {event.status}</span>
                 </li>
               ))}

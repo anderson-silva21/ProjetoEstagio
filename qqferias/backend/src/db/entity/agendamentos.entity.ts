@@ -29,4 +29,7 @@ export class Agendamentos {
 
     @Column({nullable: false, type:'bool', default: false})
     antecipacao_13_salario: boolean;
+
+    @Column({nullable: false, type: 'int'})
+    gestor_id: number;
 }
