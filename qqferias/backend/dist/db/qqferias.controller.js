@@ -58,7 +58,6 @@ let QQFeriasController = class QQFeriasController {
         return await this.QQFeriasService.noticacoesCreate(body);
     }
     async agendamentoShow(id) {
-        console.log("entrei no agendamentosSHOW");
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
     async gestoresShow() {

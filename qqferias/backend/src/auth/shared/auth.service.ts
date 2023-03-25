@@ -22,7 +22,6 @@ export class AuthService {
             
         }
         const token = await this.login(user);
-        console.log(user);
         return {
             token,
             user:user, 

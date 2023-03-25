@@ -78,7 +78,7 @@ export class QQFeriasController {
     
     @Get('agendamentos/:id')
     async agendamentoShow(@Param('id', new ParseUUIDPipe()) id) {
-        console.log("entrei no agendamentosSHOW");
+        
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
 

@@ -19,7 +19,7 @@
         try {
           const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}`);
           setEvents(response.data);
-          console.log(response.data);
+          
         } catch (error) {
           console.log(error);
           alert('Erro ao receber solicitacoes');
