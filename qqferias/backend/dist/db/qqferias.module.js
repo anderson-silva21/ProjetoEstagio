@@ -23,8 +23,8 @@ QQFeriasModule = __decorate([
                 agendamentos_entity_1.Agendamentos, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes
             ])],
         controllers: [qqferias_controller_1.QQFeriasController],
-        providers: [qqferias_service_1.QQFeriasService],
-        exports: [qqferias_service_1.QQFeriasService],
+        providers: [qqferias_service_1.QQFeriasService, agendamentos_entity_1.Agendamentos, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes],
+        exports: [qqferias_service_1.QQFeriasService, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes, agendamentos_entity_1.Agendamentos],
     })
 ], QQFeriasModule);
 exports.QQFeriasModule = QQFeriasModule;

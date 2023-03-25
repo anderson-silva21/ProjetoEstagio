@@ -12,7 +12,7 @@ import { QQFeriasService } from './qqferias.service';
               Agendamentos, Compromissos, Funcionarios, Notificacoes
             ])],
   controllers: [QQFeriasController],
-  providers: [QQFeriasService],
-  exports: [QQFeriasService],
+  providers: [QQFeriasService, Agendamentos, Compromissos, Funcionarios, Notificacoes],
+  exports: [QQFeriasService, Compromissos, Funcionarios, Notificacoes, Agendamentos],
 })
 export class QQFeriasModule {}

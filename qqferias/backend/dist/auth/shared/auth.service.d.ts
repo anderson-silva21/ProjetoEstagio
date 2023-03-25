@@ -5,6 +5,9 @@ export declare class AuthService {
     private jwtService;
     constructor(QQFeriasService: QQFeriasService, jwtService: JwtService);
     validadeUser(matricula: any, senha: any): Promise<{
+        token: {
+            access_token: string;
+        };
         user: {
             user: import("../../db/entity/funcionarios.entity").Funcionarios;
         };

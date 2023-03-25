@@ -20,15 +20,22 @@ export class AuthService {
         if(!user){
             throw new NotFoundException('Funcionário não encontrado');
         }
+
+        const token = await this.login(user);
+        
+        console.log("validateUSER");
+
         return {
+            token,
             user:user, 
+
         };
     }
 
     async login(user: any){
-        const payload = { sub: user.id };
+        
         return {
-            access_token: this.jwtService.sign(payload),
+            access_token: this.jwtService.sign(user),
         }
     }
 }

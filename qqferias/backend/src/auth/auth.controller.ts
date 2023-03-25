@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Controller, UseGuards, Request, Post } from '@nestjs/common';
+import { Controller, UseGuards, Request, Post, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './shared/local-auth.guard';
 import { AuthService } from './shared/auth.service';
 
@@ -13,9 +13,10 @@ export class AuthController {
         private authService: AuthService,
     ) {}
 
-    @UseGuards(LocalAuthGuard)
+
     @Post('auth/login')
-    async login(@Request() req: any){
-        return this.authService.login(req.user);
+    async login(@Body() {matricula, senha}){
+        console.log("entrei no controller" + matricula);
+        return this.authService.validadeUser(matricula, senha);
     }
 }

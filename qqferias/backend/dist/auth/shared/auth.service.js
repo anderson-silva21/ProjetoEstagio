@@ -23,14 +23,16 @@ let AuthService = class AuthService {
         if (!user) {
             throw new common_1.NotFoundException('Funcionário não encontrado');
         }
+        const token = await this.login(user);
+        console.log("validateUSER");
         return {
+            token,
             user: user,
         };
     }
     async login(user) {
-        const payload = { sub: user.id };
         return {
-            access_token: this.jwtService.sign(payload),
+            access_token: this.jwtService.sign(user),
         };
     }
 };
