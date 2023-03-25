@@ -12,11 +12,13 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(username + password);
-        axios.post('http://localhost:3001/qqferias/login' , { matricula: username, senha: password }) //http://localhost:3001/auth/login
+        axios.post('http://localhost:3001/auth/login' , { matricula: username, senha: password }) //http://localhost:3001/auth/login
             .then(response => {
-                if (response.data.user.tipoFuncionario == 'Gestor') {
+                if (response.data.user.user.tipoFuncionario === 'Gestor') {
+                    
                     setLoggedInGestor(true);
-                } else if (response.data.user.tipoFuncionario == 'Colaborador') {
+                } else if (response.data.user.user.tipoFuncionario === 'Colaborador') {
+                    
                     setLoggedInColab(true);
                 } else {
                     alert('Nome de usuário ou senha inválidos.');

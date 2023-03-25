@@ -24,7 +24,6 @@ let AuthService = class AuthService {
             throw new common_1.NotFoundException('Funcionário não encontrado');
         }
         const token = await this.login(user);
-        console.log("validateUSER");
         return {
             token,
             user: user,

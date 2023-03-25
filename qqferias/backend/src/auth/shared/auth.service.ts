@@ -19,19 +19,16 @@ export class AuthService {
         const user = await this.QQFeriasService.login(matricula, senha);
         if(!user){
             throw new NotFoundException('Funcionário não encontrado');
+            
         }
-
         const token = await this.login(user);
-        
-        console.log("validateUSER");
-
         return {
             token,
             user:user, 
 
         };
     }
-
+ 
     async login(user: any){
         
         return {
