@@ -23,6 +23,8 @@ function Login() {
                 } else {
                     alert('Nome de usuário ou senha inválidos.');
                 }
+                localStorage.setItem('jwt', response.data.token.access_token);
+                
             })
             .catch(error => {
                 console.error(error);

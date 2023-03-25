@@ -64,6 +64,10 @@ function Cadastro() {
                         <input className="input-login" type="password" id="username" name='senha' required onChange={handleChange}></input>
                     </div>
                     <div className="input-container">
+                        <label className="nome-login">Email</label>
+                        <input className="input-login" type="email" id="username" name='senha' required onChange={handleChange}></input>
+                    </div>
+                    <div className="input-container">
                         <label className="nome-login">Matricula</label>
                         <input className="input-login" type="text" id="username" name='matricula' required onChange={handleChange}></input>
                     </div>

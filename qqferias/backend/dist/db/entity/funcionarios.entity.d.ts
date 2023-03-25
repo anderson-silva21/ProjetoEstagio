@@ -12,6 +12,7 @@ export declare class Funcionarios {
     id: number;
     nome: string;
     senha: string;
+    email: string;
     tipoContrato: Contrato;
     tipoFuncionario: Func;
     matricula: String;

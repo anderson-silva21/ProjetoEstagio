@@ -23,7 +23,6 @@ const update_compromissos_dto_1 = require("./dto/update-compromissos.dto");
 const update_funcionarios_dto_1 = require("./dto/update-funcionarios.dto");
 const update_notificacoes_dto_1 = require("./dto/update-notificacoes.dto");
 const qqferias_service_1 = require("./qqferias.service");
-const jwt_auth_guard_1 = require("../auth/shared/jwt-auth.guard");
 let QQFeriasController = class QQFeriasController {
     constructor(QQFeriasService) {
         this.QQFeriasService = QQFeriasService;
@@ -59,6 +58,7 @@ let QQFeriasController = class QQFeriasController {
         return await this.QQFeriasService.noticacoesCreate(body);
     }
     async agendamentoShow(id) {
+        console.log("entrei no agendamentosSHOW");
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
     async gestoresShow() {
@@ -100,14 +100,12 @@ let QQFeriasController = class QQFeriasController {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('agendamentos'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "indexAgendamentos", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('funcionarios'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -121,7 +119,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "login", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('userProfile'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __metadata("design:type", Function),
@@ -129,21 +126,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "userProfile", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('compromissos'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "indexCompromissos", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('notificacoes'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "indexNotificacoes", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('agendamentos/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -151,7 +145,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "createAgendamentos", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('funcionarios/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -159,7 +152,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "createFuncionarios", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('compromissos/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -167,7 +159,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "createCompromissos", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('notificacoes/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -175,7 +166,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "createNotificacoes", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('agendamentos/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __metadata("design:type", Function),
@@ -183,14 +173,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "agendamentoShow", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('gestores'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "gestoresShow", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('funcionarios/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __metadata("design:type", Function),
@@ -198,7 +186,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "funcionarioShow", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('compromissos/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __metadata("design:type", Function),
@@ -206,7 +193,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "compromissosShow", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('notificacoes/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __metadata("design:type", Function),
@@ -214,7 +200,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "notificacoesShow", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('agendamentos/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __param(1, (0, common_1.Body)()),
@@ -223,7 +208,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "agendamentosUpdate", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('funcionarios/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __param(1, (0, common_1.Body)()),
@@ -232,7 +216,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "funcionariosUpdate", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('compromissos/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __param(1, (0, common_1.Body)()),
@@ -241,7 +224,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "compromissosUpdate", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)('notificacoes/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
     __param(1, (0, common_1.Body)()),
@@ -250,7 +232,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "notificacoesUpdate", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Delete)('delete/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),

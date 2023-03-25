@@ -8,6 +8,12 @@ import './SolicitacaoFerias.css'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import SearchBar from '../../components/Searchbar/Searchbar'
 import axios from 'axios';
+import jwtDecode from 'jwt-decode'
+
+
+const token = localStorage.getItem('jwt');
+
+const decodedToken = jwtDecode(token);
 
 const localizer = momentLocalizer(moment);
 
@@ -61,7 +67,7 @@ const handleSubmit = async (event) => {
     }
   
     const data = {
-      funcionario_id: 9, //ARRUMAR JWT
+      funcionario_id: decodedToken.user.id, 
       data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
       data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
       status: 'Pendente',
@@ -75,7 +81,6 @@ const handleSubmit = async (event) => {
       alert('Sucesso na solicitacao');
     } catch (error) {
       console.log(error);
-      console.log('diasssss' + selectedDays);
       alert('Erro no envio da solicitacao');
     }
   };
@@ -95,7 +100,7 @@ const handleSubmit = async (event) => {
         
         <div>
             <SearchBar onSearch={handleSearch} />
-            <Sidebar userProfile={'colaborador'}/>
+            <Sidebar userProfile={decodedToken.user.tipoFuncionario}/>
             <main className='main'>
                 <div id='calendario'>
                     <Calendar

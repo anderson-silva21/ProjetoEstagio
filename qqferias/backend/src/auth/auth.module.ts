@@ -14,10 +14,6 @@ import { Funcionarios } from 'src/db/entity/funcionarios.entity';
 import { Notificacoes } from 'src/db/entity/notificacoes.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-/*
-https://docs.nestjs.com/modules
-*/
-
 @Module({
   imports: [QQFeriasModule, PassportModule, 
             JwtModule.register({

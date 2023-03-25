@@ -13,10 +13,9 @@ export class AuthController {
         private authService: AuthService,
     ) {}
 
-
+    @UseGuards(LocalAuthGuard)
     @Post('auth/login')
     async login(@Body() {matricula, senha}){
-        console.log("entrei no controller" + matricula);
         return this.authService.validadeUser(matricula, senha);
     }
 }

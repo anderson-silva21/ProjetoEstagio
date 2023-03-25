@@ -20,6 +20,9 @@ export class createFuncionarios {
     senha: string;
 
     @IsNotEmpty()
+    email: string;
+
+    @IsNotEmpty()
     matricula: string;
 
     @IsNotEmpty()

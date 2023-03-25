@@ -11,6 +11,7 @@ export declare enum Func {
 export declare class createFuncionarios {
     nome: string;
     senha: string;
+    email: string;
     matricula: string;
     tipoContrato: Contrato;
     tipoFuncionario: Func;
