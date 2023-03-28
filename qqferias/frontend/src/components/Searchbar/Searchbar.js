@@ -33,9 +33,11 @@ const Searchbar = ({ onSearch }) => {
                 onChange={handleInputChange}
                 style={{ width: '100%', padding: '10px', border: 'none'}}      
             />
+            {/* 
             <button type="submit" style={{ background: 'transparent', border: 'none'}} id="notification-button">
                 <FontAwesomeIcon icon={faBell}  />
             </button>
+            */}
         </div>
     </form>
   );

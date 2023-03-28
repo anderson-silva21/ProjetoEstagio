@@ -13,22 +13,11 @@ const token = localStorage.getItem('jwt');
 const decodedToken = jwtDecode(token);
 
 const Dashboard = () => {
-  const [teste, setteste] = useState([]);
-  const [vacationRequests, setVacationRequests] = useState([/*
-    
-    { id: 1, name: 'Marcos Silva', data_inicio: '01/03/2023', data_fim: '07/03/2023', status: 'Pendente', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
-    { id: 2, name: 'Joice Souza', data_inicio: '01/04/2023', data_fim: '10/04/2023', status: 'Reprovado', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
-    { id: 3, name: 'Maria Santos', data_inicio: '15/05/2023', data_fim: '22/05/2023', status: 'Aprovado', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },
-    { id: 4, name: 'Juliana Fernandes', data_inicio: '10/06/2023', data_fim: '17/06/2023', status: 'Pendente', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Período aquisitivo' },
-    { id: 5, name: 'José Carlos', data_inicio: '01/07/2023', data_fim: '07/07/2023', status: 'Pendente', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
-    { id: 6, name: 'Ana Paula', data_inicio: '15/08/2023', data_fim: '22/08/2023', status: 'Aprovado', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
-    { id: 7, name: 'Roberto Santos', data_inicio: '10/09/2023', data_fim: '17/09/2023', status: 'Pendente', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },
-    { id: 8, name: 'Fernanda Souza', data_inicio: '01/10/2023', data_fim: '07/10/2023', status: 'Aprovado', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
-    { id: 9, name: 'Mariana Silva', data_inicio: '15/11/2023', data_fim: '22/11/2023', status: 'Pendente', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
-*/]);
+
+  const [vacationRequests, setVacationRequests] = useState([]);
 
   moment.locale('pt-br');
-  const oneYearAgo = moment().subtract(1, 'year');
+
   useEffect(() => {
     const fetchVacationRequests = async () => {
       try {
@@ -50,24 +39,34 @@ const Dashboard = () => {
                   data_fim: events.agendamentos[i]['data_fim'],
                   status: events.agendamentos[i]['status'],
                   type: events.agendamentos[i]['antecipacao_13_salario'] ? 'Solicitação de férias com adiantamento do 13º' : 'Solicitação de férias',
-                  feriasStat: 'Período aquisitivo',           
+                  feriasStat: calculateFeriasStat(events.funcionarios[funcionarioIndex]['dataIngresso'])
                 };
                 newVacationRequests.push(vacationRequest);
               }
             }
           }
           setVacationRequests(newVacationRequests);
-        } else {
-          setVacationRequests([]);
         }
       } catch (error) {
-        console.log(error);
-        alert('Erro ao receber solicitações');
+        console.error(error);
       }
-    };
+    }
+    
     
     fetchVacationRequests();
   }, [decodedToken.user.id]);
+  
+  const calculateFeriasStat = (dataIngresso) => {
+    const today = moment();
+    const diffYears = today.diff(moment(dataIngresso), 'years');
+    if (diffYears < 1) {
+      return 'Próximo';
+    } else if (diffYears < 2) {
+      return 'Período aquisitivo';
+    } else {
+      return 'Atrasado';
+    }
+  }
   
   const eventos = vacationRequests.filter(request => request.status === 'Aprovado').map(request => ({
     start: moment(request.data_inicio, 'DD/MM/YYYY').toDate(),
@@ -81,6 +80,14 @@ const Dashboard = () => {
 
   const handleShowMore = () => {
     setVisibleRequests(visibleRequests + 2);
+  };
+
+  const handleApproveRequest = async (id) => {
+    
+  };
+
+  const handleRejectRequest = async (id) => {
+    
   };
 
   const completedRequests = vacationRequests.filter(request => request.status !== 'Pendente').length;
@@ -149,8 +156,8 @@ const Dashboard = () => {
                 {request.status === 'Pendente' && (
                   <>
                     <div className='div-stat'>
-                      <button id='botao-ap'>Aprovar</button>
-                      <button id='botao-rej'>Rejeitar</button>
+                      <button id='botao-ap' onClick={() => handleApproveRequest(request.id)}>Aprovar</button>
+                      <button id='botao-rej' onClick={() => handleRejectRequest(request.id)}>Rejeitar</button>
                     </div>
                   </>
                 )}
