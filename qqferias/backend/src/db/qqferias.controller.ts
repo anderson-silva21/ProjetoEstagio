@@ -21,6 +21,17 @@ export class QQFeriasController {
         return await this.QQFeriasService.agendamentosFindAll();
     }
 
+    @Get('gestores/:id/agendamentos-funcionarios')
+    async getAgendamentosFuncionariosByGestorId(@Param('id') id: number) {
+        const agendamentos = await this.QQFeriasService.getAgendamentosByGestorId(id);
+        const funcionarios = await this.QQFeriasService.getFuncionariosByGestorId(id);
+        
+        return {
+            agendamentos,
+            funcionarios,
+        };
+    }
+
     
     @Get('funcionarios')
     async indexFuncionarios() {

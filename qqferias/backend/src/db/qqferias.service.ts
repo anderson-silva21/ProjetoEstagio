@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindOneOptions } from 'typeorm';
+import { Repository, In} from 'typeorm';
 import { createAgendamentos } from './dto/create-agendamentos.dto';
 import { createCompromissos } from './dto/create-compromissos.dto';
 import { createFuncionarios } from './dto/create-funcionarios.dto';
@@ -62,6 +62,24 @@ export class QQFeriasService {
                 throw new NotFoundException(error.message);
             } 
         }
+
+        async getAgendamentosByGestorId(gestorId: number) {
+            return await this.agendamentosRepository.find({
+              where: { gestor_id: gestorId }
+            });
+          }
+          
+          async getFuncionariosByGestorId(gestorId: number) {
+            const agendamentos = await this.agendamentosRepository.find({
+              where: { gestor_id: gestorId },
+              select: ['funcionario_id'] // seleciona apenas a coluna 'funcionario_id'
+            });
+            const funcionarioIds = agendamentos.map((agendamento) => agendamento.funcionario_id);
+            return await this.funcionariosRepository.find({
+              where: { id: In(funcionarioIds) }
+            });
+          }
+          
 
         async login(matricula:any, senha: any) {
             const user = await this.funcionariosRepository.findOne({ where: { matricula: matricula, senha: senha } });

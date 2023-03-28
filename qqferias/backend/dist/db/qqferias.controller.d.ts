@@ -11,6 +11,10 @@ export declare class QQFeriasController {
     private readonly QQFeriasService;
     constructor(QQFeriasService: QQFeriasService);
     indexAgendamentos(): Promise<import("./entity/agendamentos.entity").Agendamentos[]>;
+    getAgendamentosFuncionariosByGestorId(id: number): Promise<{
+        agendamentos: import("./entity/agendamentos.entity").Agendamentos[];
+        funcionarios: import("./entity/funcionarios.entity").Funcionarios[];
+    }>;
     indexFuncionarios(): Promise<import("./entity/funcionarios.entity").Funcionarios[]>;
     login(credentials: any): Promise<{
         user: import("./entity/funcionarios.entity").Funcionarios;

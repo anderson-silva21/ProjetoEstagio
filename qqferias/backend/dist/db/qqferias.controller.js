@@ -30,6 +30,14 @@ let QQFeriasController = class QQFeriasController {
     async indexAgendamentos() {
         return await this.QQFeriasService.agendamentosFindAll();
     }
+    async getAgendamentosFuncionariosByGestorId(id) {
+        const agendamentos = await this.QQFeriasService.getAgendamentosByGestorId(id);
+        const funcionarios = await this.QQFeriasService.getFuncionariosByGestorId(id);
+        return {
+            agendamentos,
+            funcionarios,
+        };
+    }
     async indexFuncionarios() {
         return await this.QQFeriasService.funcionariosFindAll();
     }
@@ -104,6 +112,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "indexAgendamentos", null);
+__decorate([
+    (0, common_1.Get)('gestores/:id/agendamentos-funcionarios'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "getAgendamentosFuncionariosByGestorId", null);
 __decorate([
     (0, common_1.Get)('funcionarios'),
     __metadata("design:type", Function),

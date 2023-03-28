@@ -13,7 +13,6 @@ import axios from 'axios';
 function App() {
   //axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
   const isAuthenticated = localStorage.getItem('jwt') !== null;
-  console.log(isAuthenticated);
   return (
     <Router>
       <Routes>

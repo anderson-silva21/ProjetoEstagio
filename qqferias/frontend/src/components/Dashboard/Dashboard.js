@@ -14,7 +14,7 @@ const decodedToken = jwtDecode(token);
 
 const Dashboard = () => {
   const [teste, setteste] = useState([]);
-  const [vacationRequests, setVacationRequests] = useState([
+  const [vacationRequests, setVacationRequests] = useState([/*
     
     { id: 1, name: 'Marcos Silva', data_inicio: '01/03/2023', data_fim: '07/03/2023', status: 'Pendente', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
     { id: 2, name: 'Joice Souza', data_inicio: '01/04/2023', data_fim: '10/04/2023', status: 'Reprovado', type: 'Solicitação de férias', feriasStat: 'Atrasado' },
@@ -25,26 +25,51 @@ const Dashboard = () => {
     { id: 7, name: 'Roberto Santos', data_inicio: '10/09/2023', data_fim: '17/09/2023', status: 'Pendente', type: 'Solicitação de férias com adiantamento do 13º', feriasStat: 'Próximo' },
     { id: 8, name: 'Fernanda Souza', data_inicio: '01/10/2023', data_fim: '07/10/2023', status: 'Aprovado', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
     { id: 9, name: 'Mariana Silva', data_inicio: '15/11/2023', data_fim: '22/11/2023', status: 'Pendente', type: 'Solicitação de férias', feriasStat: 'Período aquisitivo' },
-  ]);
+*/]);
 
   moment.locale('pt-br');
-
+  const oneYearAgo = moment().subtract(1, 'year');
   useEffect(() => {
     const fetchVacationRequests = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/qqferias/agendamentos');
-        const events = response.data.filter(event => event.gestor_id === decodedToken.user.id);
-        setteste(events);
-        console.log(events);
+        const response = await axios.get(`http://localhost:3001/qqferias/gestores/${decodedToken.user.id}/agendamentos-funcionarios`);
+        const events = response.data;
+        const newVacationRequests = [];
+        const addedIds = new Set();
+        if (Array.isArray(events.agendamentos) && Array.isArray(events.funcionarios)) {
+          for(let i=0; i<events.agendamentos.length; i++){
+            const currentId = events.agendamentos[i]['id'];
+            if(!addedIds.has(currentId)){
+              addedIds.add(currentId);
+              const funcionarioIndex = events.funcionarios.findIndex(f => f.id === events.agendamentos[i]['funcionario_id']);
+              if(funcionarioIndex !== -1) {
+                const vacationRequest = {
+                  id: currentId,
+                  name: events.funcionarios[funcionarioIndex]['nome'],
+                  data_inicio: events.agendamentos[i]['data_inicio'],
+                  data_fim: events.agendamentos[i]['data_fim'],
+                  status: events.agendamentos[i]['status'],
+                  type: events.agendamentos[i]['antecipacao_13_salario'] ? 'Solicitação de férias com adiantamento do 13º' : 'Solicitação de férias',
+                  feriasStat: 'Período aquisitivo',           
+                };
+                newVacationRequests.push(vacationRequest);
+              }
+            }
+          }
+          setVacationRequests(newVacationRequests);
+        } else {
+          setVacationRequests([]);
+        }
       } catch (error) {
         console.log(error);
         alert('Erro ao receber solicitações');
       }
     };
+    
     fetchVacationRequests();
   }, [decodedToken.user.id]);
-
-  const eventos = vacationRequests.filter(request => request.status === 'aprovada').map(request => ({
+  
+  const eventos = vacationRequests.filter(request => request.status === 'Aprovado').map(request => ({
     start: moment(request.data_inicio, 'DD/MM/YYYY').toDate(),
     end:  moment(request.data_fim, 'DD/MM/YYYY').toDate(),
     title: request.name,

@@ -25,6 +25,8 @@ export declare class QQFeriasService {
     compromissosFindAll(): Promise<Compromissos[]>;
     notificacoesFindAll(): Promise<Notificacoes[]>;
     funcionariosFindOne(id: any): Promise<Funcionarios>;
+    getAgendamentosByGestorId(gestorId: number): Promise<Agendamentos[]>;
+    getFuncionariosByGestorId(gestorId: number): Promise<Funcionarios[]>;
     login(matricula: any, senha: any): Promise<{
         user: Funcionarios;
     }>;
