@@ -28,7 +28,7 @@ const Sidebar = ({ userProfile }) => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     window.location.href = '/login';
   };
 

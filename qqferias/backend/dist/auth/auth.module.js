@@ -29,7 +29,7 @@ AuthModule = __decorate([
         imports: [qqferias_module_1.QQFeriasModule, passport_1.PassportModule,
             dist_1.JwtModule.register({
                 secret: constants_1.jwtConstants.secret,
-                signOptions: { expiresIn: '1h' },
+                signOptions: { expiresIn: '60s' },
             }),
             typeorm_1.TypeOrmModule.forFeature([
                 agendamentos_entity_1.Agendamentos, compromissos_entity_1.Compromissos, funcionarios_entity_1.Funcionarios, notificacoes_entity_1.Notificacoes

@@ -6,11 +6,11 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import VacationCalendar from '../VacationCalendar/VacationCalendar'
 import moment from 'moment';
 import 'moment/locale/pt-br';
-import jwtDecode from 'jwt-decode';
+/*import jwtDecode from 'jwt-decode';
 
 const token = localStorage.getItem('jwt');
 const decodedToken = jwtDecode(token);
-
+*/
 const Dashboard = () => {
   const [vacationRequests, setVacationRequests] = useState([
     

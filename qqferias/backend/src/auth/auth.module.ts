@@ -18,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [QQFeriasModule, PassportModule, 
             JwtModule.register({
               secret: jwtConstants.secret,
-              signOptions: { expiresIn: '1h'},
+              signOptions: { expiresIn: '60s'},
             }),
             TypeOrmModule.forFeature([
               Agendamentos, Compromissos, Funcionarios, Notificacoes

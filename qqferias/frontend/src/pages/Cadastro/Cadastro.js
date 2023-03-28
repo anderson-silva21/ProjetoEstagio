@@ -65,7 +65,7 @@ function Cadastro() {
                     </div>
                     <div className="input-container">
                         <label className="nome-login">Email</label>
-                        <input className="input-login" type="email" id="username" name='senha' required onChange={handleChange}></input>
+                        <input className="input-login" type="email" id="username" name='email' required onChange={handleChange}></input>
                     </div>
                     <div className="input-container">
                         <label className="nome-login">Matricula</label>

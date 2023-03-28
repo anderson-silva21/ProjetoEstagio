@@ -4,11 +4,11 @@ import { Month } from 'react-big-calendar';
 import moment, { months } from 'moment';
 import 'moment/locale/pt-br';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import './SolicitacaoFerias.css'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import SearchBar from '../../components/Searchbar/Searchbar'
+import './SolicitacaoFerias.css';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import SearchBar from '../../components/Searchbar/Searchbar';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 
 
 const token = localStorage.getItem('jwt');
@@ -73,7 +73,7 @@ const handleSubmit = async (event) => {
       status: 'Pendente',
       dias: selectedDays,
       antecipacao_13_salario: decimoTerceiro,
-      gestor_id: decodedToken.user.gestor_id
+      gestor_id: decodedToken.user.gestorId,
     };
   
     try {

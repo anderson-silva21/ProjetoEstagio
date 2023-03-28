@@ -7,7 +7,7 @@ import VacationCalendar from '../../components/VacationCalendar/VacationCalendar
 import jwtDecode from 'jwt-decode'
 
 
-const token = localStorage.getItem('jwt');
+const token = localStorage.getItem('jwt'); 
 
 const decodedToken = jwtDecode(token);
 

@@ -1,15 +1,13 @@
   import './Solicitacoes.css';
   import React, { useState, useEffect } from "react";
-  import Sidebar from '../../components/Sidebar/Sidebar'
+  import Sidebar from '../../components/Sidebar/Sidebar';
   import SearchBar from '../../components/Searchbar/Searchbar';
   import axios from 'axios';
   import jwtDecode from 'jwt-decode';
 
-
   function QQferias(){
     const [searchResults, setSearchResults] = useState([]);
     const [events, setEvents] = useState([]);
-
     const token = localStorage.getItem('jwt');
     const decodedToken = jwtDecode(token);
 
@@ -25,8 +23,8 @@
         }
       };
       fetchEvents();
-    }, []);
-
+    }, [decodedToken.user.id]);
+    
     const handleSearch = (query) => {
       // fazer a busca no banco de dados aqui
       // atualizar o estado com os resultados da pesquisa
@@ -55,4 +53,4 @@
     );
   };
 
-  export default QQferias;
+export default QQferias;

@@ -8,12 +8,14 @@ function Login() {
     const [password, setPassword] = useState("");
     const [loggedInGestor, setLoggedInGestor] = useState(false);
     const [loggedInColab, setLoggedInColab] = useState(false);
+    const gestor = true;
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(username + password);
+        
         axios.post('http://localhost:3001/auth/login' , { matricula: username, senha: password }) //http://localhost:3001/auth/login
             .then(response => {
+                console.log(response);
                 if (response.data.user.user.tipoFuncionario === 'Gestor') {
                     
                     setLoggedInGestor(true);
@@ -34,8 +36,7 @@ function Login() {
 
     if (loggedInGestor) {
         return <Navigate to="/qqferias" />;
-    }
-    if (loggedInColab) {
+    }else if (loggedInColab) {
         return <Navigate to="/home" />;
     }
 
