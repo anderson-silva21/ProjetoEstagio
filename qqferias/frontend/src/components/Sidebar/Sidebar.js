@@ -47,8 +47,6 @@ const Sidebar = ({ userProfile }) => {
     { label: 'Logout', path: '/login', icon: faRightFromBracket, onClick: handleLogout }
   ];
 
-  
-
   const toggleSidebar = () => {
     setIsSidebarExpanded(!isSidebarExpanded);
   };
