@@ -84,6 +84,9 @@ let QQFeriasController = class QQFeriasController {
     async agendamentosUpdate(id, body) {
         return await this.QQFeriasService.agendamentosUpdate(id, body);
     }
+    async updateAgendamentoStatus(id, body) {
+        return await this.QQFeriasService.updateAgendamentoStatus(id, body.status);
+    }
     async funcionariosUpdate(id, body) {
         return await this.QQFeriasService.funcionariosUpdate(id, body);
     }
@@ -215,12 +218,20 @@ __decorate([
 ], QQFeriasController.prototype, "notificacoesShow", null);
 __decorate([
     (0, common_1.Put)('agendamentos/:id'),
-    __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
+    __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, update_agendamentos_dto_1.updateAgendamentos]),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "agendamentosUpdate", null);
+__decorate([
+    (0, common_1.Put)('agendamentos/:id/status'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "updateAgendamentoStatus", null);
 __decorate([
     (0, common_1.Put)('funcionarios/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),

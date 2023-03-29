@@ -91,7 +91,7 @@ export class QQFeriasController {
     async agendamentoShow(@Param('id', new ParseUUIDPipe()) id) {
         
         return await this.QQFeriasService.agendamentosFindOne(id);
-    }
+    }   
 
     
     @Get('gestores')
@@ -120,9 +120,18 @@ export class QQFeriasController {
 
     
     @Put('agendamentos/:id')
-    async agendamentosUpdate(@Param('id', new ParseUUIDPipe()) id, @Body() body: updateAgendamentos) {
+    async agendamentosUpdate(@Param('id') id, @Body() body: updateAgendamentos) {
         return await this.QQFeriasService.agendamentosUpdate(id, body);
     }
+
+    @Put('agendamentos/:id/status')
+    async updateAgendamentoStatus(
+        @Param('id') id: number,
+        @Body() body: { status: string }
+    ) {
+        return await this.QQFeriasService.updateAgendamentoStatus(id, body.status);
+    }
+
 
     
     @Put('funcionarios/:id')

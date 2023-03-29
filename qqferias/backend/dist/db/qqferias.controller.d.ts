@@ -32,6 +32,18 @@ export declare class QQFeriasController {
     compromissosShow(id: any): Promise<import("./entity/compromissos.entity").Compromissos>;
     notificacoesShow(id: any): Promise<import("./entity/notificacoes.entity").Notificacoes>;
     agendamentosUpdate(id: any, body: updateAgendamentos): Promise<import("./entity/agendamentos.entity").Agendamentos>;
+    updateAgendamentoStatus(id: number, body: {
+        status: string;
+    }): Promise<{
+        id: number;
+        funcionario_id: number;
+        data_inicio: Date;
+        data_fim: Date;
+        dias: number;
+        status: import("./entity/agendamentos.entity").Stat;
+        antecipacao_13_salario: boolean;
+        gestor_id: number;
+    } & import("./entity/agendamentos.entity").Agendamentos>;
     funcionariosUpdate(id: any, body: updateFuncionarios): Promise<import("./entity/funcionarios.entity").Funcionarios>;
     compromissosUpdate(id: any, body: updateCompromissos): Promise<import("./entity/compromissos.entity").Compromissos>;
     notificacoesUpdate(id: any, body: updateNotificacoes): Promise<import("./entity/notificacoes.entity").Notificacoes>;

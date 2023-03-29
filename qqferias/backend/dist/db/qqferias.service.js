@@ -47,11 +47,28 @@ let QQFeriasService = class QQFeriasService {
     }
     async funcionariosFindOne(id) {
         try {
-            return await this.funcionariosRepository.findOneByOrFail(id);
+            return await this.funcionariosRepository.findOneOrFail(id);
         }
         catch (error) {
             throw new common_1.NotFoundException(error.message);
         }
+    }
+    async updateAgendamentoStatus(id, status) {
+        const agendamento = await this.agendamentosFindOne(id);
+        console.log(status);
+        if (!agendamento.hasOwnProperty('status') || typeof agendamento.status !== 'string') {
+            throw new Error('Agendamento inválido');
+        }
+        switch (status) {
+            case "Pendente":
+            case "Aprovado":
+            case "Reprovado":
+                agendamento.status = status;
+                break;
+            default:
+                throw new Error("Status inválido");
+        }
+        return await this.agendamentosRepository.save(Object.assign(Object.assign({}, agendamento), { id: agendamento.id }));
     }
     async getAgendamentosByGestorId(gestorId) {
         return await this.agendamentosRepository.find({
@@ -97,7 +114,7 @@ let QQFeriasService = class QQFeriasService {
     }
     async agendamentosFindOne(id) {
         try {
-            return await this.agendamentosRepository.findOneByOrFail(id);
+            return await this.agendamentosRepository.findOneOrFail({ where: { id } });
         }
         catch (error) {
             throw new common_1.NotFoundException(error.message);
@@ -105,7 +122,7 @@ let QQFeriasService = class QQFeriasService {
     }
     async compromissosFindOne(id) {
         try {
-            return await this.compromissosRepository.findOneByOrFail(id);
+            return await this.compromissosRepository.findOneOrFail(id);
         }
         catch (error) {
             throw new common_1.NotFoundException(error.message);
@@ -113,7 +130,7 @@ let QQFeriasService = class QQFeriasService {
     }
     async notificacoesFindOne(id) {
         try {
-            return await this.notificacoesRepository.findOneByOrFail(id);
+            return await this.notificacoesRepository.findOneOrFail(id);
         }
         catch (error) {
             throw new common_1.NotFoundException(error.message);

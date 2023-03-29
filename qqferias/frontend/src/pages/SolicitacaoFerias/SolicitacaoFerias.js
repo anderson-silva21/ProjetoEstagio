@@ -86,7 +86,7 @@ const handleSubmit = async (event) => {
     }
   };
 
-
+console.log(decodedToken.user.tipoFuncionario);
 
     useEffect(() => {
         if (selectedDays && selectedOption) {
@@ -150,7 +150,13 @@ const handleSubmit = async (event) => {
                         </div>
                         <div className="input-container-radio">
                             <div className="radio-btn">
-                                <input  type="radio" name="opcoes" value="decimo-terceiro" onChange={handleDecimoTerceiroChange}></input>
+                                <input  type="checkbox" 
+                                        name="opcoes" 
+                                        value="decimo-terceiro" 
+                                        onChange={handleDecimoTerceiroChange}
+                                        disabled={decodedToken.user.tipoContrato !== 'CLT'}>
+
+                                </input>
                                 <label>Adiantamento do 13º</label>
                             </div>
                         </div>

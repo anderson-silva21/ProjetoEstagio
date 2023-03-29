@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css'
-import { faUser, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faPen, faTrash, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProgressBar from '../ProgressBar/ProgressBar';
 import VacationCalendar from '../VacationCalendar/VacationCalendar'
@@ -68,13 +68,18 @@ const Dashboard = () => {
     }
   }
   
-  const eventos = vacationRequests.filter(request => request.status === 'Aprovado').map(request => ({
-    start: moment(request.data_inicio, 'DD/MM/YYYY').toDate(),
-    end:  moment(request.data_fim, 'DD/MM/YYYY').toDate(),
+  const eventos = vacationRequests
+  .filter(request => request.status === 'Aprovado')
+  .map(request => ({
+    start: moment(request.data_inicio).toDate(),
+    end: moment(request.data_fim).toDate(),
     title: request.name,
     desc: request.feriasStat,
     id: request.id,
   }));
+
+
+    console.log(eventos);
 
   const [visibleRequests, setVisibleRequests] = useState(2);
 
@@ -83,13 +88,33 @@ const Dashboard = () => {
   };
 
   const handleApproveRequest = async (id) => {
-    
+    try{
+      axios.put(`http://localhost:3001/qqferias/agendamentos/${id}/status`, {status: 'Aprovado'});
+    }catch (error) {
+      console.error(error);
+    }
+    window.location.reload();
   };
 
   const handleRejectRequest = async (id) => {
-    
+    try{
+      axios.put(`http://localhost:3001/qqferias/agendamentos/${id}/status`, {status: 'Reprovado'});
+    }catch (error) {
+      console.error(error);
+    }
+    window.location.reload();
   };
 
+  const handleResetRequest = async (id) => {
+    try{
+      axios.put(`http://localhost:3001/qqferias/agendamentos/${id}/status`, {status: 'Pendente'});
+    }catch (error) {
+      console.error(error);
+    }
+    window.location.reload();
+  };
+
+  
   const completedRequests = vacationRequests.filter(request => request.status !== 'Pendente').length;
   const totalRequests = vacationRequests.length;
   const progress = Math.floor((completedRequests / totalRequests) * 100);
@@ -129,12 +154,13 @@ const Dashboard = () => {
                 {request.status === 'Aprovado' && (
                   <>
                     <div className='div-stat'>
-                      <button type="submit" style={{ background: 'transparent', border: 'none'}} className="iconEdit">
-                        <FontAwesomeIcon icon={faPen}  />
+                      <button type="submit"
+                      onClick={() => handleResetRequest(request.id)}
+                      style={{ background: 'transparent', border: 'none'}} 
+                      className="iconEdit">
+                        <FontAwesomeIcon icon={faRotateLeft}  />
                       </button>
-                      <button type="submit" style={{ background: 'transparent', border: 'none'}} className="iconEdit">
-                        <FontAwesomeIcon icon={faTrash}  />
-                      </button>
+                     
                       <button className='botao-fim'>Aprovado</button>
                     </div>
                   </>
@@ -142,12 +168,13 @@ const Dashboard = () => {
                 {request.status === 'Reprovado' && (
                   <>
                   <div className='div-stat'>
-                    <button type="submit" style={{ background: 'transparent', border: 'none'}} className="iconEdit">
-                      <FontAwesomeIcon icon={faPen}  />
+                    <button type="submit" 
+                    onClick={() => handleResetRequest(request.id)}
+                    style={{ background: 'transparent', border: 'none'}} 
+                    className="iconEdit">
+                      <FontAwesomeIcon icon={faRotateLeft}  />
                     </button>
-                    <button type="submit" style={{ background: 'transparent', border: 'none'}} className="iconEdit">
-                      <FontAwesomeIcon icon={faTrash}  />
-                    </button>
+                    
 
                     <button className='botao-fim'>Rejeitado</button>
                   </div>

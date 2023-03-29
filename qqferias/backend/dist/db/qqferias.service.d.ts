@@ -7,7 +7,7 @@ import { updateAgendamentos } from './dto/update-agendamentos.dto';
 import { updateCompromissos } from './dto/update-compromissos.dto';
 import { updateFuncionarios } from './dto/update-funcionarios.dto';
 import { updateNotificacoes } from './dto/update-notificacoes.dto';
-import { Agendamentos } from './entity/agendamentos.entity';
+import { Agendamentos, Stat } from './entity/agendamentos.entity';
 import { Compromissos } from './entity/compromissos.entity';
 import { Funcionarios, Func } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
@@ -25,6 +25,16 @@ export declare class QQFeriasService {
     compromissosFindAll(): Promise<Compromissos[]>;
     notificacoesFindAll(): Promise<Notificacoes[]>;
     funcionariosFindOne(id: any): Promise<Funcionarios>;
+    updateAgendamentoStatus(id: number, status: string): Promise<{
+        id: number;
+        funcionario_id: number;
+        data_inicio: Date;
+        data_fim: Date;
+        dias: number;
+        status: Stat;
+        antecipacao_13_salario: boolean;
+        gestor_id: number;
+    } & Agendamentos>;
     getAgendamentosByGestorId(gestorId: number): Promise<Agendamentos[]>;
     getFuncionariosByGestorId(gestorId: number): Promise<Funcionarios[]>;
     login(matricula: any, senha: any): Promise<{

@@ -9,7 +9,7 @@ import { updateAgendamentos } from './dto/update-agendamentos.dto';
 import { updateCompromissos } from './dto/update-compromissos.dto';
 import { updateFuncionarios } from './dto/update-funcionarios.dto';
 import { updateNotificacoes } from './dto/update-notificacoes.dto'
-import { Agendamentos } from './entity/agendamentos.entity';
+import { Agendamentos, Stat } from './entity/agendamentos.entity';
 import { Compromissos } from './entity/compromissos.entity';
 import { Funcionarios, Func } from './entity/funcionarios.entity';
 import { Notificacoes } from './entity/notificacoes.entity';
@@ -57,11 +57,36 @@ export class QQFeriasService {
 
         async funcionariosFindOne(id) {
             try{
-                return await this.funcionariosRepository.findOneByOrFail(id);
+                return await this.funcionariosRepository.findOneOrFail(id);
             } catch (error){
                 throw new NotFoundException(error.message);
             } 
         }
+
+        async updateAgendamentoStatus(id: number, status: string){
+            const agendamento = await this.agendamentosFindOne(id);
+            console.log(status);
+            if(!agendamento.hasOwnProperty('status') || typeof agendamento.status !== 'string'){
+              throw new Error('Agendamento inválido');
+            }
+            switch (status) {
+              case "Pendente":
+              case "Aprovado":
+              case "Reprovado":
+                
+                agendamento.status = status as Stat;
+                
+                break;
+              default:
+                throw new Error("Status inválido");
+            }
+            return await this.agendamentosRepository.save({ ...agendamento, id: agendamento.id });
+
+          }
+          
+          
+          
+          
 
         async getAgendamentosByGestorId(gestorId: number) {
             return await this.agendamentosRepository.find({
@@ -112,15 +137,16 @@ export class QQFeriasService {
 
         async agendamentosFindOne(id) {
             try{
-                return await this.agendamentosRepository.findOneByOrFail(id);
+                return await this.agendamentosRepository.findOneOrFail({where: {id}});
             } catch (error){
                 throw new NotFoundException(error.message);
             } 
         }
+        
  
         async compromissosFindOne(id) {
             try{
-                return await this.compromissosRepository.findOneByOrFail(id);
+                return await this.compromissosRepository.findOneOrFail(id);
             } catch (error){
                 throw new NotFoundException(error.message);
             } 
@@ -128,7 +154,7 @@ export class QQFeriasService {
 
         async notificacoesFindOne(id) {
             try{
-                return await this.notificacoesRepository.findOneByOrFail(id);
+                return await this.notificacoesRepository.findOneOrFail(id);
             } catch (error){
                 throw new NotFoundException(error.message);
             } 
