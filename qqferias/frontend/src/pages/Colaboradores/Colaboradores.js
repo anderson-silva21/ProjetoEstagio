@@ -5,24 +5,18 @@ import { faUser, faTrash, faEdit, faUserCircle} from "@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import './Colaboradores.css'
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/pt-br';
+
+const token = localStorage.getItem('jwt');
+const decodedToken = jwtDecode(token);
 
 function Colaboradores(){
-
-    const collaborators = [
-        { id: 1, name: 'Marcos Silva', team: 'Vendas', role: 'Vendedor', vacationStatus: 'Em período aquisitivo' },
-        { id: 2, name: 'Joice Souza', team: 'Desenvolvimento', role: 'Desenvolvedor', vacationStatus: 'Atrasado' },
-        { id: 3, name: 'Maria Santos', team: 'Desenvolvimento', role: 'Desenvolvedor', vacationStatus: 'Próximo'},
-        { id: 4, name: 'Juliana Fernandes', team: 'Desenvolvimento', role: 'Desenvolvedor', vacationStatus: 'Em período aquisitivo' },
-        { id: 5, name: 'José Carlos', team: 'Desenvolvimento', role: 'Desenvolvedor', vacationStatus: 'Em período aquisitivo' },
-        { id: 6, name: 'Ana Paula', team: 'Desenvolvimento',  role: 'Desenvolvedor', vacationStatus: 'Próximo'},
-        { id: 7, name: 'Roberto Santos', team: 'Marketing', role: 'Analista de Marketing', vacationStatus: 'Em período aquisitivo'},
-        { id: 8, name: 'Fernanda Souza', team: 'Vendas', role: 'Vendedor', vacationStatus: 'Em período aquisitivo' },
-        { id: 9, name: 'Mariana Silva', team: 'Marketing', role: 'Analista de Marketing', vacationStatus: 'Atrasado'},        
-        {id: 10, name: 'Fulano de Tal', team: 'Desenvolvimento', role: 'Desenvolvedor', vacationStatus: 'Atrasado'},        
-        {id: 11, name: 'Ciclano da Silva', team: 'Marketing', role: 'Analista de Marketing', vacationStatus: 'Próximo'},        
-        {id: 12, name: 'Beltrano dos Santos', team: 'Vendas', role: 'Vendedor', vacationStatus: 'Em período aquisitivo'}    
-    ];
-
+    const [collaborators, setCollaborators] = useState([]);
+    
+    moment.locale('pt-br');
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = (query) => {
@@ -36,6 +30,45 @@ function Colaboradores(){
     const handleCollaboratorClick = (collaborator) => {
         setSelectedCollaborator(collaborator);
     }
+
+    useEffect(() => {
+        const fetchVacationRequests = async () => {
+          try {
+            const response = await axios.get(`http://localhost:3001/qqferias/gestores/${decodedToken.user.id}/funcionarios`);
+            const events = response.data;
+            console.log(events);
+            const newCollaborators = [];
+            
+            for(let i=0; i<events.length; i++){
+                const collaborators = {
+                    id: events[i]['id'],
+                    name: events[i]['nome'],
+                    email: events[i]['email'],
+                    matricula: events[i]['matricula'],
+                    vacationStatus: calculateStatus(events[i]['dataIngresso']),
+                };
+                newCollaborators.push(collaborators);          
+            }
+            setCollaborators(newCollaborators);
+            
+          } catch (error) {
+            console.error(error);
+          }
+        }      
+        fetchVacationRequests();
+      }, [decodedToken.user.id]);
+
+      const calculateStatus = (dataIngresso) => {
+        const today = moment();
+        const diffYears = today.diff(moment(dataIngresso), 'years');
+        if (diffYears < 1) {
+        return 'Não completou um ano de empresa';
+        } else if (diffYears < 2) {
+        return 'Em período aquisitivo';
+        } else {
+        return 'Atrasado';
+        }
+      }
 
     return (
         <div>
@@ -66,11 +99,11 @@ function Colaboradores(){
                     <table className='table-colaboradores'>
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Nome</th>
-                                <th>Time</th>
-                                <th>Cargo</th>
-                                <th>Status de férias</th>
+                                <th style={{textAlign: 'center'}}></th>
+                                <th style={{textAlign: 'center'}}>Nome</th>
+                                <th style={{textAlign: 'center'}}>Email</th>
+                                <th style={{textAlign: 'center'}}>Matricula</th>
+                                <th style={{textAlign: 'center'}}>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,17 +112,20 @@ function Colaboradores(){
                                     <td><input type="checkbox" onChange={() => handleCollaboratorClick(collaborator)} checked={selectedCollaborator && selectedCollaborator.id === collaborator.id} />
                                     <FontAwesomeIcon icon={faUser} /></td>
                                     
-                                    <td style={{color: '#323C47', fontWeight: '500'}}>{collaborator.name}</td>
-                                    <td style={{color: '#707683', fontWeight: 'normal'}}>{collaborator.team}</td>
-                                    <td style={{color: '#707683', fontWeight: 'normal'}}>{collaborator.role}</td>
+                                    <td style={{color: '#323C47', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.name}</td>
+                                    <td style={{color: '#707683', fontWeight: 'normal', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.email}</td>
+                                    <td style={{color: '#707683', fontWeight: 'normal', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.matricula}</td>
                                     {collaborator.vacationStatus === 'Em período aquisitivo' && (
-                                        <td style={{color: '#2ED47A', fontWeight: '500'}}>{collaborator.vacationStatus}</td>
+                                        <td style={{color: '#2ED47A', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
                                     )}
                                     {collaborator.vacationStatus === 'Atrasado' && (
-                                        <td style={{color: '#F7685B', fontWeight: '500'}}>{collaborator.vacationStatus}</td>
+                                        <td style={{color: '#F7685B', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
                                     )}
-                                    {collaborator.vacationStatus === 'Próximo' && (
-                                        <td style={{color: '#FFB946', fontWeight: '500'}}>{collaborator.vacationStatus}</td>
+                                    {collaborator.vacationStatus === 'Não completou um ano de empresa' && (
+                                        <td style={{color: '#FFB946', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
+                                    )}
+                                    {collaborator.vacationStatus === 'Em férias' && (
+                                        <td style={{color: '#FFB946', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
                                     )}
                                 </tr>
                             ))}

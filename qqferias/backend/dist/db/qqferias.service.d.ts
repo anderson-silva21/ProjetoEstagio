@@ -37,6 +37,7 @@ export declare class QQFeriasService {
     } & Agendamentos>;
     getAgendamentosByGestorId(gestorId: number): Promise<Agendamentos[]>;
     getFuncionariosByGestorId(gestorId: number): Promise<Funcionarios[]>;
+    getFuncionariosByGestorIdDois(id: number): Promise<Funcionarios[]>;
     login(matricula: any, senha: any): Promise<{
         user: Funcionarios;
     }>;

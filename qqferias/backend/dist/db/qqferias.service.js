@@ -85,6 +85,9 @@ let QQFeriasService = class QQFeriasService {
             where: { id: (0, typeorm_2.In)(funcionarioIds) }
         });
     }
+    async getFuncionariosByGestorIdDois(id) {
+        return await this.funcionariosRepository.find({ where: { gestorId: id } });
+    }
     async login(matricula, senha) {
         const user = await this.funcionariosRepository.findOne({ where: { matricula: matricula, senha: senha } });
         if (!user) {

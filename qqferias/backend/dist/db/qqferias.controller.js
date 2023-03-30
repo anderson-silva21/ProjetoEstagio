@@ -75,6 +75,9 @@ let QQFeriasController = class QQFeriasController {
     async funcionarioShow(id) {
         return await this.QQFeriasService.funcionariosFindOne(id);
     }
+    async getFuncionariosByGestorId(id) {
+        return await this.QQFeriasService.getFuncionariosByGestorIdDois(id);
+    }
     async compromissosShow(id) {
         return await this.QQFeriasService.compromissosFindOne(id);
     }
@@ -202,6 +205,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "funcionarioShow", null);
+__decorate([
+    (0, common_1.Get)('gestores/:id/funcionarios'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "getFuncionariosByGestorId", null);
 __decorate([
     (0, common_1.Get)('compromissos/:id'),
     __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),

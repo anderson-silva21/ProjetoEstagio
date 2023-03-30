@@ -106,6 +106,11 @@ export class QQFeriasController {
         return await this.QQFeriasService.funcionariosFindOne(id);
     }
 
+    @Get('gestores/:id/funcionarios')
+  async getFuncionariosByGestorId(@Param('id') id: number) {
+    return await this.QQFeriasService.getFuncionariosByGestorIdDois(id);
+  }
+
     
     @Get('compromissos/:id')
     async compromissosShow(@Param('id', new ParseUUIDPipe()) id) {

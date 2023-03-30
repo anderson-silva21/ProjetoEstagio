@@ -1,5 +1,5 @@
 import './QQferias.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from '../../components/Sidebar/Sidebar'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import Dashboard from '../../components/Dashboard/Dashboard';
@@ -7,8 +7,6 @@ import Dashboard from '../../components/Dashboard/Dashboard';
 function QQferias(){
   const [searchResults, setSearchResults] = useState([]);
   const [events, setEvents] = useState([]);
-
-
 
   const handleSearch = (query) => {
     // fazer a busca no banco de dados aqui

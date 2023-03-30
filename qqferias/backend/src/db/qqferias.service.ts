@@ -104,6 +104,10 @@ export class QQFeriasService {
               where: { id: In(funcionarioIds) }
             });
           }
+
+          async getFuncionariosByGestorIdDois(id: number){
+            return await this.funcionariosRepository.find({ where: { gestorId: id}});
+          }
           
 
         async login(matricula:any, senha: any) {

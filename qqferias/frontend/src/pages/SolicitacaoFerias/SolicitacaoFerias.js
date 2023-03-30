@@ -60,6 +60,14 @@ function MyCalendar(){
     
 const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const umAnoAtras = moment().subtract(1, 'year');
+    const dataIngresso = moment(decodedToken.user.dataIngresso);
+    
+    if (dataIngresso.isAfter(umAnoAtras)) {
+        alert('Não é possível solicitar férias antes de completar um ano na empresa.');
+        return;
+    }
   
     if (selectedDays === 0) {
       alert('Por favor, selecione a quantidade de dias de férias a serem solicitadas.');
