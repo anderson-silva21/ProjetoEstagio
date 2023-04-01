@@ -68,6 +68,7 @@ function MyCalendar(){
             setDiasGozados(days);
             const aprovados = vacations.map((vacation) => vacation.dias);
             setDiasAprovados(aprovados);
+            
         } catch (error) {
             console.log(error);
         }
@@ -77,7 +78,7 @@ function MyCalendar(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         getVacations();
-
+        console.log("dias ja gozados:"+diasGozados);
         const umAnoAtras = moment().subtract(1, 'year');
         const dataIngresso = moment(decodedToken.user.dataIngresso);
         const vacationsLeft = 30 - diasGozados;
@@ -88,6 +89,7 @@ function MyCalendar(){
             5 5 5 15
             10 5 15
             15 15
+            20 5 5
             20 10
             30
         */
@@ -114,7 +116,7 @@ function MyCalendar(){
             return;
         }
 
-        if(quinzedias && selectedDays != 15){
+        if(quinzedias && totalVacationDays != 15){
             alert('Falha na solicitação!\nVocê precisa selecionar ao menos um periodo de 15 dias durantes seu período aquisitivo.')
         }
         
@@ -132,6 +134,8 @@ function MyCalendar(){
             await axios.post('http://localhost:3001/qqferias/agendamentos/create', data);
             setSolicitSucesso(true);
             alert('Sucesso na solicitacao, você ainda possui ' + remainingVacationDays + ' dias de saldo para solicitar durante esse periodo aquisitivo caso essa solicitação seja aceita.');
+            sendNotifications();
+            sendWorkplace();
         } catch (error) {
             console.log(error);
             alert('Erro no envio da solicitacao');
@@ -148,6 +152,18 @@ function MyCalendar(){
         }
     }, [selectedDays, selectedOption, selectedMonth]);
     
+
+    const sendNotifications = async () => {
+        if(solicitSucesso){
+            axios.post("http://localhost:8000/send-email");
+        }
+    }
+
+    const sendWorkplace = async () => {
+        if(solicitSucesso){
+            axios.post("http://localhost:8000/send-message");
+        }
+    }
     return (
         <div>
             <SearchBar onSearch={handleSearch} />

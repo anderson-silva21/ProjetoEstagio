@@ -36,6 +36,7 @@ function Colaboradores(){
           try {
             const response = await axios.get(`http://localhost:3001/qqferias/gestores/${decodedToken.user.id}/funcionarios`);
             const events = response.data;
+            
             console.log(events);
             const newCollaborators = [];
             
