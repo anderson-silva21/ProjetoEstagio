@@ -10,7 +10,7 @@ from email.mime.application import MIMEApplication
 host = '10.0.0.241'
 port = 25
 email_de = 'qqtech-alunos@quero-quero.com.br'
-email_para = ['nome123@verdecard.com.br']
+email_para = ['anderson.silva@verdecard.com.br']
 
 #cria mensagem
 email_body = 'Olá!<br>isso é um <b>teste</b>!.'

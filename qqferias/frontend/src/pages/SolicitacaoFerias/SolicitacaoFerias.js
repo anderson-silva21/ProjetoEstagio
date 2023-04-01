@@ -10,11 +10,8 @@ import SearchBar from '../../components/Searchbar/Searchbar';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-
 const token = localStorage.getItem('jwt');
-
 const decodedToken = jwtDecode(token);
-
 const localizer = momentLocalizer(moment);
 
 function MyCalendar(){
@@ -35,6 +32,10 @@ function MyCalendar(){
     const [selectedOption, setSelectedOption] = useState('');
 
     const [endDate, setEndDate] = useState('a definir');
+
+    const [diasGozados, setDiasGozados] = useState(0);
+
+    const [diasAprovados, setDiasAprovados] = useState([]);
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
@@ -57,56 +58,97 @@ function MyCalendar(){
         // atualizar o estado com os resultados da pesquisa
         setSearchResults([]);
     };
-    
-const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    const umAnoAtras = moment().subtract(1, 'year');
-    const dataIngresso = moment(decodedToken.user.dataIngresso);
-    
-    if (dataIngresso.isAfter(umAnoAtras)) {
-        alert('Não é possível solicitar férias antes de completar um ano na empresa.');
-        return;
-    }
-  
-    if (selectedDays === 0) {
-      alert('Por favor, selecione a quantidade de dias de férias a serem solicitadas.');
-      return;
-    }
-  
-    const data = {
-      funcionario_id: decodedToken.user.id, 
-      data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
-      data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
-      status: 'Pendente',
-      dias: selectedDays,
-      antecipacao_13_salario: decimoTerceiro,
-      gestor_id: decodedToken.user.gestorId,
+    const getVacations = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}`);
+            const vacations = response.data.filter((vacation) => vacation.status === 'Aprovado');
+            const days = vacations.reduce(
+            (totalDays, vacation) => (totalDays += (moment(vacation.data_fim).diff(moment(vacation.data_inicio), 'days') + 1)),0);
+            setDiasGozados(days);
+            const aprovados = vacations.map((vacation) => vacation.dias);
+            setDiasAprovados(aprovados);
+        } catch (error) {
+            console.log(error);
+        }
     };
-  
-    try {
-      await axios.post('http://localhost:3001/qqferias/agendamentos/create', data);
-      setSolicitSucesso(true);
-      alert('Sucesso na solicitacao');
-    } catch (error) {
-      console.log(error);
-      alert('Erro no envio da solicitacao');
-    }
-  };
 
-console.log(decodedToken.user.tipoFuncionario);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        getVacations();
+
+        const umAnoAtras = moment().subtract(1, 'year');
+        const dataIngresso = moment(decodedToken.user.dataIngresso);
+        const vacationsLeft = 30 - diasGozados;
+        const totalVacationDays = Number(selectedDays);
+        const hasEnoughVacationDays = totalVacationDays + diasGozados <= 30;
+        const remainingVacationDays = vacationsLeft - totalVacationDays;
+        /*solicitacoes possiveis
+            5 5 5 15
+            10 5 15
+            15 15
+            20 10
+            30
+        */
+        const quinzedias = (diasAprovados.slice(0, 2).reduce((a, b) => a + b, 0) === 15) ||
+                        (diasAprovados.slice(0, 3).reduce((a, b) => a + b, 0) === 15);
+
+        if (dataIngresso.isAfter(umAnoAtras)) {
+            alert('Falha na solicitação!\nNão é possível solicitar férias antes de completar um ano na empresa.');
+            return;
+        }
+    
+        if (selectedDays === 0) {
+            alert('Falha na solicitação!\nPor favor, selecione a quantidade de dias de férias a serem solicitadas.');
+            return;
+        }
+
+        if(totalVacationDays > vacationsLeft){
+            alert('Falha na solicitação!\nVocê não possui ' + totalVacationDays + "de saldo para tirar férias.");
+            return;
+        }
+
+        if(!hasEnoughVacationDays){
+            alert('Falha na solicitação!\nVocê não possui saldo de dias férias suficiente.');
+            return;
+        }
+
+        if(quinzedias && selectedDays != 15){
+            alert('Falha na solicitação!\nVocê precisa selecionar ao menos um periodo de 15 dias durantes seu período aquisitivo.')
+        }
+        
+        const data = {
+            funcionario_id: decodedToken.user.id, 
+            data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
+            data_fim: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').add(selectedDays, 'days').format(),
+            status: 'Pendente',
+            dias: selectedDays,
+            antecipacao_13_salario: decimoTerceiro,
+            gestor_id: decodedToken.user.gestorId,
+        };
+    
+        try {
+            await axios.post('http://localhost:3001/qqferias/agendamentos/create', data);
+            setSolicitSucesso(true);
+            alert('Sucesso na solicitacao, você ainda possui ' + remainingVacationDays + ' dias de saldo para solicitar durante esse periodo aquisitivo caso essa solicitação seja aceita.');
+        } catch (error) {
+            console.log(error);
+            alert('Erro no envio da solicitacao');
+        }
+    };
 
     useEffect(() => {
         if (selectedDays && selectedOption) {
           const start = moment(`${selectedOption} ${selectedMonth}`, 'D MMMM');
-          const end = start.clone().add(selectedDays, 'days');
+          const end = start.clone().add(selectedDays, 'days'); 
           setEndDate(end.format('DD/MM/YYYY'));
         } else {
           setEndDate('a definir');
         }
-      }, [selectedDays, selectedOption, selectedMonth]);
+    }, [selectedDays, selectedOption, selectedMonth]);
+    
     return (
-        
         <div>
             <SearchBar onSearch={handleSearch} />
             <Sidebar userProfile={decodedToken.user.tipoFuncionario}/>
@@ -163,7 +205,6 @@ console.log(decodedToken.user.tipoFuncionario);
                                         value="decimo-terceiro" 
                                         onChange={handleDecimoTerceiroChange}
                                         disabled={decodedToken.user.tipoContrato !== 'CLT'}>
-
                                 </input>
                                 <label>Adiantamento do 13º</label>
                             </div>
@@ -188,8 +229,7 @@ console.log(decodedToken.user.tipoFuncionario);
             </div>
             </form>    
             </main>
-        </div>
-        
+        </div>     
     )
 };
 
