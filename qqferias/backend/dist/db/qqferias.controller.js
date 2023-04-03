@@ -187,7 +187,7 @@ __decorate([
 ], QQFeriasController.prototype, "createNotificacoes", null);
 __decorate([
     (0, common_1.Get)('agendamentos/:id'),
-    __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)

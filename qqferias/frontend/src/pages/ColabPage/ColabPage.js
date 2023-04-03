@@ -4,33 +4,65 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import SearchBar from '../../components/Searchbar/Searchbar';
 import jwtDecode from 'jwt-decode'
 import moment from 'moment'
+import axios from 'axios';
 
 function ColabPage(){
   const [searchResults, setSearchResults] = useState([]);
   const [events, setEvents] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
+  const [aproved, setAproved] = useState([]);
   const handleSearch = (query) => {
     // fazer a busca no banco de dados aqui
     // atualizar o estado com os resultados da pesquisa
     setSearchResults([]);
   };
 
-  const decodedToken = jwtDecode(localStorage.getItem('jwt'));
-  const dataIngresso = moment(decodedToken.user.dataIngresso, 'YYYY-MM-DD');
-  const umAnoAtras = moment().subtract(1, 'years');
-  const doisAnosAtras = moment().subtract(2, 'years');
+  const buscaAgendConcluidos = async () =>{
+    setLoading(true);
 
-  let statusFerias;
-
-  if (dataIngresso.isAfter(umAnoAtras)) {
-    if (dataIngresso.isAfter(doisAnosAtras)) {
-      statusFerias = 'Você está atrasado para suas férias.';
-    } else {
-      statusFerias = 'Você está em período aquisitivo.';
+    try {
+      const response = await axios.get(`/qqferias/agendamentos/${decodedToken.user.id}`);
+      const aprovados = response.data.filter((vacation) => vacation.status === 'Aprovado');
+      setAproved(aprovados);
+    } catch (error) {
+      console.error(error);
     }
+
+    setLoading(false);
+  };
+
+  const decodedToken = jwtDecode(localStorage.getItem('jwt'));
+
+  const dataIngresso_Formated = moment(decodedToken.user.dataIngresso).format('YYYY-MM-DD');
+  const umAnoAtras_Formated = moment().subtract(1, 'years').format('YYYY-MM-DD');
+  const doisAnosAtras_Formated = moment().subtract(2, 'years').format('YYYY-MM-DD');
+
+  const dataIngresso = new Date(dataIngresso_Formated);
+  const umAnoAtras = new Date(umAnoAtras_Formated);
+  const doisAnosAtras = new Date(doisAnosAtras_Formated);
+  
+  const total = 30; // dias em um ano
+  let totalDiasAprovados = 0;
+
+  for (let i = 0; i < aproved.length; i++) {
+    totalDiasAprovados += aproved[i].dias;
+  }
+  
+  let statusFerias;
+  console.log(dataIngresso);
+  console.log(doisAnosAtras);
+  if (dataIngresso >= doisAnosAtras) {
+    statusFerias = 'Você está atrasado para suas férias.';
+  } else if (dataIngresso >= umAnoAtras) {
+    if (totalDiasAprovados >= total) {
+      statusFerias = 'Você já tirou todas as suas férias deste ano.';
+    } else {
+      const diasRestantes = total - totalDiasAprovados;
+      statusFerias = `Faltam ${diasRestantes} dias para você tirar todas as suas férias deste ano.`;
+    }
+
   } else {
-    const diasFaltantes = umAnoAtras.diff(dataIngresso, 'days');
-    statusFerias = `Faltam ${diasFaltantes} dias para você atingir o período aquisitivo.`;
+    statusFerias = 'Você ainda não completou um ano de empresa.';
   }
 
   return (

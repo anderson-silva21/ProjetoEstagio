@@ -42,3 +42,30 @@ async def send_message():
         return {"status": 200, "message": "Email enviado com sucesso!"}
     except Exception as e:
         return {"status": 500, "message": f"Erro ao enviar email: {str(e)}"}
+
+@app.post("/send-message")
+async def send_message():
+    url = "https://graph.facebook.com/v4.0/me/messages"
+
+    token = 'DQVJzbi1raTJheGV6Ump4NE5RYUVUTTZAwNGx5dmdJOE00VTRDUHR6RjVxdTdYOHYtaTcxQW9pVHBhOVhiTW9BQkdrU3A3dUdpOU1EQ0ZAfeU1HaHloSGZAuVGFNQkctSlhMVjJHUHZAMcU82OG90dG5heE9uLW9YSTlOdExBWU8zVnNybm5vMU5kMEFoalBDRUZAvNlkyVG5PSlhqWTEtaWZAyazJ3di0yTTJ1aEdmTG5JMTRTd0tUWFlpb3ctSWFDNndpUWh3OXdn'
+
+    headers = {
+        'Authorization':f'Bearer {token}',
+        'Content-Type':'application/json'
+    }
+
+    data = {
+        "messaging_type":"UPDATE",
+        "recipient":{
+            "id":100089253670015 #meu id workplace = 100089253670015
+        },
+        "message": {
+            "text":"Olá! Você possui uma nova solicitação de férias de um de seus funcionarios! Acesse QQFérias, disponível em: http://localhost:3000/login"
+        }
+    }
+    response = requests.post(url, headers=headers, json=data)
+    return {"status": response.status_code, "response": response.json()}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

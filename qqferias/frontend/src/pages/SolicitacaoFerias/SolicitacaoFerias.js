@@ -134,8 +134,8 @@ function MyCalendar(){
             await axios.post('http://localhost:3001/qqferias/agendamentos/create', data);
             setSolicitSucesso(true);
             alert('Sucesso na solicitacao, você ainda possui ' + remainingVacationDays + ' dias de saldo para solicitar durante esse periodo aquisitivo caso essa solicitação seja aceita.');
-            sendNotifications();
-            sendWorkplace();
+            axios.post("http://localhost:8000/send-email");
+            axios.post("http://localhost:8000/send-message");
         } catch (error) {
             console.log(error);
             alert('Erro no envio da solicitacao');
@@ -153,17 +153,6 @@ function MyCalendar(){
     }, [selectedDays, selectedOption, selectedMonth]);
     
 
-    const sendNotifications = async () => {
-        if(solicitSucesso){
-            axios.post("http://localhost:8000/send-email");
-        }
-    }
-
-    const sendWorkplace = async () => {
-        if(solicitSucesso){
-            axios.post("http://localhost:8000/send-message");
-        }
-    }
     return (
         <div>
             <SearchBar onSearch={handleSearch} />
