@@ -2,7 +2,6 @@ import requests
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-
 #conectar e enviar email
 import smtplib
 
@@ -11,9 +10,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-
 app = FastAPI()
-
 
 @app.post("/send-email")
 async def send_message():

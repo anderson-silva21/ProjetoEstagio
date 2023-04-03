@@ -9,60 +9,46 @@ import axios from 'axios';
 function ColabPage(){
   const [searchResults, setSearchResults] = useState([]);
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [aproved, setAproved] = useState([]);
   const handleSearch = (query) => {
     // fazer a busca no banco de dados aqui
     // atualizar o estado com os resultados da pesquisa
     setSearchResults([]);
   };
-
-  const buscaAgendConcluidos = async () =>{
-    setLoading(true);
-
-    try {
-      const response = await axios.get(`/qqferias/agendamentos/${decodedToken.user.id}`);
-      const aprovados = response.data.filter((vacation) => vacation.status === 'Aprovado');
-      setAproved(aprovados);
-    } catch (error) {
-      console.error(error);
-    }
-
-    setLoading(false);
-  };
-
+  
+    useEffect(() => {
+      const fetchAprovedVacations = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}`);
+          const aprovados = response.data.filter((vacation) => vacation.status === 'Aprovado');
+          setAproved(aprovados);
+          console.log(aprovados);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchAprovedVacations();
+    }, []);
+  
   const decodedToken = jwtDecode(localStorage.getItem('jwt'));
 
-  const dataIngresso_Formated = moment(decodedToken.user.dataIngresso).format('YYYY-MM-DD');
-  const umAnoAtras_Formated = moment().subtract(1, 'years').format('YYYY-MM-DD');
-  const doisAnosAtras_Formated = moment().subtract(2, 'years').format('YYYY-MM-DD');
-
-  const dataIngresso = new Date(dataIngresso_Formated);
-  const umAnoAtras = new Date(umAnoAtras_Formated);
-  const doisAnosAtras = new Date(doisAnosAtras_Formated);
-  
-  const total = 30; // dias em um ano
-  let totalDiasAprovados = 0;
-
-  for (let i = 0; i < aproved.length; i++) {
-    totalDiasAprovados += aproved[i].dias;
-  }
+  const umAnoEmMs = moment.duration(1, 'year').asMilliseconds();
+  const umAnoAtras = moment().subtract(1, 'year').toDate();
+  const doisAnosEmMs = moment.duration(2, 'years').asMilliseconds();
+  const doisAnosAtras = moment().subtract(2, 'years').toDate();
+  const dataAtual = new Date().getTime();
+  const dataIngresso = moment(decodedToken.user.dataIngresso).toDate().getTime();
   
   let statusFerias;
-  console.log(dataIngresso);
-  console.log(doisAnosAtras);
-  if (dataIngresso >= doisAnosAtras) {
-    statusFerias = 'Você está atrasado para suas férias.';
-  } else if (dataIngresso >= umAnoAtras) {
-    if (totalDiasAprovados >= total) {
-      statusFerias = 'Você já tirou todas as suas férias deste ano.';
-    } else {
-      const diasRestantes = total - totalDiasAprovados;
-      statusFerias = `Faltam ${diasRestantes} dias para você tirar todas as suas férias deste ano.`;
-    }
-
+  const diasAteUmAno = Math.ceil((umAnoAtras.getTime() - dataIngresso) / (1000 * 3600 * 24));
+  const diasAteDoisAnos = Math.ceil((doisAnosAtras.getTime() - dataIngresso) / (1000 * 3600 * 24));
+  
+  if (dataAtual - dataIngresso < umAnoEmMs) {
+    statusFerias = `Você não possui um ano de empresa, ainda faltam ${diasAteUmAno} dias.`;
+  } else if (dataAtual - dataIngresso >= doisAnosEmMs) {
+    statusFerias = 'Você possui férias atrasadas. Procure o seu gestor';
   } else {
-    statusFerias = 'Você ainda não completou um ano de empresa.';
+    statusFerias = 'Você está em período aquisitivo.';
   }
 
   return (
