@@ -33,6 +33,8 @@ function MyCalendar(){
 
     const [endDate, setEndDate] = useState('a definir');
 
+    const [dateVerific, setDateVerific] = useState();
+
     const [diasGozados, setDiasGozados] = useState(0);
 
     const [diasAprovados, setDiasAprovados] = useState([]);
@@ -85,6 +87,7 @@ function MyCalendar(){
         const totalVacationDays = Number(selectedDays);
         const hasEnoughVacationDays = totalVacationDays + diasGozados <= 30;
         const remainingVacationDays = vacationsLeft - totalVacationDays;
+        
         /*solicitacoes possiveis
             5 5 5 15
             10 5 15
@@ -120,6 +123,10 @@ function MyCalendar(){
             alert('Falha na solicitação!\nVocê precisa selecionar ao menos um periodo de 15 dias durantes seu período aquisitivo.')
         }
         
+        if (moment(dateVerific).isBefore(moment())) {
+            alert('Falha na solicitação!\nNão é possível solicitar férias com datas que já passaram.');
+            return;
+        }
         const data = {
             funcionario_id: decodedToken.user.id, 
             data_inicio: moment(`${selectedOption} ${selectedMonth}`, 'D MMMM').format(),
@@ -147,6 +154,7 @@ function MyCalendar(){
           const start = moment(`${selectedOption} ${selectedMonth}`, 'D MMMM');
           const end = start.clone().add(selectedDays, 'days'); 
           setEndDate(end.format('DD/MM/YYYY'));
+          setDateVerific(moment(end));
         } else {
           setEndDate('a definir');
         }

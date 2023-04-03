@@ -40,7 +40,7 @@ function ColabPage(){
   const dataIngresso = moment(decodedToken.user.dataIngresso).toDate().getTime();
   
   let statusFerias;
-  const diasAteUmAno = Math.ceil((umAnoAtras.getTime() - dataIngresso) / (1000 * 3600 * 24));
+  const diasAteUmAno = Math.ceil((dataIngresso - umAnoAtras.getTime()) / (1000 * 3600 * 24));
   const diasAteDoisAnos = Math.ceil((doisAnosAtras.getTime() - dataIngresso) / (1000 * 3600 * 24));
   
   if (dataAtual - dataIngresso < umAnoEmMs) {
