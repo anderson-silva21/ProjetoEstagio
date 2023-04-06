@@ -114,7 +114,7 @@ const Dashboard = () => {
     window.location.reload();
   };
 
-  
+  console.log(vacationRequests);
   const completedRequests = vacationRequests.filter(request => request.status !== 'Pendente').length;
   const totalRequests = vacationRequests.length;
   const progress = Math.floor((completedRequests / totalRequests) * 100);

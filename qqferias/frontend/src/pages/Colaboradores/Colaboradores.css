@@ -20,23 +20,24 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.cad-button:hover{
+    background-color: #16683b;
+}
+
 .lista-colaboradores{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10%;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     
-}
-
-.main-colab{
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
 }
 
 .selected-collaborator{
     
     position: absolute;
     top: 15%;
-    right: 30%;
+    left: 50%;
 }
 
 .selected-row {
@@ -67,13 +68,15 @@ td{
 }
 
 table{
-    
+    box-shadow: 1px 1px 6px rgb(86, 94, 86);
+    border-radius: 7px;
     margin-left: 15%;
     margin-bottom: 8%;
     border-collapse: collapse;
     width: 80%; /* define a largura da tabela como 100% do elemento pai */
     table-layout: fixed; /* define o layout da tabela como fixo */
 }
+
 
 #div-tabela{
     max-height: 70vh;
@@ -86,4 +89,5 @@ table{
 .main-colab{
     max-height: 100vh;
     left: 15%;
+    background-color: #f7f4f4;
 }

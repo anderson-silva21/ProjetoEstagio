@@ -93,6 +93,10 @@ export class QQFeriasController {
         return await this.QQFeriasService.agendamentosFindOne(id);
     }   
 
+    @Get('agendamentos/:id/aprovados')
+    async getAgendamentosAprovadosById(@Param('id') id: number) {
+        return await this.QQFeriasService.getAgendamentosAprovadosById(id);
+    }
     
     @Get('gestores')
     async gestoresShow(){

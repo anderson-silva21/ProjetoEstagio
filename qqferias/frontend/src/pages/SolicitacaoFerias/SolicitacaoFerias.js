@@ -61,41 +61,16 @@ function MyCalendar(){
         setSearchResults([]);
     };
 
-    const getVacations = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}`);
-            const vacations = response.data.filter((vacation) => vacation.status === 'Aprovado');
-            const days = vacations.reduce(
-            (totalDays, vacation) => (totalDays += (moment(vacation.data_fim).diff(moment(vacation.data_inicio), 'days') + 1)),0);
-            setDiasGozados(days);
-            const aprovados = vacations.map((vacation) => vacation.dias);
-            setDiasAprovados(aprovados);
-            
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        getVacations();
         console.log("dias ja gozados:"+diasGozados);
         const umAnoAtras = moment().subtract(1, 'year');
         const dataIngresso = moment(decodedToken.user.dataIngresso);
         const vacationsLeft = 30 - diasGozados;
         const totalVacationDays = Number(selectedDays);
-        const hasEnoughVacationDays = totalVacationDays + diasGozados <= 30;
+        const hasEnoughVacationDays = totalVacationDays + diasGozados < 30;
         const remainingVacationDays = vacationsLeft - totalVacationDays;
-        
-        /*solicitacoes possiveis
-            5 5 5 15
-            10 5 15
-            15 15
-            20 5 5
-            20 10
-            30
-        */
+
         const quinzedias = (diasAprovados.slice(0, 2).reduce((a, b) => a + b, 0) === 15) ||
                         (diasAprovados.slice(0, 3).reduce((a, b) => a + b, 0) === 15);
 
@@ -148,7 +123,7 @@ function MyCalendar(){
             alert('Erro no envio da solicitacao');
         }
     };
-
+    
     useEffect(() => {
         if (selectedDays && selectedOption) {
           const start = moment(`${selectedOption} ${selectedMonth}`, 'D MMMM');
@@ -158,7 +133,20 @@ function MyCalendar(){
         } else {
           setEndDate('a definir');
         }
-    }, [selectedDays, selectedOption, selectedMonth]);
+        const getVacations = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${decodedToken.user.id}/aprovados`);
+                const vacations = response.data;
+                const days = vacations.reduce((totalDays, vacation) => (totalDays += (moment(vacation.data_fim).diff(moment(vacation.data_inicio), 'days') )),0);
+                setDiasGozados(days);
+                const aprovados = vacations.map((vacation) => vacation.dias);
+                setDiasAprovados(aprovados);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getVacations();
+    }, [selectedDays, selectedOption, selectedMonth, diasGozados]);
     
 
     return (
@@ -176,70 +164,69 @@ function MyCalendar(){
                     />
                 </div>
                 <form onSubmit={handleSubmit}>    
-                <div id='sidemenu'>
-                    <div className="login-content">
-                        
-                        <div className="input-container">
-                            <label className="nome-login">Mês</label>
-                            <select className="input-solicit-selector" value={selectedMonth} onChange={handleMonthChange}>
-                                <option value="Janeiro">Janeiro</option>
-                                <option value="Fevereiro">Fevereiro</option>
-                                <option value="Marco">Março</option>
-                                <option value="Abril">Abril</option>
-                                <option value="Maio">Maio</option>
-                                <option value="Junho">Junho</option>
-                                <option value="Julho">Julho</option>
-                                <option value="Agosto">Agosto</option>
-                                <option value="Setembro">Setembro</option>
-                                <option value="Outubro">Outubro</option>
-                                <option value="Novembro">Novembro</option>
-                                <option value="Dezembro">Dezembro</option>
-                            </select>                       
-                        </div>
-                        <div className="input-container-radio">
-                            <label className="nome-login">Quantidade de dias</label>
-                            <div className="radio-btn">
-                                <input type="radio" name="opcoes1" value="05" checked={selectedDays === '05'} onChange={handleDayChange}></input>
-                                <label>05</label>
-                                <input type="radio" name="opcoes1" value="10" checked={selectedDays === '10'} onChange={handleDayChange}></input>
-                                <label>10</label>
-                                <input type="radio" name="opcoes1" value="15" checked={selectedDays === '15'} onChange={handleDayChange}></input>
-                                <label>15</label>
-                                <input type="radio" name="opcoes1" value="20" checked={selectedDays === '20'} onChange={handleDayChange}></input>
-                                <label>20</label>
-                                <input type="radio" name="opcoes1" value="30" checked={selectedDays === '30'} onChange={handleDayChange}></input>
-                                <label>30</label>
-                            </div>                  
-                        </div>
-                        <div className="input-container-radio">
-                            <div className="radio-btn">
-                                <input  type="checkbox" 
-                                        name="opcoes" 
-                                        value="decimo-terceiro" 
-                                        onChange={handleDecimoTerceiroChange}
-                                        disabled={decodedToken.user.tipoContrato !== 'CLT'}>
-                                </input>
-                                <label>Adiantamento do 13º</label>
+                    <div id='sidemenu'>
+                        <div className="login-content">
+                            <div className="input-container">
+                                <label className="nome-login">Mês</label>
+                                <select className="input-solicit-selector" value={selectedMonth} onChange={handleMonthChange}>
+                                    <option value="Janeiro">Janeiro</option>
+                                    <option value="Fevereiro">Fevereiro</option>
+                                    <option value="Marco">Março</option>
+                                    <option value="Abril">Abril</option>
+                                    <option value="Maio">Maio</option>
+                                    <option value="Junho">Junho</option>
+                                    <option value="Julho">Julho</option>
+                                    <option value="Agosto">Agosto</option>
+                                    <option value="Setembro">Setembro</option>
+                                    <option value="Outubro">Outubro</option>
+                                    <option value="Novembro">Novembro</option>
+                                    <option value="Dezembro">Dezembro</option>
+                                </select>                       
                             </div>
-                        </div>
-                        <div className='input-container-begin'>
-                            <label className= 'nome-login'>Inicio</label>
-                            <select className='input-solicit-selector' onChange={handleSelectChange}>
-                                {Array.from({ length: moment().daysInMonth() }, (_, i) => i + 1)
-                                .map(day => (
-                                    <option key={day} value={day}>
-                                    {day} de {selectedMonth}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className='end-selector'>
-                                <label className= 'nome-login'>Fim</label>
-                                <label className='end-date-selector'>{endDate}</label>
+                            <div className="input-container-radio">
+                                <label className="nome-login">Quantidade de dias</label>
+                                <div className="radio-btn">
+                                    <input type="radio" name="opcoes1" value="05" checked={selectedDays === '05'} onChange={handleDayChange}></input>
+                                    <label>05</label>
+                                    <input type="radio" name="opcoes1" value="10" checked={selectedDays === '10'} onChange={handleDayChange}></input>
+                                    <label>10</label>
+                                    <input type="radio" name="opcoes1" value="15" checked={selectedDays === '15'} onChange={handleDayChange}></input>
+                                    <label>15</label>
+                                    <input type="radio" name="opcoes1" value="20" checked={selectedDays === '20'} onChange={handleDayChange}></input>
+                                    <label>20</label>
+                                    <input type="radio" name="opcoes1" value="30" checked={selectedDays === '30'} onChange={handleDayChange}></input>
+                                    <label>30</label>
+                                </div>                  
                             </div>
-                        </div>
-                    <button className="solicit-button" type="submit">Enviar solicitacao para o gestor</button>
+                            <div className="input-container-radio">
+                                <div className="radio-btn">
+                                    <input  type="checkbox" 
+                                            name="opcoes" 
+                                            value="decimo-terceiro" 
+                                            onChange={handleDecimoTerceiroChange}
+                                            disabled={decodedToken.user.tipoContrato !== 'CLT'}>
+                                    </input>
+                                    <label>Adiantamento do 13º</label>
+                                </div>
+                            </div>
+                            <div className='input-container-begin'>
+                                <label className= 'nome-login'>Inicio</label>
+                                <select className='input-solicit-selector' onChange={handleSelectChange}>
+                                    {Array.from({ length: moment().daysInMonth() }, (_, i) => i + 1)
+                                    .map(day => (
+                                        <option key={day} value={day}>
+                                        {day} de {selectedMonth}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className='end-selector'>
+                                    <label className= 'nome-login'>Fim</label>
+                                    <label className='end-date-selector'>{endDate}</label>
+                                </div>
+                            </div>
+                        <button className="solicit-button" type="submit">Enviar solicitacao para o gestor</button>
+                    </div>
                 </div>
-            </div>
             </form>    
             </main>
         </div>     

@@ -68,6 +68,9 @@ let QQFeriasController = class QQFeriasController {
     async agendamentoShow(id) {
         return await this.QQFeriasService.agendamentosFindOne(id);
     }
+    async getAgendamentosAprovadosById(id) {
+        return await this.QQFeriasService.getAgendamentosAprovadosById(id);
+    }
     async gestoresShow() {
         const gestores = await this.QQFeriasService.findGestores();
         return gestores;
@@ -192,6 +195,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], QQFeriasController.prototype, "agendamentoShow", null);
+__decorate([
+    (0, common_1.Get)('agendamentos/:id/aprovados'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], QQFeriasController.prototype, "getAgendamentosAprovadosById", null);
 __decorate([
     (0, common_1.Get)('gestores'),
     __metadata("design:type", Function),

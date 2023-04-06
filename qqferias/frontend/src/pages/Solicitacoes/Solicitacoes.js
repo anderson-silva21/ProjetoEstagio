@@ -32,15 +32,16 @@
     };
 
     return (
-      <div className='main'>
+      <div className='    '>
         <SearchBar onSearch={handleSearch} />
         <Sidebar userProfile={decodedToken.user.tipoFuncionario}/>
-        <main>
+        <main className='main'>
+          
           <div id='pricipal-div'>
             <h2>Solicitações de férias</h2>
             <ul className="solicitacoes-list">
               {events.map(event => (
-                <li key={event.data} className={`solicitacoes-list-item ${event.status === 'Pendente' ? 'pendente' : event.status === 'Rejeitado' ? 'rejeitado' : 'aprovado'}`}>
+                <li key={event.data} className={`solicitacoes-list-item ${event.status === 'Pendente' ? 'pendente' : event.status === 'Reprovado' ? 'rejeitado' : 'aprovado'}`}>
                   <span>Periodo: {event.data_inicio} à {event.data_fim} -- Dias {event.dias}</span>
                   <span>Decimo terceiro: {event.antecipacao_13_salario ? 'sim' : 'não'}</span>
                   <span>Status: {event.status}</span>
@@ -48,6 +49,7 @@
               ))}
             </ul>
           </div>
+          
         </main>
       </div>
     );

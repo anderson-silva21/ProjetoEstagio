@@ -24,6 +24,7 @@ body, html {
     background-color: white;
     box-shadow: 1px 1px 6px rgb(86, 94, 86);
     overflow: auto;
+    max-height: 70%;
 }
 
 .solicitacoes-list-item {

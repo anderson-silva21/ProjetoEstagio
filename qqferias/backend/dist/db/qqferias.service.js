@@ -123,6 +123,15 @@ let QQFeriasService = class QQFeriasService {
             throw new common_1.NotFoundException(error.message);
         }
     }
+    async getAgendamentosAprovadosById(id) {
+        const agendamentos = await this.agendamentosRepository.find({
+            where: {
+                funcionario_id: id,
+                status: agendamentos_entity_1.Stat.APROVADO,
+            },
+        });
+        return agendamentos;
+    }
     async compromissosFindOne(id) {
         try {
             return await this.compromissosRepository.findOneOrFail(id);

@@ -44,6 +44,7 @@ export declare class QQFeriasService {
     findGestores(): Promise<Funcionarios[]>;
     userProfileFindOne(id: any): Promise<Func>;
     agendamentosFindOne(id: any): Promise<Agendamentos>;
+    getAgendamentosAprovadosById(id: number): Promise<Agendamentos[]>;
     compromissosFindOne(id: any): Promise<Compromissos>;
     notificacoesFindOne(id: any): Promise<Notificacoes>;
     agendamentosCreate(data: createAgendamentos): Promise<Agendamentos>;

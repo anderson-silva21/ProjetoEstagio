@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { STATUS_CODES } from 'http';
 import { Repository, In} from 'typeorm';
 import { createAgendamentos } from './dto/create-agendamentos.dto';
 import { createCompromissos } from './dto/create-compromissos.dto';
@@ -147,6 +148,16 @@ export class QQFeriasService {
             } 
         }
         
+        async getAgendamentosAprovadosById(id: number) {
+            const agendamentos = await this.agendamentosRepository.find({
+              where: {
+                funcionario_id: id,
+                status: Stat.APROVADO,
+              },
+            });
+            return agendamentos;
+          }
+          
  
         async compromissosFindOne(id) {
             try{
