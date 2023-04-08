@@ -66,7 +66,8 @@
                 <li key={event.data} className={`solicitacoes-list-item ${event.status === 'Pendente' ? 'pendente' : event.status === 'Reprovado' ? 'rejeitado' : 'aprovado'}`}>
                   <span>Periodo: {event.data_inicio} à {event.data_fim} -- Dias {event.dias}</span>
                   <span>Decimo terceiro: {event.antecipacao_13_salario ? 'sim' : 'não'}</span>
-                  <span>Status: {event.status}{event.motivo ? ` - Motivo: ${event.motivo}` : ''}</span>
+                  <span>Status: {event.status}{event.motivo ? <span className={event.motivo && 'motivo-highlight'}> Motivo: {event.motivo}</span> : ''}</span>
+
 
                 </li>
               ))}

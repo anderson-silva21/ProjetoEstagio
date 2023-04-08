@@ -136,7 +136,7 @@ function Colaboradores(){
                                         <td style={{color: '#FFB946', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
                                     )}
                                     {collaborator.vacationStatus === 'Em férias' && (
-                                        <td style={{color: '#46ffff', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
+                                        <td style={{color: '#109CF1', fontWeight: '500', wordBreak: 'break-word', textAlign: 'center'}}>{collaborator.vacationStatus}</td>
                                     )}
                                 </tr>
                             ))}

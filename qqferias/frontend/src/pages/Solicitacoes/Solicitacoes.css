@@ -36,6 +36,11 @@ body, html {
     font-weight: bold;
   }
   
+  .motivo-highlight {
+    background-color: yellow;
+  }
+  
+
   .pendente {
     background-color: #FFB946;
   }
