@@ -16,4 +16,7 @@ export class Notificacoes {
 
     @Column({nullable: false, type: 'enum', enum: Tipo, default: Tipo.GHOST })
     tipo: Tipo;  
+
+    @Column()
+    motivo: String;  
 }

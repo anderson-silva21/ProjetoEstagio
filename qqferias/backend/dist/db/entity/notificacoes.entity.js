@@ -31,6 +31,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false, type: 'enum', enum: Tipo, default: Tipo.GHOST }),
     __metadata("design:type", String)
 ], Notificacoes.prototype, "tipo", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Notificacoes.prototype, "motivo", void 0);
 Notificacoes = __decorate([
     (0, typeorm_1.Entity)({ name: 'notificacoes' })
 ], Notificacoes);

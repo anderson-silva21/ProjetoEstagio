@@ -123,7 +123,7 @@ export class QQFeriasController {
 
     
     @Get('notificacoes/:id')
-    async notificacoesShow(@Param('id', new ParseUUIDPipe()) id) {
+    async notificacoesShow(@Param('id') id) {
         return await this.QQFeriasService.notificacoesFindOne(id);
     }
 

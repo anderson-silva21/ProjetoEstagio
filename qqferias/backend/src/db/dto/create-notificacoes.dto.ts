@@ -12,4 +12,6 @@ export class createNotificacoes {
 
     @IsNotEmpty()
     tipo: Tipo;
+
+    motivo: string;
 }

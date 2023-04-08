@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import openpyxl
+from typing import List
 from datetime import date
 
 from fastapi import FastAPI
@@ -14,23 +15,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-# Definir a estrutura do VacationRequest
-class VacationRequest(BaseModel):
+class Agendamentos(BaseModel):
     id: int
-    nome: str
-    data_inicio: date
-    data_fim: date
+    funcionario_id: int
+    data_inicio: str
+    data_fim: str
+    dias: int
     status: str
-    type: str
-    feriasStat: str
-
-class datas(BaseModel):
-    data: date
-
-class body(BaseModel):
-    vacationRequest: VacationRequest
-    dataInicio: datas
-    dataFim: datas
+    antecipacao_13_salario: bool
+    gestor_id: int
 
 app = FastAPI()
 
@@ -62,24 +55,25 @@ async def send_message():
     except Exception as e:
         return {"status": 500, "message": f"Erro ao enviar email: {str(e)}"}
 
-@app.get("/relatorio")
-async def cria_relatorio(body: body):
-    try:
-        # obter os dados do vacationRequest do intervalo de tempo especificado
-        df = pd.read_csv('vacationRequest.csv')
-        df['start_date'] = pd.to_datetime(df['start_date'])
-        df['end_date'] = pd.to_datetime(df['end_date'])
-        mask = (df['start_date'] >= body.dataInicio) & (df['end_date'] <= body.dataFim)
-        vacation_requests = df.loc[mask].reset_index(drop=True)
+@app.get("/gerar_relatorio")
+async def gerar_relatorio(agendamentos: List[Agendamentos]):
+    df = pd.DataFrame([a.dict() for a in agendamentos])
 
-        # criar o arquivo de relatório XLSX
-        writer = pd.ExcelWriter('relatorio.xlsx', engine='xlsxwriter')
-        vacation_requests.to_excel(writer, sheet_name='Férias', index=False)
-        writer.save()
+    # Criar planilha de agendamentos pendentes
+    pendentes = df[df["status"] == "Pendente"]
+    writer = pd.ExcelWriter('relatorio.xlsx', engine='openpyxl')
+    pendentes.to_excel(writer, index=False, sheet_name='Agendamentos Pendentes')
 
-        return {"status": 200, "message": "Relatório criado com sucesso!"}
-    except Exception as e:
-        return {"status": 500, "message": f"Erro ao criar relatório: {str(e)}"}
+    # Criar planilha de agendamentos aprovados
+    aprovados = df[df["status"] == "Aprovado"]
+    aprovados.to_excel(writer, index=False, sheet_name='Agendamentos Aprovados')
+
+    # Criar planilha de agendamentos reprovados
+    reprovados = df[df["status"] == "Reprovado"]
+    reprovados.to_excel(writer, index=False, sheet_name='Agendamentos Reprovados')
+
+    writer.save()
+    return {"message": "Relatório gerado com sucesso!"}
 
 @app.post("/send-message")
 async def send_message():

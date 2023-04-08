@@ -15,6 +15,8 @@ const decodedToken = jwtDecode(token);
 const Dashboard = () => {
 
   const [vacationRequests, setVacationRequests] = useState([]);
+  const [motivoRecusa, setMotivoRecusa] = useState('');
+
 
   moment.locale('pt-br');
 
@@ -97,12 +99,18 @@ const Dashboard = () => {
   };
 
   const handleRejectRequest = async (id) => {
-    try{
-      axios.put(`http://localhost:3001/qqferias/agendamentos/${id}/status`, {status: 'Reprovado'});
-    }catch (error) {
-      console.error(error);
+    const motivo = window.prompt("Digite o motivo da recusa:");
+    if(motivo){
+      try{
+        axios.put(`http://localhost:3001/qqferias/agendamentos/${id}/status`, {status: 'Reprovado'});
+        axios.post('http://localhost:3001/qqferias/notificacoes/create', { agendamento_id: id, tipo: 'Solicitacao', motivo });
+        window.location.reload();
+      }catch (error) {
+        console.error(error);
+      }
     }
-    window.location.reload();
+    
+    
   };
 
   const handleResetRequest = async (id) => {

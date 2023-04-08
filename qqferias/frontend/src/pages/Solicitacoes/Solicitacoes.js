@@ -16,6 +16,28 @@
         try {
           const response = await axios.get('http://localhost:3001/qqferias/agendamentos');
           const events = response.data.filter(event => event.funcionario_id === decodedToken.user.id);
+          //console.log(events);
+          for (let i = 0; i < events.length; i++) {
+  if (events[i].status === "Reprovado") {
+    try {
+      const notificationResponse = await axios.get('http://localhost:3001/qqferias/notificacoes');
+      for (let j = 0; j < notificationResponse.data.length; j++) {
+        const notification = notificationResponse.data[j];
+        console.log(notification);
+        const matchingEvent = notificationResponse.data.filter(notification => notification.agendamento_id === events[i].id);
+        if (matchingEvent.length > 0) {
+          events[i].motivo = matchingEvent[0].motivo;
+          break;
+        }
+
+      }
+    } catch (error) {
+      console.log(error);
+      alert('Erro ao receber notificações');
+    }
+  }
+}
+
           setEvents(events);
         } catch (error) {
           console.log(error);
@@ -44,7 +66,8 @@
                 <li key={event.data} className={`solicitacoes-list-item ${event.status === 'Pendente' ? 'pendente' : event.status === 'Reprovado' ? 'rejeitado' : 'aprovado'}`}>
                   <span>Periodo: {event.data_inicio} à {event.data_fim} -- Dias {event.dias}</span>
                   <span>Decimo terceiro: {event.antecipacao_13_salario ? 'sim' : 'não'}</span>
-                  <span>Status: {event.status}</span>
+                  <span>Status: {event.status}{event.motivo ? ` - Motivo: ${event.motivo}` : ''}</span>
+
                 </li>
               ))}
             </ul>

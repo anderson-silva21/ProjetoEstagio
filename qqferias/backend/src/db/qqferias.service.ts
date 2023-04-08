@@ -168,12 +168,19 @@ export class QQFeriasService {
         }
 
         async notificacoesFindOne(id) {
-            try{
-                return await this.notificacoesRepository.findOneOrFail(id);
-            } catch (error){
-                throw new NotFoundException(error.message);
-            } 
-        }
+          try {
+              const notificacao = await this.notificacoesRepository.findOneOrFail({
+                  where: { id }
+              });
+              console.log(notificacao); // Adicione esta linha
+              return notificacao;
+          } catch (error) {
+              throw new NotFoundException(error.message);
+          }
+      }
+      
+      
+        
 
         async agendamentosCreate(data: createAgendamentos){
             return await this.agendamentosRepository.save(this.agendamentosRepository.create(data));

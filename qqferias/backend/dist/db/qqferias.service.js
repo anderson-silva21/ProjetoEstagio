@@ -142,7 +142,11 @@ let QQFeriasService = class QQFeriasService {
     }
     async notificacoesFindOne(id) {
         try {
-            return await this.notificacoesRepository.findOneOrFail(id);
+            const notificacao = await this.notificacoesRepository.findOneOrFail({
+                where: { id }
+            });
+            console.log(notificacao);
+            return notificacao;
         }
         catch (error) {
             throw new common_1.NotFoundException(error.message);
