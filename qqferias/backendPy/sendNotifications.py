@@ -15,20 +15,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-class Agendamentos(BaseModel):
-    id: int
-    funcionario_id: int
-    data_inicio: str
-    data_fim: str
-    dias: int
-    status: str
-    antecipacao_13_salario: bool
-    gestor_id: int
+class RelatorioRequest(BaseModel):
+    funcionarios: List[dict]
+    data_inicio: date
+    data_fim: date
 
 app = FastAPI()
 
 @app.post("/send-email")
-async def send_message():
+async def send_email():
     try:
         #def informacoes necessarias
         host = '10.0.0.241'
@@ -55,22 +50,23 @@ async def send_message():
     except Exception as e:
         return {"status": 500, "message": f"Erro ao enviar email: {str(e)}"}
 
-@app.get("/gerar_relatorio")
-async def gerar_relatorio(agendamentos: List[Agendamentos]):
-    df = pd.DataFrame([a.dict() for a in agendamentos])
+@app.post("/gerar_relatorio")
+async def gerar_relatorio(request_body: RelatorioRequest):
+    
+    df = pd.DataFrame([a.dict() for a in RelatorioRequest.funcionarios])
 
     # Criar planilha de agendamentos pendentes
-    pendentes = df[df["status"] == "Pendente"]
     writer = pd.ExcelWriter('relatorio.xlsx', engine='openpyxl')
-    pendentes.to_excel(writer, index=False, sheet_name='Agendamentos Pendentes')
+    pendentes = df[df["status"] == "Pendente"]
+    pendentes.to_excel(writer, index=False, sheet_name='Pendentes')
 
     # Criar planilha de agendamentos aprovados
     aprovados = df[df["status"] == "Aprovado"]
-    aprovados.to_excel(writer, index=False, sheet_name='Agendamentos Aprovados')
+    aprovados.to_excel(writer, index=False, sheet_name='Aprovados')
 
     # Criar planilha de agendamentos reprovados
     reprovados = df[df["status"] == "Reprovado"]
-    reprovados.to_excel(writer, index=False, sheet_name='Agendamentos Reprovados')
+    reprovados.to_excel(writer, index=False, sheet_name='Reprovados')
 
     writer.save()
     return {"message": "Relatório gerado com sucesso!"}

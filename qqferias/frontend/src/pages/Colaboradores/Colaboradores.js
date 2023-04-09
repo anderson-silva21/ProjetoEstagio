@@ -55,8 +55,10 @@ function Colaboradores(){
               try{
                 const response = await axios.get(`http://localhost:3001/qqferias/agendamentos/${collaborator.id}/aprovados`);
                 const events = response.data;     
+                
                 events.forEach((event) => {  
-                  if (event.status === 'Aprovado') {
+                  console.log(event.data_inicio);
+                  if (event.status === 'Aprovado' && moment(event.data_inicio).isSameOrBefore(moment())) {
                     collaborator.vacationStatus = 'Em férias';
                   }
                 });

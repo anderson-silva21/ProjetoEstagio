@@ -76,7 +76,6 @@ function Relatorio() {
       return 'Atrasado';
     }
   };
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -87,11 +86,12 @@ function Relatorio() {
   
     try {
       const requestBody = {
-        vacationRequests: vacationRequests,
-        dataInicio: dataInicio,
-        dataFim: dataFim
+        funcionarios: vacationRequests,
+        data_inicio: dataInicio,
+        data_fim: dataFim
       }
-      const relatorio = await axios.get(`http://localhost:8000/relatorio`, requestBody, { responseType: 'blob' });
+
+      const relatorio = await axios.post(`http://localhost:8000/relatorio`, requestBody);
       const url = window.URL.createObjectURL(new Blob([relatorio.data]));
       const link = document.createElement('a');
       link.href = url;
